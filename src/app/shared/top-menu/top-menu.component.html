@@ -1,0 +1,53 @@
+<div id="nav">
+    <header id="top"
+            class="navbar navbar-sticky">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="site-title col col-lg-auto order-first">
+                    <h1>
+                        <a href="/"
+                           class="custom-logo-link"
+                           rel="home">
+                            <img src="assets/img/podnoms.gif"
+                                 class="custom-logo"
+                                 width="76"
+                                 height="18"
+                                 alt="PodNoms">
+                        </a>
+                    </h1>
+                </div>
+                <nav id="site-menu"
+                     class="col-12 col-lg order-3 order-sm-4 order-lg-2">
+                </nav>
+                <nav id="social-links-menu"
+                     class="col-12 col-md-auto order-4 order-md-1 order-lg-3">
+                    <ul class="social-navigation">
+                        <li class="menu-item menu-item-type-custom">
+                            <a title="Facebook Profile"
+                               target="_blank"
+                               href="http://facebook.com/podnoms"><span class="screen-reader-text">Facebook</span></a>
+                        </li>
+                        <li class="menu-item menu-item-type-custom">
+                            <a title="Twitter Profile"
+                               target="_blank"
+                               href="http://twitter.com/nooshoes"><span class="screen-reader-text">Twitter</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="call-to-action col-12 col-sm-auto order-5 order-sm-2 order-lg-4"
+                     *ngIf="podcast$ | async as podcast">
+                    <a [href]="podcast.rssUrl"
+                       class="button button-small"
+                       target="_blank"><span class="zmdi zmdi-filter-list"></span>
+                        Subscribe Now</a>
+                </div>
+                <div class="site-menu-toggle col-auto order-2 order-sm-3">
+                    <a href="#site-menu">
+                        <span class="screen-reader-text">Toggle
+                            navigation</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

@@ -1,0 +1,103 @@
+<div *ngIf="podcast$ | async as podcast">
+    <app-featured-entry [user]="podcast.user"
+        [podcast]="podcast.slug">
+    </app-featured-entry>
+    <main id="content"
+        class="padding-top-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="episodes-listing">
+                        <h3 class="add-separator">
+                            <span>
+                                Previous <em>Episodes</em>
+                            </span>
+                        </h3>
+                        <article class="entry entry-episode"
+                            *ngFor="let entry of podcast.podcastEntries">
+                            <div class="row align-items-lg-center">
+                                <div class="col-12 col-md-4 col-xl-3">
+                                    <div class="entry-media entry-image multiply-effect">
+                                        <a href="'#'">
+                                            <img class="first entry-image"
+                                                [src]="entry.imageUrl"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-8 col-xl-9">
+                                    <header class="entry-header">
+                                        <div class="entry-meta">
+                                            <span class="posted-in">
+                                                <span class="screen-reader-text">
+                                                    Posted
+                                                    in:
+                                                </span>
+                                                <a href="#"
+                                                    rel="bookmark">{{podcast.title}}
+                                                </a>
+                                            </span>
+                                            <span class="posted-on">
+                                                <span class="screen-reader-text">Posted
+                                                    on:
+                                                </span>
+                                                <a href="#"
+                                                    rel="bookmark">
+                                                    <time class="entry-date published"
+                                                        datetime="entry.createDate">{{entry.createDate | date:'longDate'}}
+                                                    </time>
+                                                </a>
+                                            </span>
+                                            <span class="tags">
+                                                <span class="screen-reader-text">Tagged:</span>
+                                                <a rel="tag"
+                                                    href="#">audio</a>,
+                                                <a rel="tag"
+                                                    href="#">goodbyes</a>,
+                                                <a rel="tag"
+                                                    href="#">life</a>
+                                            </span>
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a [routerLink]="[entry.slug]"
+                                                rel="bookmark">{{entry.title}}
+                                            </a>
+                                        </h2>
+                                    </header>
+                                    <div class="entry-audio">
+                                        <div class="podcast-episode">
+                                            <div class="podcast-episode-player"
+                                                data-episode-duration="00:41">
+                                                <app-audio-player [audioUrl]="entry.audioUrl">
+                                                </app-audio-player>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="entry-content">
+                                        <p [ngClass]="{'expando': !expanded, 'second': true, 'third': false}">
+                                            {{entry.description}}
+                                        </p>
+                                        <a (click)="expanded = !expanded">
+                                            {{ expanded ?
+                                            '(read less)' :
+                                            '(read more)'
+                                            }}
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </article>
+                        <div class="pagination pagination-load-more">
+                            <a href="#"
+                                class="button button-filled">
+                                <span class="zmdi zmdi-more"></span>
+                                Browse More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

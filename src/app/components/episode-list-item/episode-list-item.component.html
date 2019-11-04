@@ -1,0 +1,46 @@
+<div class="row align-items-lg-center" *ngIf="episode">
+    <div class="col-12 col-md-4 col-xl-3">
+        <div class="entry-media entry-image multiply-effect">
+            <a href="'#'">
+                <img class="first entry-image" [src]="episode.imageUrl" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-md-8 col-xl-9">
+        <header class="entry-header">
+            <div class="entry-meta">
+                <span class="posted-in">
+                    <span class="screen-reader-text">
+                        Posted
+                        in:
+                    </span>
+                    <a href="#" rel="bookmark">{{podcast.title}}
+                    </a>
+                </span>
+                <span class="posted-on">
+                    <span class="screen-reader-text">Posted
+                        on:
+                    </span>
+                    <a href="#" rel="bookmark">
+                        <time class="entry-date published"
+                              datetime="entry.createDate">{{episode.createDate | date:'longDate'}}
+                        </time>
+                    </a>
+                </span>
+            </div>
+            <h2 class="entry-title">
+                <a [routerLink]="[episode.slug]" rel="bookmark">{{episode.title}}
+                </a>
+            </h2>
+        </header>
+        <div class="entry-content">
+            <div class="expando">
+                <p [innerHTML]="strippedDescription">
+                </p>
+            </div>
+            <a (click)="expanded = !expanded">
+                {{ expanded ? '(read less)' : '(read more)' }}
+            </a>
+        </div>
+    </div>
+</div>
