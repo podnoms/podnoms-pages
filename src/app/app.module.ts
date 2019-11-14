@@ -13,6 +13,7 @@ import { EpisodeComponent } from './views/episode/episode.component';
 import { NgxAudioplayerModule } from '@podnoms/ngx-audioplayer';
 import { PodcastDataService } from './services/podcast-data.service';
 import { PodcastEntryDataService } from './services/podcast-entry-data.service';
+import { EpisodeListItemComponent } from './components/episode-list-item/episode-list-item.component';
 
 @NgModule({
     declarations: [
@@ -22,16 +23,12 @@ import { PodcastEntryDataService } from './services/podcast-entry-data.service';
         ShowComponent,
         NotFoundComponent,
         FeaturedEntryComponent,
-        EpisodeComponent
+        EpisodeListItemComponent,
+        EpisodeComponent,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        NgxAudioplayerModule
-    ],
+    imports: [BrowserModule, HttpClientModule, AppRoutingModule, NgxAudioplayerModule],
     providers: [PodcastDataService, PodcastEntryDataService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
