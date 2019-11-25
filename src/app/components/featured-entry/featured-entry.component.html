@@ -13,8 +13,7 @@
                         <div class="podcast-episode">
                             <div class="podcast-episode-player">
 
-                                <ngx-audioplayer #player [audioUrl]="entry.audioUrl"
-                                                 [pcmUrl]="'https://cdn.podnoms.com/waveforms/b494ec79-8b64-401b-2a06-08d6df5853e6.json'"
+                                <ngx-audioplayer #player [audioUrl]="entry.audioUrl" [pcmUrl]="entry.pcmUrl"
                                                  [imageUrl]="entry.imageUrl" [title]="entry.author"
                                                  [subTitle]="entry.title" [autoPlay]="false"
                                                  [backgroundColour]="'rgba(242,245,245,0.1)'" [titleColour]="'#8fac69'"
