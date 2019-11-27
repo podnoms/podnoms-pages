@@ -7,22 +7,19 @@ import { PodcastDataService } from 'src/app/services/podcast-data.service';
 @Component({
     selector: 'app-episode',
     templateUrl: './show.component.html',
-    styleUrls: ['./show.component.scss']
+    styleUrls: ['./show.component.scss'],
 })
 export class ShowComponent implements OnInit {
     podcast$: Observable<Podcast>;
     loading$: Observable<boolean>;
     expanded: boolean = false;
 
-    constructor(
-        private route: ActivatedRoute,
-        private service: PodcastDataService
-    ) {}
+    constructor(private route: ActivatedRoute, private service: PodcastDataService) {}
 
     ngOnInit() {
         this.podcast$ = this.service.getByKey({
             user: this.route.snapshot.params.user,
-            podcast: this.route.snapshot.params.podcast
+            podcast: this.route.snapshot.params.podcast,
         });
     }
 }

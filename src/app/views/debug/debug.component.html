@@ -1,0 +1,14 @@
+<main id="content" class="padding-top-bottom">
+    <div class="container" *ngIf="episodes$ | async as episodes">
+        <div class="row" *ngFor="let entry of episodes">
+            {{entry.id}}
+            <ngx-audioplayer style="width: 100%;" #player [audioUrl]="entry.audioUrl"
+                             [pcmUrl]="'https://cdn.podnoms.com/waveforms/b494ec79-8b64-401b-2a06-08d6df5853e6.json'"
+                             [imageUrl]="entry.imageUrl" [title]="entry.author" [subTitle]="entry.title"
+                             [autoPlay]="false" [backgroundColour]="'rgba(176,182,188,0.1)'" [titleColour]="'#8fac69'"
+                             [padding]="'3px'" [subTitleColour]="'#828699'" [waveColour]="'#828699'"
+                             [waveColourProgress]="'#8fac69'" [showImage]="true" [showDetails]="true">
+            </ngx-audioplayer>
+        </div>
+    </div>
+</main>
