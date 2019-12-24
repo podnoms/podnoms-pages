@@ -13,6 +13,8 @@ import { PodcastEntryDataService } from 'src/app/services/podcast-entry-data.ser
 export class EpisodeComponent implements OnInit, AfterViewInit {
     episode$: Observable<PodcastEntry>;
 
+    facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`;
+    twitterRef: string = `https://twitter.com/intent/tweet?url=${window.location}`;
     constructor(private route: ActivatedRoute, private service: PodcastEntryDataService) {}
 
     ngOnInit() {

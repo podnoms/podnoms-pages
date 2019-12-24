@@ -8,9 +8,9 @@ import { DomainResolverService } from './domain-resolver.service';
 export class PodcastEntryDataService {
     constructor(private http: HttpClient, private resolver: DomainResolverService) {}
     getByKey(key: any): Observable<PodcastEntry> {
-        const path = `${key.user}/${key.podcast}/${key.episode}`;
+        const path = `entry/${key.user}/${key.podcast}/${key.episode}`;
         const resolved = this.resolver.getResolvedUrl(path);
-        return this.http.get<PodcastEntry>(path);
+        return this.http.get<PodcastEntry>(resolved);
     }
     getTop100(): Observable<PodcastEntry[]> {
         const path = this.resolver.getResolvedUrl('/entry/top100');
