@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { DomainResolverService } from './domain-resolver.service';
 
 @Injectable()
-export class PodcastEntryDataService  {
-    constructor(private http: HttpClient) {
-    }
+export class PodcastEntryDataService {
+    constructor(private http: HttpClient, private resolver: DomainResolverService) {}
     getByKey(key: any): Observable<PodcastEntry> {
-        return this.http.get<PodcastEntry>(`${environment.apiHost}/entry/${key.user}/${key.podcast}/${key.episode}`);
+        const path = `entry/${key.user}/${key.podcast}/${key.episode}`;
+        const resolved = this.resolver.getResolvedUrl(path);
+        return this.http.get<PodcastEntry>(resolved);
+    }
+    getTop100(): Observable<PodcastEntry[]> {
+        const path = this.resolver.getResolvedUrl('/entry/top100');
+        return this.http.get<PodcastEntry[]>(path);
     }
 }

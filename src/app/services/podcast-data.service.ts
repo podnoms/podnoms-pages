@@ -10,18 +10,13 @@ import { environment } from 'src/environments/environment';
 export class PodcastDataService {
     constructor(private http: HttpClient) {}
 
-    getFeaturedEpisode(
-        user: string,
-        podcast: string
-    ): Observable<PodcastEntry> {
+    getFeaturedEpisode(user: string, podcast: string): Observable<PodcastEntry> {
         return this.http.get<PodcastEntry>(
-            `${environment.apiHost}/podcast/${user}/${podcast}/featured`
+            `${environment.apiHost}/podcast/${user}/${podcast}/featured`,
         );
     }
     getByKey(key: any): Observable<Podcast> {
-        return this.http.get<Podcast>(
-            `${environment.apiHost}/podcast/${key.user}/${key.podcast}`
-        );
+        return this.http.get<Podcast>(`${environment.apiHost}/podcast/${key.user}/${key.podcast}`);
     }
     getAll(): Observable<Podcast[]> {
         return this.http.get<Podcast[]>(`${environment.apiHost}/podcast/`);

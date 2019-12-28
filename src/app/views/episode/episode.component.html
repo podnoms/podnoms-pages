@@ -1,6 +1,5 @@
 <div *ngIf="episode$ | async as entry">
-    <header id="featured"
-            class="featured-content fade-background-50 padding-top-bottom">
+    <header id="featured" class="featured-content fade-background-50 padding-top-bottom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
@@ -10,40 +9,33 @@
                     <div class="entry-meta">
                         <span class="posted-on">
                             <span class="screen-reader-text">
-                                Posted on:
+                                Posted:
                             </span>
                             <a>
-                                <time class="entry-date published"
-                                      datetime="2017-09-13T14:48:37+00:00">
-                                    13 September 2017
+                                <time class="entry-date published" datetime="2017-09-13T14:48:37+00:00">
+                                    {{entry.createDate | date:'longDate'}}
                                 </time>
                             </a>
                         </span>
                         <!-- <span class="tags">
                             <span class="screen-reader-text">
                                 Tagged:
-                            </span> 
-                            <a rel="tag" href="#">audio</a>, 
-                            <a rel="tag" href="#">goodbyes</a>, 
+                            </span>
+                            <a rel="tag" href="#">audio</a>,
+                            <a rel="tag" href="#">goodbyes</a>,
                             <a rel="tag" href="#">life</a>
                         </span> -->
                     </div>
                     <div class="podcast-episode">
                         <div class="podcast-episode">
                             <div class="podcast-episode-player">
-                                <ngx-audioplayer #player
-                                                 [audioUrl]="entry.audioUrl"
-                                                 [pcmUrl]="'https://cdn.podnoms.com/waveforms/b494ec79-8b64-401b-2a06-08d6df5853e6.json'"
-                                                 [imageUrl]="entry.imageUrl"
-                                                 [title]="entry.author"
-                                                 [subTitle]="entry.title"
-                                                 [autoPlay]="false"
-                                                 [backgroundColour]="'rgba(176,182,188,0.1)'"
-                                                 [titleColour]="'#8fac69'"
-                                                 [padding]="'3px'"
-                                                 [subTitleColour]="'#828699'"
-                                                 [waveColour]="'#828699'"
-                                                 [waveColourProgress]="'#8fac69'">
+                                <ngx-audioplayer #player [audioUrl]="entry.audioUrl" [pcmUrl]="entry.pcmUrl"
+                                                 [imageUrl]="entry.imageUrl" [title]="entry.author"
+                                                 [subTitle]="entry.title" [autoPlay]="false"
+                                                 [backgroundColour]="'rgba(176,182,188,0.1)'" [titleColour]="'#8fac69'"
+                                                 [padding]="'3px'" [subTitleColour]="'#828699'" [waveColour]="'#828699'"
+                                                 [waveColourProgress]="'#8fac69'" [showImage]="false"
+                                                 [showDetails]="false">
                                 </ngx-audioplayer>
                             </div>
                         </div>
@@ -52,8 +44,7 @@
             </div>
         </div>
     </header>
-    <main id="content"
-          class=" padding-top-bottom">
+    <main id="content" class=" padding-top-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-9">
@@ -66,22 +57,14 @@
                                 <h5 class="share-title">Share
                                     episode:</h5>
                                 <p class="share-links">
-                                    <a title="Facebook"
-                                       target="_blank"
-                                       href="#"><span class="zmdi zmdi-facebook"></span>
-                                        <span class="screen-reader-text">Facebook</span></a>
-                                    <a title="Google+"
-                                       target="_blank"
-                                       href="#"><span class="zmdi zmdi-google-plus"></span>
-                                        <span class="screen-reader-text">Google+</span></a>
-                                    <a title="Twitter"
-                                       target="_blank"
-                                       href="#"><span class="zmdi zmdi-twitter"></span>
-                                        <span class="screen-reader-text">Twitter</span></a>
-                                    <a title="Pinterest"
-                                       target="_blank"
-                                       href="#"><span class="zmdi zmdi-pinterest"></span>
-                                        <span class="screen-reader-text">Pinterest</span></a>
+                                    <a title="Facebook" target="_blank" [href]="facebookRef">
+                                        <span class="zmdi zmdi-facebook"></span>
+                                        <span class="screen-reader-text">Facebook</span>
+                                    </a>
+                                    <a title="Twitter" target="_blank" [href]="twitterRef">
+                                        <span class="zmdi zmdi-twitter"></span>
+                                        <span class="screen-reader-text">Twitter</span>
+                                    </a>
                                 </p>
                             </aside>
                         </div>

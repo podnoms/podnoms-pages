@@ -14,6 +14,7 @@ import { NgxAudioplayerModule } from '@podnoms/ngx-audioplayer';
 import { PodcastDataService } from './services/podcast-data.service';
 import { PodcastEntryDataService } from './services/podcast-entry-data.service';
 import { EpisodeListItemComponent } from './components/episode-list-item/episode-list-item.component';
+import { DebugComponent } from './views/debug/debug.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { EpisodeListItemComponent } from './components/episode-list-item/episode
         FeaturedEntryComponent,
         EpisodeListItemComponent,
         EpisodeComponent,
+        DebugComponent,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [BrowserModule, HttpClientModule, AppRoutingModule, NgxAudioplayerModule],

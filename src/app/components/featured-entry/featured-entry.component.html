@@ -1,37 +1,25 @@
-<header id="featured"
-        class="featured-content fade-background-0 padding-top-bottom"
-        *ngIf="episode$ | async as entry">
-    <img class="bgimg"
-         [src]="entry.imageUrl">
+<header id="featured" class="featured-content fade-background-0 padding-top-bottom" *ngIf="episode$ | async as entry">
+    <img class="bgimg" [src]="entry.imageUrl">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="latest-episode">
                     <div class="podcast-episode">
-                        <p
-                           class="big text-uppercase opacity-50">
+                        <p class="big text-uppercase opacity-50">
                             Latest Episode
                         </p>
-                        <h1 class="entry-title"><a
-                               href="#">{{entry.title}}</a>
+                        <h1 class="entry-title"><a href="#">{{entry.title}}</a>
                         </h1>
                         <div class="podcast-episode">
-                            <div
-                                 class="podcast-episode-player">
+                            <div class="podcast-episode-player">
 
-                                <ngx-audioplayer #player
-                                                 [audioUrl]="entry.audioUrl"
-                                                 [pcmUrl]="'https://cdn.podnoms.com/waveforms/b494ec79-8b64-401b-2a06-08d6df5853e6.json'"
-                                                 [imageUrl]="entry.imageUrl"
-                                                 [title]="entry.author"
-                                                 [subTitle]="entry.title"
-                                                 [autoPlay]="false"
-                                                 [backgroundColour]="'rgba(242,245,245,0.1)'"
-                                                 [titleColour]="'#8fac69'"
-                                                 [padding]="'3px'"
-                                                 [subTitleColour]="'#828699'"
-                                                 [waveColour]="'#828699'"
-                                                 [waveColourProgress]="'#8fac69'">
+                                <ngx-audioplayer #player [audioUrl]="entry.audioUrl" [pcmUrl]="entry.pcmUrl"
+                                                 [imageUrl]="entry.imageUrl" [title]="entry.author"
+                                                 [subTitle]="entry.title" [autoPlay]="false"
+                                                 [backgroundColour]="'rgba(242,245,245,0.1)'" [titleColour]="'#8fac69'"
+                                                 [padding]="'3px'" [subTitleColour]="'#828699'" [waveColour]="'#828699'"
+                                                 [waveColourProgress]="'#8fac69'" [showImage]="false"
+                                                 [showDetails]="false">
                                 </ngx-audioplayer>
                             </div>
                         </div>
