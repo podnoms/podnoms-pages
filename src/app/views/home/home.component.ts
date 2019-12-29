@@ -13,14 +13,5 @@ export class HomeComponent implements OnInit {
         private currentUrl: ActivatedRoute,
         private domainResolver: DomainResolverService,
     ) {}
-    ngOnInit() {
-        // need to do some stuff here
-        // first off, hook into the domain resolver service
-        this.domainResolver.resolveBaseUrl(window.location.hostname).subscribe(r => {
-            this.domainResolver.setBaseUrl(r);
-            if (r) {
-                this.router.navigateByUrl(r, { skipLocationChange: true });
-            }
-        });
-    }
+    ngOnInit() {}
 }
