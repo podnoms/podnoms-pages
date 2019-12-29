@@ -126,5 +126,9 @@
             }
         }
     },
-    "defaultProject": "podnoms-pages"
+    "defaultProject": "podnoms-pages",
+    "cli": {
+        "packageManager": "yarn",
+        "analytics": false
+    }
 }
