@@ -8,9 +8,5 @@ import { DomainResolverService } from './services/domain-resolver.service';
 })
 export class AppComponent {
     title = 'podnoms-pages';
-    constructor(domainResolver: DomainResolverService) {
-        domainResolver.resolveBaseUrl(window.location.hostname).subscribe(r => {
-            domainResolver.setBaseUrl(r);
-        });
-    }
+    constructor(domainResolver: DomainResolverService) {}
 }

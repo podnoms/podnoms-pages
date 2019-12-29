@@ -3,17 +3,16 @@ import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DomainResolverService } from './domain-resolver.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class PodcastEntryDataService {
     constructor(private http: HttpClient, private resolver: DomainResolverService) {}
     getByKey(key: any): Observable<PodcastEntry> {
-        const path = `entry/${key.user}/${key.podcast}/${key.episode}`;
-        const resolved = this.resolver.getResolvedUrl(path);
-        return this.http.get<PodcastEntry>(resolved);
+        const path = `${environment.apiHost}/entry/${key.user}/${key.podcast}/${key.episode}`;
+        return this.http.get<PodcastEntry>(path);
     }
     getTop100(): Observable<PodcastEntry[]> {
-        const path = this.resolver.getResolvedUrl('/entry/top100');
-        return this.http.get<PodcastEntry[]>(path);
+        return this.http.get<PodcastEntry[]>(`${environment.apiHost}/entry/top100`);
     }
 }

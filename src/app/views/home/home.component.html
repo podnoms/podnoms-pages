@@ -1,7 +1,10 @@
 <main id="content" class="padding-top-bottom">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" *ngIf="!loaded">
+                Loading.....
+            </div>
+            <div class="col-12" *ngIf="loaded">
                 <h1>Welcome to PodNoms Pages</h1>
                 <aside>There really is nothing to see here</aside>
                 <aside>Head over <a href="https://podnoms.com">Here</a>

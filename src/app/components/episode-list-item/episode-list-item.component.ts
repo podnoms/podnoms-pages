@@ -17,13 +17,6 @@ export class EpisodeListItemComponent {
         console.log('episode-list-item.component', 'ctor');
     }
 
-    // ngAfterViewChecked(): void {
-    //     console.log('episode-list-item.component', 'ngAfterViewChecked');
-    //     setTimeout(() => {
-    //         this.strippedDescription =
-    //             this.episode.description && this._stripTag(this.episode.description, 'img');
-    //     });
-    // }
     private _stripTag(html: string, tag: string): string {
         const div = document.createElement('div');
         div.innerHTML = html;

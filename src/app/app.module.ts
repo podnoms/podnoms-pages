@@ -15,6 +15,8 @@ import { PodcastDataService } from './services/podcast-data.service';
 import { PodcastEntryDataService } from './services/podcast-entry-data.service';
 import { EpisodeListItemComponent } from './components/episode-list-item/episode-list-item.component';
 import { DebugComponent } from './views/debug/debug.component';
+import { DomainResolverService } from './services/domain-resolver.service';
+import { DomainResolver } from './services/domain-resolver';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,7 @@ import { DebugComponent } from './views/debug/debug.component';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [BrowserModule, HttpClientModule, AppRoutingModule, NgxAudioplayerModule],
-    providers: [PodcastDataService, PodcastEntryDataService],
+    providers: [PodcastDataService, PodcastEntryDataService, DomainResolver, DomainResolverService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
