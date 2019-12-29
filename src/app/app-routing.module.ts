@@ -5,12 +5,16 @@ import { ShowComponent } from './views/show/show.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EpisodeComponent } from './views/episode/episode.component';
 import { DebugComponent } from './views/debug/debug.component';
+import { DomainResolver } from './services/domain-resolver';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'arglebarglefooferra', component: DebugComponent },
-    { path: ':user/:podcast', component: ShowComponent },
-    { path: ':user/:podcast/:episode', component: EpisodeComponent },
+    { path: '', component: HomeComponent, resolve: { domain: DomainResolver } },
+    { path: ':user/:podcast', component: ShowComponent, resolve: { domain: DomainResolver } },
+    {
+        path: ':user/:podcast/:episode',
+        component: EpisodeComponent,
+        resolve: { domain: DomainResolver },
+    },
     { path: '**', component: NotFoundComponent },
 ];
 
