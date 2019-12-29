@@ -38,7 +38,7 @@
                 <p [innerHTML]="strippedDescription">
                 </p>
             </div>
-            <a (click)="expanded = !expanded">
+            <a (click)="expanded = !expanded" *ngIf="false">
                 {{ expanded ? '(read less)' : '(read more)' }}
             </a>
         </div>
