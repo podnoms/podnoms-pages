@@ -14,12 +14,28 @@ export class ShowComponent implements OnInit {
     loading$: Observable<boolean>;
     expanded: boolean = false;
 
-    constructor(private route: ActivatedRoute, private service: PodcastDataService) {}
+    user: string = '';
+    slug: string = '';
+
+    constructor(private activatedRoute: ActivatedRoute, private service: PodcastDataService) {
+        activatedRoute.data.subscribe(r => {
+            console.log('home.component', 'currentUrl', r);
+            if (r.domain) {
+                const parts = r.domain.split('/');
+                const path = `${parts[0]}/${parts[1]}`;
+                console.log('show.component', 'customDomain', path);
+                if (parts.length === 2) {
+                    this.user = parts[0];
+                    this.slug = parts[1];
+                }
+            }
+        });
+    }
 
     ngOnInit() {
         this.podcast$ = this.service.getByKey({
-            user: this.route.snapshot.params.user,
-            podcast: this.route.snapshot.params.podcast,
+            user: this.activatedRoute.snapshot.params.user,
+            podcast: this.activatedRoute.snapshot.params.podcast,
         });
     }
 }

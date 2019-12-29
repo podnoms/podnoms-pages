@@ -18,17 +18,34 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
     constructor(private route: ActivatedRoute, private service: PodcastEntryDataService) {}
 
     ngOnInit() {
-        const user = this.route.snapshot.params.user;
-        const podcast = this.route.snapshot.params.podcast;
-        const episode = this.route.snapshot.params.episode;
-
-        this.episode$ = this.service
-            .getByKey({
-                user: user,
-                podcast: podcast,
-                episode: episode,
-            })
-            .pipe(tap(e => console.log('episode.component', 'tap', e)));
+        let user = this.route.snapshot.params.user;
+        let podcast = this.route.snapshot.params.podcast;
+        let episode = this.route.snapshot.params.episode;
+        if (user && podcast) {
+            this.episode$ = this.service
+                .getByKey({
+                    user: user,
+                    podcast: podcast,
+                    episode: episode,
+                })
+                .pipe(tap(e => console.log('episode.component', 'tap', e)));
+        } else {
+            this.route.data.subscribe(r => {
+                console.log('home.component', 'currentUrl', r);
+                if (r.domain) {
+                    const parts = r.domain.split('/');
+                    user = parts[0];
+                    podcast = parts[1];
+                    this.episode$ = this.service
+                        .getByKey({
+                            user: user,
+                            podcast: podcast,
+                            episode: episode,
+                        })
+                        .pipe(tap(e => console.log('episode.component', 'tap', e)));
+                }
+            });
+        }
     }
     ngAfterViewInit() {}
 }

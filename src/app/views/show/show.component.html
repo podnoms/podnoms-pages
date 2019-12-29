@@ -12,7 +12,7 @@
                             </span>
                         </h3>
                         <article class="entry entry-episode" *ngFor="let entry of podcast.podcastEntries">
-                            <app-episode-list-item [podcast]="podcast" [episode]="entry">
+                            <app-episode-list-item [user]="user" [slug]="slug" [podcast]="podcast" [episode]="entry">
                             </app-episode-list-item>
                         </article>
                         <!-- <div class="pagination pagination-load-more">

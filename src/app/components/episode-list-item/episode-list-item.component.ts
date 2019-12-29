@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { Podcast } from 'src/app/models/podcast.model';
 
@@ -7,16 +7,27 @@ import { Podcast } from 'src/app/models/podcast.model';
     templateUrl: './episode-list-item.component.html',
     styleUrls: ['./episode-list-item.component.scss'],
 })
-export class EpisodeListItemComponent {
+export class EpisodeListItemComponent implements AfterViewInit {
     strippedDescription: string = '';
     expanded: boolean = false;
+    episodeUrl: string = '';
     @Input() podcast: Podcast;
     @Input() episode: PodcastEntry;
+    @Input() user: string;
+    @Input() slug: string;
 
     constructor() {
         console.log('episode-list-item.component', 'ctor');
     }
-
+    ngAfterViewInit() {
+        setTimeout(() => {
+            if (this.user && this.slug) {
+                this.episodeUrl = `/${this.episode.slug}`;
+            } else {
+                this.episodeUrl = this.episode.slug;
+            }
+        });
+    }
     private _stripTag(html: string, tag: string): string {
         const div = document.createElement('div');
         div.innerHTML = html;

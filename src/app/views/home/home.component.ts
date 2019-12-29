@@ -11,10 +11,10 @@ export class HomeComponent implements OnInit {
     loaded: boolean = false;
     constructor(
         private router: Router,
-        private currentUrl: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private domainResolver: DomainResolverService,
     ) {
-        currentUrl.data.subscribe(r => {
+        activatedRoute.data.subscribe(r => {
             console.log('home.component', 'currentUrl', r);
             if (r.domain) {
                 const parts = r.domain.split('/');
