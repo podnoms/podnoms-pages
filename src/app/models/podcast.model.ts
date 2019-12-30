@@ -16,5 +16,9 @@ export interface Podcast {
     authUserName?: string;
     authPassword?: string;
 
+    facebookUrl?: string;
+    twitterUrl?: string;
+    publicTitle?: string;
+
     dateLoaded: Date;
 }

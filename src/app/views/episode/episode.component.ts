@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { tap } from 'rxjs/operators';
 import { PodcastEntryDataService } from 'src/app/services/podcast-entry-data.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-episode',
@@ -15,12 +16,16 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
 
     facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`;
     twitterRef: string = `https://twitter.com/intent/tweet?url=${window.location}`;
-    constructor(private route: ActivatedRoute, private service: PodcastEntryDataService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private service: PodcastEntryDataService,
+        private titleService: Title,
+    ) {}
 
     ngOnInit() {
         let user = this.route.snapshot.params.user;
         let podcast = this.route.snapshot.params.podcast;
-        let episode = this.route.snapshot.params.episode;
+        const episode = this.route.snapshot.params.episode;
         if (user && podcast) {
             this.episode$ = this.service
                 .getByKey({
@@ -28,7 +33,11 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                     podcast: podcast,
                     episode: episode,
                 })
-                .pipe(tap(e => console.log('episode.component', 'tap', e)));
+                .pipe(
+                    tap(e => {
+                        this.titleService.setTitle(e.title);
+                    }),
+                );
         } else {
             this.route.data.subscribe(r => {
                 console.log('home.component', 'currentUrl', r);
@@ -42,7 +51,11 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                             podcast: podcast,
                             episode: episode,
                         })
-                        .pipe(tap(e => console.log('episode.component', 'tap', e)));
+                        .pipe(
+                            tap(e => {
+                                this.titleService.setTitle(e.title);
+                            }),
+                        );
                 }
             });
         }

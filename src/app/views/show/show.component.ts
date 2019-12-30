@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Podcast } from 'src/app/models/podcast.model';
 import { PodcastDataService } from 'src/app/services/podcast-data.service';
+import { Title } from '@angular/platform-browser';
+import { tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-episode',
@@ -17,7 +19,11 @@ export class ShowComponent implements OnInit {
     user: string = '';
     slug: string = '';
 
-    constructor(private activatedRoute: ActivatedRoute, private service: PodcastDataService) {
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private service: PodcastDataService,
+        private titleService: Title,
+    ) {
         activatedRoute.data.subscribe(r => {
             console.log('home.component', 'currentUrl', r);
             if (r.domain) {
@@ -33,9 +39,11 @@ export class ShowComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.podcast$ = this.service.getByKey({
-            user: this.activatedRoute.snapshot.params.user,
-            podcast: this.activatedRoute.snapshot.params.podcast,
-        });
+        this.podcast$ = this.service
+            .getByKey({
+                user: this.activatedRoute.snapshot.params.user,
+                podcast: this.activatedRoute.snapshot.params.podcast,
+            })
+            .pipe(tap(p => this.titleService.setTitle(p.publicTitle)));
     }
 }

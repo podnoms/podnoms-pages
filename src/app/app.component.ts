@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DomainResolverService } from './services/domain-resolver.service';
 
 @Component({
     selector: 'app-root',
@@ -8,5 +7,5 @@ import { DomainResolverService } from './services/domain-resolver.service';
 })
 export class AppComponent {
     title = 'podnoms-pages';
-    constructor(domainResolver: DomainResolverService) {}
+    constructor() {}
 }
