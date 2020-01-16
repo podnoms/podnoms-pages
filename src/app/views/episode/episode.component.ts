@@ -42,9 +42,8 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
             this.route.data.subscribe(r => {
                 console.log('home.component', 'currentUrl', r);
                 if (r.domain) {
-                    const parts = r.domain.split('/');
-                    user = parts[0];
-                    podcast = parts[1];
+                    user = r.domain.userSlug;
+                    podcast = r.domain.podcastSlug;
                     this.episode$ = this.service
                         .getByKey({
                             user: user,

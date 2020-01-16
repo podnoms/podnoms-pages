@@ -27,13 +27,8 @@ export class ShowComponent implements OnInit {
         activatedRoute.data.subscribe(r => {
             console.log('home.component', 'currentUrl', r);
             if (r.domain) {
-                const parts = r.domain.split('/');
-                const path = `${parts[0]}/${parts[1]}`;
-                console.log('show.component', 'customDomain', path);
-                if (parts.length === 2) {
-                    this.user = parts[0];
-                    this.slug = parts[1];
-                }
+                this.user = r.domain.userSlug;
+                this.slug = r.domain.podcastSlug;
             }
         });
     }

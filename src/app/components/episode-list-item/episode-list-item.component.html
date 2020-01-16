@@ -9,23 +9,13 @@
     <div class="col-12 col-md-8 col-xl-9">
         <header class="entry-header">
             <div class="entry-meta">
-                <span class="posted-in">
-                    <span class="screen-reader-text">
-                        Posted
-                        in:
-                    </span>
-                    <a href="#" rel="bookmark">{{podcast.title}}
-                    </a>
-                </span>
                 <span class="posted-on">
                     <span class="screen-reader-text">Posted
                         on:
                     </span>
-                    <a href="#" rel="bookmark">
-                        <time class="entry-date published"
-                              datetime="entry.createDate">{{episode.createDate | date:'longDate'}}
-                        </time>
-                    </a>
+                    <time class="entry-date published"
+                          datetime="entry.createDate">{{episode.createDate | date:'longDate'}}
+                    </time>
                 </span>
             </div>
             <h2 class="entry-title">
