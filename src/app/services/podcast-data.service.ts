@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Podcast } from 'src/app/models/podcast.model';
 import { PodcastEntry } from '../models/podcast-entry.model';
 import { environment } from 'src/environments/environment';
+import { PodcastAggregator } from '../models/podcast-aggregator.model';
 
 @Injectable()
 export class PodcastDataService {
@@ -21,15 +22,9 @@ export class PodcastDataService {
     getAll(): Observable<Podcast[]> {
         return this.http.get<Podcast[]>(`${environment.apiHost}/podcast/`);
     }
-    // getById(data: any): Observable<Podcast> {
-    //     return this.getByKey(data);
-    // }
-    // getWithQuery(params: string | QueryParams): Observable<Podcast[]> {
-    //     return super
-    //         .getWithQuery(params)
-    //         .pipe(map(podcasts => podcasts.map(podcast => this.mapPodcast(podcast))));
-    // }
-    // private mapPodcast(podcast: Podcast): Podcast {
-    //     return { ...podcast, dateLoaded: new Date() };
-    // }
+    getAggregators(podcastId: string): Observable<PodcastAggregator[]> {
+        return this.http.get<PodcastAggregator[]>(
+            `${environment.apiHost}/podcast/${podcastId}/aggregators`,
+        );
+    }
 }

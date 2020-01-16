@@ -21,7 +21,10 @@ export class TopMenuComponent {
     ) {
         domainResolverService.resolveBaseUrl(window.location.host).subscribe(r => {
             if (r) {
-                this._loadDetails(domainResolverService.user, domainResolverService.slug);
+                this._loadDetails(
+                    domainResolverService.domain.userSlug,
+                    domainResolverService.domain.podcastSlug,
+                );
             } else {
                 router.events
                     .pipe(filter(e => e instanceof NavigationEnd))

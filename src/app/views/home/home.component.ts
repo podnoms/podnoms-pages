@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomainResolverService } from 'src/app/services/domain-resolver.service';
+import { CustomDomain } from 'src/app/models/custom-domain.model';
 
 @Component({
     selector: 'app-home',
@@ -16,13 +17,8 @@ export class HomeComponent implements OnInit {
     ) {
         activatedRoute.data.subscribe(r => {
             console.log('home.component', 'currentUrl', r);
-            if (r.domain) {
-                const parts = r.domain.split('/');
-                const path = `${parts[0]}/${parts[1]}`;
-                console.log('home.component', 'customDomain', path);
-                if (parts.length === 2) {
-                    router.navigateByUrl(path, { skipLocationChange: true });
-                }
+            if (r) {
+                router.navigateByUrl(r.domain.url, { skipLocationChange: true });
             } else {
                 this.loaded = true;
             }

@@ -11,38 +11,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 col-lg-9">
-                <div class="post-listing">
+                <div class="subscribe-listing">
                     <div class="row">
-                        <div class="col-12 col-lg-4 m-50">
-                            <article class="entry entry-post format-video">
+                        <div class="subscribe-listing-item col-12 col-lg-4 m-50"
+                             *ngFor="let item of aggregators$ | async">
+                            <article>
                                 <div class="entry-media entry-image">
-                                    <a href="#">
-                                        <img src="assets/img/partners/itunes/itunes-subscribe.png"
-                                            alt="Subscribe in Apple Podcasts">
+                                    <a [href]="item.url" target="_blank">
+                                        <img [src]="item.imageUrl" alt="Subscribe in {{item.name}}">
                                     </a>
-
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-12 col-lg-4 m-50">
-                            <article class="entry entry-post format-video">
-                                <div class="entry-media entry-image">
-                                    <a href="https://www.stitcher.com/podcast/sir-henrys-weekly-sweat-choon"
-                                        target="_blank">
-                                        <img src="assets/img/partners/stitcher/Stitcher_Listen_Badge_Color_Light_BG.png"
-                                            width="200" alt="Subscribe in Stitcher">
-                                    </a>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                            <article class="entry entry-post format-video">
-                                <div class="entry-media entry-image">
-                                    <a href="https://open.spotify.com/show/6JG0ApW2wGqPA6AE4i6DGf" target="_blank">
-                                        <img src="assets/img/partners/spotify/spotify-podcast-badge-blk-grn-330x80.png"
-                                            alt="Subscribe in Spotify">
-                                    </a>
-
                                 </div>
                             </article>
                         </div>
@@ -50,7 +27,8 @@
                             <article class="entry entry-post format-video">
                                 <div class="entry-media entry-image">
                                     <a href="https://rss.podnoms.com/fergal-moran/henrys" target="_blank">
-                                        <img src="assets/img/subscribe-rss-button.png">
+                                        <img class="subscribe-image"
+                                             src="https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png">
                                     </a>
                                 </div>
                             </article>

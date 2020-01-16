@@ -3,26 +3,22 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { CustomDomain } from '../models/custom-domain.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DomainResolverService {
     private baseUrl: string = '';
-    public user: string = '';
-    public slug: string = '';
+    public domain: CustomDomain;
     constructor(private http: HttpClient) {}
 
-    resolveBaseUrl(url: string): Observable<string> {
+    resolveBaseUrl(url: string): Observable<CustomDomain> {
         return this.http
-            .get(`${environment.apiHost}/podcast/domainresolver?domain=${url}`, {
-                responseType: 'text',
-            })
+            .get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver?domain=${url}`)
             .pipe(
                 tap(p => {
-                    const parts = p.split('/');
-                    this.user = parts[0];
-                    this.slug = parts[1];
+                    this.domain = p;
                 }),
             );
     }
