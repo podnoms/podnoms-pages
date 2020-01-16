@@ -17,6 +17,7 @@ import { EpisodeListItemComponent } from './components/episode-list-item/episode
 import { DebugComponent } from './views/debug/debug.component';
 import { DomainResolverService } from './services/domain-resolver.service';
 import { DomainResolver } from './services/domain-resolver';
+import { SubscribeComponent } from './views/subscribe/subscribe.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { DomainResolver } from './services/domain-resolver';
         EpisodeListItemComponent,
         EpisodeComponent,
         DebugComponent,
+        SubscribeComponent,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [BrowserModule, HttpClientModule, AppRoutingModule, NgxAudioplayerModule],
