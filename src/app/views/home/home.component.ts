@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
         private domainResolver: DomainResolverService,
     ) {
         activatedRoute.data.subscribe(r => {
-            console.log('home.component', 'currentUrl', r);
             if (r) {
                 router.navigateByUrl(r.domain.url, { skipLocationChange: true });
             } else {

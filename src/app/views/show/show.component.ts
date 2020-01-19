@@ -25,7 +25,6 @@ export class ShowComponent implements OnInit {
         private titleService: Title,
     ) {
         activatedRoute.data.subscribe(r => {
-            console.log('home.component', 'currentUrl', r);
             if (r.domain) {
                 this.user = r.domain.userSlug;
                 this.slug = r.domain.podcastSlug;

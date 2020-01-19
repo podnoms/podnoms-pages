@@ -19,7 +19,10 @@ export class SubscribeComponent implements OnInit {
         private domainResolver: DomainResolverService,
     ) {}
     ngOnInit() {
-        console.log('subscribe.component', 'ngOnInit', this.domainResolver.domain);
         this.aggregators$ = this.service.getAggregators(this.domainResolver.domain.podcastId);
+        this.podcast$ = this.service.getByKey({
+            user: this.domainResolver.domain.userSlug,
+            podcast: this.domainResolver.domain.podcastSlug,
+        });
     }
 }
