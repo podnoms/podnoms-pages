@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Podcast } from 'src/app/models/podcast.model';
 import { Observable } from 'rxjs';
 import { PodcastDataService } from 'src/app/services/podcast-data.service';
 import { DomainResolverService } from 'src/app/services/domain-resolver.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-top-menu',
@@ -13,8 +14,10 @@ import { DomainResolverService } from 'src/app/services/domain-resolver.service'
 })
 export class TopMenuComponent {
     podcast$: Observable<Podcast>;
+    menuOpen: boolean = false;
 
     constructor(
+        @Inject(DOCUMENT) private document: Document,
         router: Router,
         domainResolverService: DomainResolverService,
         private podcastService: PodcastDataService,
@@ -42,5 +45,13 @@ export class TopMenuComponent {
             user: user,
             podcast: slug,
         });
+    }
+    toggleNav() {
+        this.menuOpen = !this.menuOpen;
+        if (this.menuOpen) {
+            this.document.body.classList.add('mobile-menu-opened');
+        } else {
+            this.document.body.classList.remove('mobile-menu-opened');
+        }
     }
 }
