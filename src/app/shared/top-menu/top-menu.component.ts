@@ -28,6 +28,11 @@ export class TopMenuComponent {
                     domainResolverService.domain.userSlug,
                     domainResolverService.domain.podcastSlug,
                 );
+                // close nav menu on navigation
+                router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
+                    this.menuOpen = false;
+                    this.document.body.classList.remove('mobile-menu-opened');
+                });
             } else {
                 router.events
                     .pipe(filter(e => e instanceof NavigationEnd))
