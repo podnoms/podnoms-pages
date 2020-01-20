@@ -5,6 +5,7 @@ import { Podcast } from 'src/app/models/podcast.model';
 import { PodcastDataService } from 'src/app/services/podcast-data.service';
 import { Title } from '@angular/platform-browser';
 import { tap } from 'rxjs/operators';
+import { SocialTagsService } from 'src/app/services/social-tags.service';
 
 @Component({
     selector: 'app-episode',
@@ -23,6 +24,7 @@ export class ShowComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private service: PodcastDataService,
         private titleService: Title,
+        private socialTagService: SocialTagsService,
     ) {
         activatedRoute.data.subscribe(r => {
             if (r.domain) {
@@ -38,6 +40,16 @@ export class ShowComponent implements OnInit {
                 user: this.activatedRoute.snapshot.params.user,
                 podcast: this.activatedRoute.snapshot.params.podcast,
             })
-            .pipe(tap(p => this.titleService.setTitle(p.publicTitle)));
+            .pipe(
+                tap(p => {
+                    this.socialTagService.setTags(
+                        p.title,
+                        p.description,
+                        p.imageUrl,
+                        window.location.href,
+                    );
+                    this.titleService.setTitle(p.publicTitle);
+                }),
+            );
     }
 }

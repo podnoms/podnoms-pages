@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { PodcastEntryDataService } from 'src/app/services/podcast-entry-data.service';
 import { Title } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
+import { SocialTagsService } from 'src/app/services/social-tags.service';
 
 @Component({
     selector: 'app-episode',
@@ -22,6 +23,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
         private service: PodcastEntryDataService,
         private titleService: Title,
         private logger: NGXLogger,
+        private socialTagService: SocialTagsService,
     ) {}
 
     ngOnInit() {
@@ -37,6 +39,12 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                 })
                 .pipe(
                     tap(e => {
+                        this.socialTagService.setTags(
+                            e.title,
+                            e.description,
+                            e.imageUrl,
+                            window.location.href,
+                        );
                         this.titleService.setTitle(e.title);
                     }),
                 );
@@ -54,6 +62,12 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                         })
                         .pipe(
                             tap(e => {
+                                this.socialTagService.setTags(
+                                    e.title,
+                                    e.description,
+                                    e.imageUrl,
+                                    window.location.href,
+                                );
                                 this.titleService.setTitle(e.title);
                             }),
                         );
