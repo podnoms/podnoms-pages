@@ -35,7 +35,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         HttpClientModule,
         AppRoutingModule,
         NgxAudioplayerModule,

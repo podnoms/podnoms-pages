@@ -19,6 +19,7 @@
     "@angular/http": "~7.2.15",
     "@angular/platform-browser": "~9.0.0-rc.9",
     "@angular/platform-browser-dynamic": "~9.0.0-rc.9",
+    "@angular/platform-server": "~9.0.0-rc.9",
     "@angular/router": "~9.0.0-rc.9",
     "@podnoms/ngx-audioplayer": "0.0.56",
     "core-js": "^3.4.1",
