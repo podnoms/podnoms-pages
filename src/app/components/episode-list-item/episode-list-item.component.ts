@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { Podcast } from 'src/app/models/podcast.model';
-import { NGXLogger } from 'ngx-logger';
 
 @Component({
     selector: 'app-episode-list-item',
@@ -17,7 +16,7 @@ export class EpisodeListItemComponent implements AfterViewInit {
     @Input() user: string;
     @Input() slug: string;
 
-    constructor(private logger: NGXLogger) {}
+    constructor() {}
     ngAfterViewInit() {
         setTimeout(() => {
             if (this.user && this.slug) {

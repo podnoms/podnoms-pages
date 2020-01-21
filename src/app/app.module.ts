@@ -18,7 +18,6 @@ import { DebugComponent } from './views/debug/debug.component';
 import { DomainResolverService } from './services/domain-resolver.service';
 import { DomainResolver } from './services/domain-resolver';
 import { SubscribeComponent } from './views/subscribe/subscribe.component';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 @NgModule({
     declarations: [
@@ -39,7 +38,6 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
         HttpClientModule,
         AppRoutingModule,
         NgxAudioplayerModule,
-        LoggerModule.forRoot({ level: NgxLoggerLevel.OFF }),
     ],
     providers: [PodcastDataService, PodcastEntryDataService, DomainResolver, DomainResolverService],
     bootstrap: [AppComponent],

@@ -5,7 +5,6 @@ import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { tap } from 'rxjs/operators';
 import { PodcastEntryDataService } from 'src/app/services/podcast-entry-data.service';
 import { Title } from '@angular/platform-browser';
-import { NGXLogger } from 'ngx-logger';
 import { SocialTagsService } from 'src/app/services/social-tags.service';
 
 @Component({
@@ -22,7 +21,6 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private service: PodcastEntryDataService,
         private titleService: Title,
-        private logger: NGXLogger,
         private socialTagService: SocialTagsService,
     ) {}
 
@@ -50,7 +48,6 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                 );
         } else {
             this.route.data.subscribe(r => {
-                this.logger.debug('home.component', 'currentUrl', r);
                 if (r.domain) {
                     user = r.domain.userSlug;
                     podcast = r.domain.podcastSlug;
