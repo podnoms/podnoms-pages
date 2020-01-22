@@ -2,13 +2,13 @@
     <div class="container" *ngIf="episodes$ | async as episodes">
         <div class="row" *ngFor="let entry of episodes">
             {{entry.id}}
-            <ngx-audioplayer style="width: 100%;" #player [audioUrl]="entry.audioUrl" [pcmUrl]="entry.pcmUrl"
+            <!-- <ngx-audioplayer style="width: 100%;" #player [audioUrl]="entry.audioUrl" [pcmUrl]="entry.pcmUrl"
                              [imageUrl]="entry.imageUrl" [title]="entry.author" [subTitle]="entry.title"
                              [autoPlay]="false" [backgroundColour]="'rgba(176,182,188,0.1)'" [titleColour]="'#8fac69'"
                              [padding]="'3px'" [subTitleColour]="'#828699'" [waveColour]="'#828699'"
                              [waveColourProgress]="'#8fac69'" [showImage]="true" [showDetails]="true"
                              [showVolume]="false">
-            </ngx-audioplayer>
+            </ngx-audioplayer> -->
         </div>
     </div>
 </main>

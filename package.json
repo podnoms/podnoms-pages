@@ -26,7 +26,6 @@
         "@angular/router": "https://589268-24195339-gh.circle-artifacts.com/0/angular/router-pr34811-38e9d9ef1a.tgz",
         "@angular/http": "~7.2.15",
         "@nguniversal/express-engine": "^9.0.0-rc.0",
-        "@podnoms/ngx-audioplayer": "0.0.56",
         "core-js": "^3.4.1",
         "express": "^4.15.2",
         "font-awesome": "^4.7.0",

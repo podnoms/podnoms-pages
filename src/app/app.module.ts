@@ -10,7 +10,7 @@ import { ShowComponent } from './views/show/show.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FeaturedEntryComponent } from './components/featured-entry/featured-entry.component';
 import { EpisodeComponent } from './views/episode/episode.component';
-import { NgxAudioplayerModule } from '@podnoms/ngx-audioplayer';
+// import { NgxAudioplayerModule } from '@podnoms/ngx-audioplayer';
 import { PodcastDataService } from './services/podcast-data.service';
 import { PodcastEntryDataService } from './services/podcast-entry-data.service';
 import { EpisodeListItemComponent } from './components/episode-list-item/episode-list-item.component';
@@ -37,7 +37,7 @@ import { SubscribeComponent } from './views/subscribe/subscribe.component';
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         HttpClientModule,
         AppRoutingModule,
-        NgxAudioplayerModule,
+        // NgxAudioplayerModule,
     ],
     providers: [PodcastDataService, PodcastEntryDataService, DomainResolver, DomainResolverService],
     bootstrap: [AppComponent],
