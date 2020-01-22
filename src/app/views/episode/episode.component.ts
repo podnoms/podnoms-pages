@@ -14,9 +14,9 @@ import { SocialTagsService } from 'src/app/services/social-tags.service';
 })
 export class EpisodeComponent implements OnInit, AfterViewInit {
     episode$: Observable<PodcastEntry>;
-
-    facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`;
-    twitterRef: string = `https://twitter.com/intent/tweet?url=${window.location}`;
+    shareUrl: string = 'dev.pdnm.be:4200';
+    facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${this.shareUrl}`;
+    twitterRef: string = `https://twitter.com/intent/tweet?url=${this.shareUrl}`;
     constructor(
         private route: ActivatedRoute,
         private service: PodcastEntryDataService,
@@ -41,7 +41,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                             e.title,
                             e.description,
                             e.imageUrl,
-                            window.location.href,
+                            this.shareUrl,
                         );
                         this.titleService.setTitle(e.title);
                     }),
@@ -63,7 +63,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                                     e.title,
                                     e.description,
                                     e.imageUrl,
-                                    window.location.href,
+                                    this.shareUrl,
                                 );
                                 this.titleService.setTitle(e.title);
                             }),

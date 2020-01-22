@@ -46,7 +46,7 @@ export class ShowComponent implements OnInit {
                         p.title,
                         p.description,
                         p.imageUrl,
-                        window.location.href,
+                        'askjdhsakjdhsa',
                     );
                     this.titleService.setTitle(p.publicTitle);
                 }),

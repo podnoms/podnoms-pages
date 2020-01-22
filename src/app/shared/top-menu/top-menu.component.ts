@@ -22,7 +22,7 @@ export class TopMenuComponent {
         domainResolverService: DomainResolverService,
         private podcastService: PodcastDataService,
     ) {
-        domainResolverService.resolveBaseUrl(window.location.host).subscribe(r => {
+        domainResolverService.resolveBaseUrl().subscribe(r => {
             if (r) {
                 this._loadDetails(
                     domainResolverService.domain.userSlug,

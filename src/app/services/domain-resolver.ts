@@ -1,15 +1,18 @@
 import { Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { DomainResolverService } from './domain-resolver.service';
+import { RequestService } from './request.service';
 
 @Injectable()
 export class DomainResolver implements Resolve<any> {
-    constructor(private domainResolverService: DomainResolverService) {}
+    constructor(
+        private domainResolverService: DomainResolverService,
+        private requestService: RequestService,
+    ) {}
 
     async resolve() {
-        const result = await this.domainResolverService
-            .resolveBaseUrl(window.location.host)
-            .toPromise();
+        console.log('domain-resolver', 'resolve');
+        const result = await this.domainResolverService.resolveBaseUrl().toPromise();
         return result;
     }
 }

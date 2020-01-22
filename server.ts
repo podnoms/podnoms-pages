@@ -39,6 +39,7 @@ export function app() {
 
     // All regular routes use the Universal engine
     server.get('*', (req, res) => {
+        res.set('X-PDNM-HOST', req.get('host'));
         res.render(indexHtml, {
             req,
             providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],

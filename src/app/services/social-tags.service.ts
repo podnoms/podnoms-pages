@@ -14,7 +14,7 @@ export class SocialTagsService {
         });
         this.meta.addTag({
             property: 'description',
-            content: description || document.title,
+            content: description,
         });
 
         this.meta.addTag({
@@ -31,7 +31,7 @@ export class SocialTagsService {
         });
         this.meta.addTag({
             property: 'og:description',
-            content: description || document.title,
+            content: description,
         });
         this.meta.addTag({
             property: 'og:image',
@@ -52,7 +52,7 @@ export class SocialTagsService {
         });
         this.meta.addTag({
             property: 'twitter:description',
-            content: description || document.title,
+            content: description,
         });
         this.meta.addTag({
             property: 'twitter:image',

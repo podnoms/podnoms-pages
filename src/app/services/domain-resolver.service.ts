@@ -13,13 +13,11 @@ export class DomainResolverService {
     public domain: CustomDomain;
     constructor(private http: HttpClient) {}
 
-    resolveBaseUrl(url: string): Observable<CustomDomain> {
-        return this.http
-            .get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver?domain=${url}`)
-            .pipe(
-                tap(p => {
-                    this.domain = p;
-                }),
-            );
+    resolveBaseUrl(): Observable<CustomDomain> {
+        return this.http.get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver`).pipe(
+            tap(p => {
+                this.domain = p;
+            }),
+        );
     }
 }
