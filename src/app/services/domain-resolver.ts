@@ -12,7 +12,9 @@ export class DomainResolver implements Resolve<any> {
 
     async resolve() {
         console.log('domain-resolver', 'resolve');
-        const result = await this.domainResolverService.resolveBaseUrl().toPromise();
+        const result = await this.domainResolverService
+            .resolveBaseUrl(this.requestService.getHost())
+            .toPromise();
         return result;
     }
 }

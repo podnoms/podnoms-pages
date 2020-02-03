@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { RequestService } from './request.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SocialTagsService {
-    constructor(private meta: Meta) {}
+    constructor(private meta: Meta, private request: RequestService) {}
 
-    public setTags(title: string, description: string, imageUrl: string, url: string) {
+    public setTags(title: string, description: string, imageUrl: string) {
         this.meta.addTag({
             property: 'title',
             content: title,
@@ -23,7 +24,7 @@ export class SocialTagsService {
         });
         this.meta.addTag({
             property: 'og:url',
-            content: url,
+            content: this.request.getUrl(),
         });
         this.meta.addTag({
             property: 'og:title',
@@ -44,7 +45,7 @@ export class SocialTagsService {
         });
         this.meta.addTag({
             property: 'twitter:url',
-            content: url,
+            content: this.request.getUrl(),
         });
         this.meta.addTag({
             property: 'twitter:title',

@@ -1,15 +1,21 @@
-import { Injectable, Inject } from '@angular/core';
-import { Request } from 'express';
+import { Injectable, Inject, Injector, Optional } from '@angular/core';
+import { DOCUMENT, APP_BASE_HREF } from '@angular/common';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RequestService {
-    constructor(@Inject(REQUEST) private request: Request) {
-        console.log('request.service', 'ctor', request);
+    serverUrl: string = '';
+    baseHref: string = '';
+    constructor(@Inject(DOCUMENT) private document: Document) {
+        console.log('request.service', 'ctor', document);
+        console.log('request.service', 'ctor', `documentUrl: ${this.document.location.href}`);
     }
     getHost(): string {
-        return this.request.hostname;
+        return this.document.location.hostname;
+    }
+    getUrl(): string {
+        return this.document.location.href;
     }
 }

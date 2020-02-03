@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { PodcastDataService } from 'src/app/services/podcast-data.service';
 import { DomainResolverService } from 'src/app/services/domain-resolver.service';
 import { DOCUMENT } from '@angular/common';
+import { RequestService } from 'src/app/services/request.service';
 
 @Component({
     selector: 'app-top-menu',
@@ -19,10 +20,11 @@ export class TopMenuComponent {
     constructor(
         @Inject(DOCUMENT) private document: Document,
         router: Router,
+        requestService: RequestService,
         domainResolverService: DomainResolverService,
         private podcastService: PodcastDataService,
     ) {
-        domainResolverService.resolveBaseUrl().subscribe(r => {
+        domainResolverService.resolveBaseUrl(requestService.getHost()).subscribe(r => {
             if (r) {
                 this._loadDetails(
                     domainResolverService.domain.userSlug,

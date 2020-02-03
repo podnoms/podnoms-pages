@@ -37,12 +37,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                 })
                 .pipe(
                     tap(e => {
-                        this.socialTagService.setTags(
-                            e.title,
-                            e.description,
-                            e.imageUrl,
-                            this.shareUrl,
-                        );
+                        this.socialTagService.setTags(e.title, e.description, e.imageUrl);
                         this.titleService.setTitle(e.title);
                     }),
                 );
@@ -59,12 +54,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                         })
                         .pipe(
                             tap(e => {
-                                this.socialTagService.setTags(
-                                    e.title,
-                                    e.description,
-                                    e.imageUrl,
-                                    this.shareUrl,
-                                );
+                                this.socialTagService.setTags(e.title, e.description, e.imageUrl);
                                 this.titleService.setTitle(e.title);
                             }),
                         );

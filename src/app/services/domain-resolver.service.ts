@@ -9,15 +9,16 @@ import { CustomDomain } from '../models/custom-domain.model';
     providedIn: 'root',
 })
 export class DomainResolverService {
-    private baseUrl: string = '';
     public domain: CustomDomain;
     constructor(private http: HttpClient) {}
 
-    resolveBaseUrl(): Observable<CustomDomain> {
-        return this.http.get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver`).pipe(
-            tap(p => {
-                this.domain = p;
-            }),
-        );
+    resolveBaseUrl(domain: string): Observable<CustomDomain> {
+        return this.http
+            .get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver?domain=${domain}`)
+            .pipe(
+                tap(p => {
+                    this.domain = p;
+                }),
+            );
     }
 }
