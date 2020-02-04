@@ -5,13 +5,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="episodes-listing">
+                    <div class="episodes-listing" *ngIf="entries$">
                         <h3 class="add-separator">
                             <span>
                                 Previous <em>Episodes</em>
                             </span>
                         </h3>
-                        <article class="entry entry-episode" *ngFor="let entry of podcast.podcastEntries">
+                        <article class="entry entry-episode" *ngFor="let entry of entries$ | async">
                             <app-episode-list-item [user]="user" [slug]="slug" [podcast]="podcast" [episode]="entry">
                             </app-episode-list-item>
                         </article>

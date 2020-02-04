@@ -6,6 +6,7 @@ import { PodcastDataService } from 'src/app/services/podcast-data.service';
 import { Title } from '@angular/platform-browser';
 import { tap } from 'rxjs/operators';
 import { SocialTagsService } from 'src/app/services/social-tags.service';
+import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 
 @Component({
     selector: 'app-episode',
@@ -14,6 +15,7 @@ import { SocialTagsService } from 'src/app/services/social-tags.service';
 })
 export class ShowComponent implements OnInit {
     podcast$: Observable<Podcast>;
+    entries$: Observable<PodcastEntry[]>;
     loading$: Observable<boolean>;
     expanded: boolean = false;
 
@@ -44,6 +46,12 @@ export class ShowComponent implements OnInit {
                 tap(p => {
                     this.socialTagService.setTags(p.title, p.description, p.imageUrl);
                     this.titleService.setTitle(p.publicTitle);
+                    this.entries$ = this.service.getAllButFeatured(p.id);
+                    this.entries$.pipe(
+                        tap(r => {
+                            debugger;
+                        }),
+                    );
                 }),
             );
     }

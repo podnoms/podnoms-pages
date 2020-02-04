@@ -24,6 +24,7 @@ export class EpisodeListItemComponent implements AfterViewInit {
             } else {
                 this.episodeUrl = this.episode.slug;
             }
+            this.strippedDescription = this.episode.description;
         });
     }
     private _stripTag(html: string, tag: string): string {
