@@ -5,7 +5,6 @@ import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { tap } from 'rxjs/operators';
 import { PodcastEntryDataService } from 'src/app/services/podcast-entry-data.service';
 import { Title } from '@angular/platform-browser';
-import { NGXLogger } from 'ngx-logger';
 import { SocialTagsService } from 'src/app/services/social-tags.service';
 
 @Component({
@@ -15,14 +14,13 @@ import { SocialTagsService } from 'src/app/services/social-tags.service';
 })
 export class EpisodeComponent implements OnInit, AfterViewInit {
     episode$: Observable<PodcastEntry>;
-
-    facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`;
-    twitterRef: string = `https://twitter.com/intent/tweet?url=${window.location}`;
+    shareUrl: string = 'dev.pdnm.be:4200';
+    facebookRef: string = `https://www.facebook.com/sharer/sharer.php?u=${this.shareUrl}`;
+    twitterRef: string = `https://twitter.com/intent/tweet?url=${this.shareUrl}`;
     constructor(
         private route: ActivatedRoute,
         private service: PodcastEntryDataService,
         private titleService: Title,
-        private logger: NGXLogger,
         private socialTagService: SocialTagsService,
     ) {}
 
@@ -39,18 +37,12 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                 })
                 .pipe(
                     tap(e => {
-                        this.socialTagService.setTags(
-                            e.title,
-                            e.description,
-                            e.imageUrl,
-                            window.location.href,
-                        );
+                        this.socialTagService.setTags(e.title, e.description, e.imageUrl);
                         this.titleService.setTitle(e.title);
                     }),
                 );
         } else {
             this.route.data.subscribe(r => {
-                this.logger.debug('home.component', 'currentUrl', r);
                 if (r.domain) {
                     user = r.domain.userSlug;
                     podcast = r.domain.podcastSlug;
@@ -62,12 +54,7 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
                         })
                         .pipe(
                             tap(e => {
-                                this.socialTagService.setTags(
-                                    e.title,
-                                    e.description,
-                                    e.imageUrl,
-                                    window.location.href,
-                                );
+                                this.socialTagService.setTags(e.title, e.description, e.imageUrl);
                                 this.titleService.setTitle(e.title);
                             }),
                         );

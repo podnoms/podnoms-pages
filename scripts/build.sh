@@ -1,6 +1,7 @@
 #!/bin/bash
 npm --no-git-tag-version --tag-version-prefix="" version patch
-ng build --prod
+npm run build:ssr
+
 docker build -t podnoms.azurecr.io/podnoms.pages .
 az acr login --name podnoms
 docker push podnoms.azurecr.io/podnoms.pages

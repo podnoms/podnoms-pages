@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Podcast } from 'src/app/models/podcast.model';
@@ -42,12 +42,7 @@ export class ShowComponent implements OnInit {
             })
             .pipe(
                 tap(p => {
-                    this.socialTagService.setTags(
-                        p.title,
-                        p.description,
-                        p.imageUrl,
-                        window.location.href,
-                    );
+                    this.socialTagService.setTags(p.title, p.description, p.imageUrl);
                     this.titleService.setTitle(p.publicTitle);
                 }),
             );
