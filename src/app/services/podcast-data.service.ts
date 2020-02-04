@@ -27,4 +27,9 @@ export class PodcastDataService {
             `${environment.apiHost}/podcast/${podcastId}/aggregators`,
         );
     }
+    getAllButFeatured(podcastId: string): Observable<PodcastEntry[]> {
+        return this.http.get<PodcastEntry[]>(
+            `${environment.apiHost}/podcast/${podcastId}/allbutfeatured`,
+        );
+    }
 }

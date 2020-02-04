@@ -28,7 +28,7 @@
                 <p [innerHTML]="strippedDescription">
                 </p>
             </div>
-            <a (click)="expanded = !expanded" *ngIf="false">
+            <a [href]="episode.slug">
                 {{ expanded ? '(read less)' : '(read more)' }}
             </a>
         </div>
