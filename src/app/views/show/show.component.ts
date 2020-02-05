@@ -44,7 +44,7 @@ export class ShowComponent implements OnInit {
             })
             .pipe(
                 tap(p => {
-                    this.socialTagService.setTags(p.title, p.description, p.imageUrl);
+                    this.socialTagService.setTags(p.publicTitle, p.description, p.imageUrl);
                     this.titleService.setTitle(p.publicTitle);
                     this.entries$ = this.service.getAllButFeatured(p.id);
                     this.entries$.pipe(
