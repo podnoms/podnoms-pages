@@ -28,7 +28,7 @@
                 <p [innerHTML]="strippedDescription">
                 </p>
             </div>
-            <a [href]="episode.slug">
+            <a [routerLink]="[episodeUrl]">
                 {{ expanded ? '(read less)' : '(read more)' }}
             </a>
         </div>

@@ -24,7 +24,13 @@ export class EpisodeListItemComponent implements AfterViewInit {
             } else {
                 this.episodeUrl = this.episode.slug;
             }
-            this.strippedDescription = this.episode.description;
+
+            this.strippedDescription = this.episode.description.replace(/(<([^>]+)>)/gi, '');
+            // this.strippedDescription = this._stripTag(
+            //     this._stripTag(this.episode.description, 'p'),
+            //     'span',
+            // );
+            console.log('episode-list-item.component', 'stripped', this.strippedDescription);
         });
     }
     private _stripTag(html: string, tag: string): string {

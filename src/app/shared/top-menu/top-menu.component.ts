@@ -16,7 +16,8 @@ import { RequestService } from 'src/app/services/request.service';
 export class TopMenuComponent {
     podcast$: Observable<Podcast>;
     menuOpen: boolean = false;
-
+    siteUrl: string = '/';
+    subscribeUrl: string = 'subscribe';
     constructor(
         @Inject(DOCUMENT) private document: Document,
         router: Router,
@@ -40,7 +41,9 @@ export class TopMenuComponent {
                     .pipe(filter(e => e instanceof NavigationEnd))
                     .subscribe((p: NavigationEnd) => {
                         const params = p.url.replace(/^\/+|\/+$/g, '').split('/');
-                        if (params.length === 2) {
+                        if (params.length >= 2) {
+                            this.siteUrl = `${params[0]}/${params[1]}`;
+                            this.subscribeUrl = `${params[0]}/${params[1]}/subscribe`;
                             this._loadDetails(params[0], params[1]);
                         }
                     });
