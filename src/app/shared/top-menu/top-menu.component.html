@@ -4,7 +4,7 @@
             <div class="row align-items-center" *ngIf="podcast$ | async as podcast">
                 <div class="site-title col col-lg-auto order-first">
                     <h1>
-                        <a href="/" class="custom-logo-link" rel="home" [ngSwitch]="podcast">
+                        <a [href]="siteUrl" class="custom-logo-link" rel="home" [ngSwitch]="podcast">
 
                             {{podcast.publicTitle}}
                             <!-- <img src="assets/img/podnoms.gif" class="custom-logo" width="76" height="18" alt="PodNoms"> -->
@@ -27,7 +27,7 @@
                     </ul>
                 </nav>
                 <div class="call-to-action col-12 col-sm-auto order-5 order-sm-2 order-lg-4">
-                    <a [routerLink]="['subscribe']" class="button button-small"><span
+                    <a [routerLink]="[subscribeUrl]" class="button button-small"><span
                               class="zmdi zmdi-filter-list"></span>
                         Subscribe</a>
                 </div>

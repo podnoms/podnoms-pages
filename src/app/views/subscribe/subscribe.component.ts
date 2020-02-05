@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PodcastDataService } from 'src/app/services/podcast-data.service';
 import { DomainResolverService } from 'src/app/services/domain-resolver.service';
 import { PodcastAggregator } from 'src/app/models/podcast-aggregator.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-subscribe',
@@ -15,14 +16,24 @@ export class SubscribeComponent implements OnInit {
     aggregators$: Observable<PodcastAggregator[]>;
 
     constructor(
+        private route: ActivatedRoute,
         private service: PodcastDataService,
         private domainResolver: DomainResolverService,
     ) {}
     ngOnInit() {
-        this.aggregators$ = this.service.getAggregators(this.domainResolver.domain.podcastId);
-        this.podcast$ = this.service.getByKey({
-            user: this.domainResolver.domain.userSlug,
-            podcast: this.domainResolver.domain.podcastSlug,
-        });
+        if (this.domainResolver.domain) {
+            this.aggregators$ = this.service.getAggregators(this.domainResolver.domain.podcastId);
+            this.podcast$ = this.service.getByKey({
+                user: this.domainResolver.domain.userSlug,
+                podcast: this.domainResolver.domain.podcastSlug,
+            });
+        } else {
+            const user = this.route.snapshot.params.user;
+            const podcast = this.route.snapshot.params.podcast;
+            this.podcast$ = this.service.getByKey({
+                user: user,
+                podcast: podcast,
+            });
+        }
     }
 }

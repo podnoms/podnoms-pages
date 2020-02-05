@@ -4,9 +4,7 @@ import { HomeComponent } from './views/home/home.component';
 import { ShowComponent } from './views/show/show.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { EpisodeComponent } from './views/episode/episode.component';
-import { DebugComponent } from './views/debug/debug.component';
 import { DomainResolver } from './services/domain-resolver';
-import { DomainResolverService } from './services/domain-resolver.service';
 import { SubscribeComponent } from './views/subscribe/subscribe.component';
 
 const routes: Routes = [
@@ -16,7 +14,12 @@ const routes: Routes = [
         resolve: { domain: DomainResolver },
     },
     {
-        path: 'subscribe',
+        path: 'subscribe/:user/:podcast',
+        component: SubscribeComponent,
+        resolve: { domain: DomainResolver },
+    },
+    {
+        path: ':user/:podcast/subscribe',
         component: SubscribeComponent,
         resolve: { domain: DomainResolver },
     },
