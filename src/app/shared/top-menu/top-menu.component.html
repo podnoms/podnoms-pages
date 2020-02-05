@@ -15,12 +15,12 @@
                 </nav>
                 <nav id="social-links-menu" class="col-12 col-md-auto order-4 order-md-1 order-lg-3">
                     <ul class="social-navigation">
-                        <li id="menu-item-5"
+                        <li id="menu-item-5" *ngIf="podcast.facebookUrl"
                             class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5">
                             <a title="Facebook Profile" target="_blank" [href]="podcast.facebookUrl"><span
                                       class="screen-reader-text">Facebook</span></a>
                         </li>
-                        <li class="menu-item menu-item-type-custom">
+                        <li class="menu-item menu-item-type-custom" *ngIf="podcast.twitterUrl">
                             <a title="Twitter Profile" target="_blank" [href]="podcast.twitterUrl"><span
                                       class="screen-reader-text">Twitter</span></a>
                         </li>
