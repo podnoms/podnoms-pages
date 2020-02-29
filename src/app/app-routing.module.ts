@@ -14,6 +14,11 @@ const routes: Routes = [
         resolve: { domain: DomainResolver },
     },
     {
+        path: 'subscribe',
+        component: SubscribeComponent,
+        resolve: { domain: DomainResolver },
+    },
+    {
         path: 'subscribe/:user/:podcast',
         component: SubscribeComponent,
         resolve: { domain: DomainResolver },
