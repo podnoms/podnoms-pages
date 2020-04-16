@@ -25,7 +25,9 @@ export class EpisodeListItemComponent implements AfterViewInit {
                 this.episodeUrl = this.episode.slug;
             }
 
-            this.strippedDescription = this.episode.description.replace(/(<([^>]+)>)/gi, '');
+            this.strippedDescription = this.episode.description
+                ? this.episode.description.replace(/(<([^>]+)>)/gi, '')
+                : '';
             // this.strippedDescription = this._stripTag(
             //     this._stripTag(this.episode.description, 'p'),
             //     'span',
