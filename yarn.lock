@@ -1210,12 +1210,10 @@
   dependencies:
     "@nguniversal/common" "9.1.0"
 
-"@podnoms/ngx-audioplayer@0.0.77":
-  version "0.0.77"
-  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-0.0.77.tgz#106fd4d0e25b449abbd1d2c1ee7174f2e380f17c"
-  integrity sha512-wiPSdig6k+A6MQVyOxMXXHkMJjBZgUQ4C8c8hfF9GDhqVkSJKAWSlO/DeBoD2irJiGGzHMUDVUH8fpYNomgYAg==
-  dependencies:
-    tslib "^1.9.0"
+"@podnoms/ngx-audioplayer@0.0.99":
+  version "0.0.99"
+  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-0.0.99.tgz#bd7ab83411c9cb42de20c3ef7b42d59b6d85858e"
+  integrity sha512-bBcgtx4ivhRW+KJibldEZ0JsExKbDLl3d5b7smIlwJNaISqVKZyCv370mtFhiHGLbxIOo5DoP7+qewcV8+xgOA==
 
 "@schematics/angular@9.1.1":
   version "9.1.1"

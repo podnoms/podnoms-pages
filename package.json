@@ -26,7 +26,7 @@
         "@angular/platform-server": "^9.1.2",
         "@angular/router": "^9.1.2",
         "@nguniversal/express-engine": "^9.1.0",
-        "@podnoms/ngx-audioplayer": "0.0.77",
+        "@podnoms/ngx-audioplayer": "0.0.99",
         "core-js": "^3.4.1",
         "express": "^4.15.2",
         "font-awesome": "^4.7.0",
