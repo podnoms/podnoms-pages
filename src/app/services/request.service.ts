@@ -1,6 +1,5 @@
 import { Injectable, Inject, Injector, Optional } from '@angular/core';
 import { DOCUMENT, APP_BASE_HREF } from '@angular/common';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
 
 @Injectable({
     providedIn: 'root',

@@ -1,43 +1,44 @@
-<header id="featured" class="featured-content fade-background-60 padding-top-bottom"
-        *ngIf="podcast$ | async as podcast">
-    <img class="bgimg" [src]="podcast.imageUrl">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-md">
-                <h1 class="entry-title">Add to your favourite podcatcher</h1>
+<span *ngIf="podcast$ | async as podcast">
+    <header id="featured" class="featured-content fade-background-60 padding-top-bottom">
+        <img class="bgimg" [src]="podcast.imageUrl">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md">
+                    <h1 class="entry-title">Add to your favourite podcatcher</h1>
+                </div>
             </div>
         </div>
-    </div>
-</header>
-<main id="content" class="has-sidebar padding-top-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-8 col-lg-9">
-                <div class="subscribe-listing">
-                    <div class="row">
-                        <div class="subscribe-listing-item col-12 col-lg-4 m-50"
-                             *ngFor="let item of aggregators$ | async">
-                            <article>
-                                <div class="entry-media entry-image">
-                                    <a [href]="item.url" target="_blank">
-                                        <img [src]="item.imageUrl" alt="Subscribe in {{item.name}}">
-                                    </a>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                            <article class="entry entry-post format-video">
-                                <div class="entry-media entry-image">
-                                    <a [href]="podcast.rssUrl" target="_blank">
-                                        <img class="subscribe-image"
-                                             src="https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png">
-                                    </a>
-                                </div>
-                            </article>
+    </header>
+    <main id="content" class="has-sidebar padding-top-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-9">
+                    <div class="subscribe-listing">
+                        <div class="row">
+                            <div class="subscribe-listing-item col-12 col-lg-4 m-50"
+                                 *ngFor="let item of aggregators$ | async">
+                                <article>
+                                    <div class="entry-media entry-image">
+                                        <a [href]="item.url" target="_blank">
+                                            <img [src]="item.imageUrl" alt="Subscribe in {{item.name}}">
+                                        </a>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <article class="entry entry-post format-video">
+                                    <div class="entry-media entry-image">
+                                        <a [href]="podcast.rssUrl" target="_blank">
+                                            <img class="subscribe-image"
+                                                 src="https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png">
+                                        </a>
+                                    </div>
+                                </article>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
+</span>
