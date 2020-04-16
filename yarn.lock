@@ -186,13 +186,6 @@
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-9.1.2.tgz#84b7c429fad81c781108fc71d694ae76eab4c808"
   integrity sha512-/f2WhMiKDo1/RoisTI71Dy4Z4+sAsAuzgIxJEXvgDGSYvzLl9G8erFx4N6be8Cy/xXwErmp3JOwXIAXjzxF8tA==
 
-"@angular/http@~7.2.15":
-  version "7.2.15"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.2.15.tgz#a32bea9e67e99eef88150085aeebbe7aeecd39eb"
-  integrity sha512-TR7PEdmLWNIre3Zn8lvyb4lSrvPUJhKLystLnp4hBMcWsJqq5iK8S3bnlR4viZ9HMlf7bW7+Hm4SI6aB3tdUtw==
-  dependencies:
-    tslib "^1.9.0"
-
 "@angular/language-service@^9.1.2":
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-9.1.2.tgz#01b6e289c43148378a54a616681f24d9e8b87183"
@@ -1210,10 +1203,10 @@
   dependencies:
     "@nguniversal/common" "9.1.0"
 
-"@podnoms/ngx-audioplayer@0.0.99":
-  version "0.0.99"
-  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-0.0.99.tgz#bd7ab83411c9cb42de20c3ef7b42d59b6d85858e"
-  integrity sha512-bBcgtx4ivhRW+KJibldEZ0JsExKbDLl3d5b7smIlwJNaISqVKZyCv370mtFhiHGLbxIOo5DoP7+qewcV8+xgOA==
+"@podnoms/ngx-audioplayer@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-1.2.7.tgz#cd20c52e4ef9e0a20a166a26ff35e5022190711a"
+  integrity sha512-BBSELX/rQv7qrAHQWHU+NjNIFZ+qFugcrk8fwwtvTXCxVByXbS+397KQ41E6MkKt3ZAaPayl7AFXg+cESU6I+Q==
 
 "@schematics/angular@9.1.1":
   version "9.1.1"
@@ -6558,10 +6551,10 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-ngx-logger@^4.0.7:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/ngx-logger/-/ngx-logger-4.0.8.tgz#59d4c6abce56b8ca398496b11aa2d9b324dda457"
-  integrity sha512-vgV10VDXoZoRmRgLRUXKU6iOEyR+yynnd/K6SWFjygFkRYXqgj6HdzxVfrUy49IXdfvxQMrBJFTsgTSMZCPWGg==
+ngx-logger@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/ngx-logger/-/ngx-logger-4.1.4.tgz#fec9ef6d9443724675404fcbd14c38b96cd4ee48"
+  integrity sha512-7+QdvBn/gifI6RXaqWXe5TO6CjGpT/H7RzoKFScaPs7a2+sTHax8nTafIX93r8ETHeXnOc/MbR79m8QsxcSaOA==
   dependencies:
     tslib "^1.9.0"
     vlq "^1.0.0"
