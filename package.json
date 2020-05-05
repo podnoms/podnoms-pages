@@ -1,6 +1,6 @@
 {
     "name": "podnoms-pages",
-    "version": "1.2.141",
+    "version": "1.2.142",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -28,6 +28,7 @@
         "@podnoms/ngx-audioplayer": "1.2.7",
         "core-js": "^3.6.5",
         "express": "^4.17.1",
+        "express-serve-static-core": "^0.1.1",
         "font-awesome": "^4.7.0",
         "jquery": "^3.5.0",
         "ngx-logger": "^4.1.4",
