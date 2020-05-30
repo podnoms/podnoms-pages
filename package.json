@@ -1,6 +1,6 @@
 {
     "name": "podnoms-pages",
-    "version": "1.2.148",
+    "version": "1.2.149",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
