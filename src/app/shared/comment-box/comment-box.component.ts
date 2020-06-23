@@ -41,7 +41,7 @@ export class CommentBoxComponent implements OnInit, AfterViewInit {
         const comment = new EpisodeComment(
             this.commentForm.controls.fromName.value,
             this.commentForm.controls.fromEmail.value,
-            this.commentForm.controls.fromName.value,
+            this.commentForm.controls.comment.value,
         );
         if (this.commentForm.valid) {
             this.commentsService
