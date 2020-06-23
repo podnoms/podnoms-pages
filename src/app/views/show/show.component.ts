@@ -16,41 +16,40 @@ import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 export class ShowComponent implements OnInit {
     podcast$: Observable<Podcast>;
     entries$: Observable<PodcastEntry[]>;
+    featuredEpisode$: Observable<PodcastEntry>;
     loading$: Observable<boolean>;
     expanded: boolean = false;
 
     user: string = '';
-    slug: string = '';
+    podcast: string = '';
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private service: PodcastDataService,
+        private podcastService: PodcastDataService,
         private titleService: Title,
         private socialTagService: SocialTagsService,
     ) {
-        activatedRoute.data.subscribe(r => {
+        activatedRoute.data.subscribe((r) => {
             if (r.domain) {
                 this.user = r.domain.userSlug;
-                this.slug = r.domain.podcastSlug;
+                this.podcast = r.domain.podcastSlug;
             }
         });
     }
 
     ngOnInit() {
-        this.podcast$ = this.service
-            .getByKey({
-                user: this.activatedRoute.snapshot.params.user,
-                podcast: this.activatedRoute.snapshot.params.podcast,
-            })
+        this.user = this.activatedRoute.snapshot.params.user;
+        this.podcast = this.activatedRoute.snapshot.params.podcast;
+        this.podcast$ = this.podcastService
+            .getByKey({ user: this.user, podcast: this.podcast })
             .pipe(
-                tap(p => {
+                tap((p) => {
                     this.socialTagService.setTags(p.publicTitle, p.description, p.imageUrl);
                     this.titleService.setTitle(p.publicTitle);
-                    this.entries$ = this.service.getAllButFeatured(p.id);
-                    this.entries$.pipe(
-                        tap(r => {
-                            debugger;
-                        }),
+                    this.entries$ = this.podcastService.getAllButFeatured(p.id);
+                    this.featuredEpisode$ = this.podcastService.getFeaturedEpisode(
+                        this.user,
+                        this.podcast,
                     );
                 }),
             );

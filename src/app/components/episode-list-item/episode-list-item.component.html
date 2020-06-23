@@ -1,3 +1,30 @@
+<div class="entry text-center">
+    <div class="entry-featured">
+        <a [routerLink]="[episodeUrl]">
+            <img [src]="episode.imageUrl"
+                 alt="entry title">
+        </a>
+    </div>
+    <div class="entry-date">
+        <a href="#">{{episode.createDate | date:'longDate'}}</a>
+    </div>
+    <div class="entry-title text-center">
+        <h3>
+            <a [routerLink]="[episodeUrl]">{{episode.title}}</a>
+        </h3>
+    </div>
+    <div class="entry-meta text-center">
+        <span>By : </span>
+        <a href="#">Begha</a>
+        /
+        <span>Comments : </span>
+        <span>
+            <a href="#">27</a>
+        </span>
+    </div>
+    <!-- .entry-meta end -->
+</div>
+<!--
 <div class="row align-items-lg-center">
     <div class="col-12 col-md-4 col-xl-3">
         <div class="entry-media entry-image multiply-effect">
@@ -33,4 +60,4 @@
             </a>
         </div>
     </div>
-</div>
+</div> -->

@@ -1,8 +1,64 @@
- <div *ngIf="episode$ | async as entry">
+<div *ngIf="episode$ | async as episode">
+    <app-header-entry [episode]="episode">
+    </app-header-entry>
+</div>
+<section id="blog-single-standard"
+         class="blog single-post"
+         *ngIf="episode$ | async as episode">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-8 offset-lg-2 mb-30-xs mb-30-sm">
+                <div class="entry">
+                    <div class="entry-post">
+                        <div class="entry-date text-center">
+                            <a href="#">{{episode.createDate | date:'longDate'}}</a>
+                        </div>
+                        <div class="entry-title text-center">
+                            <h3>
+                                <a href="#">{{episode.title}}.</a>
+                            </h3>
+                        </div>
+                        <!-- <div class="entry-meta text-center">
+                            <span>By : </span>
+                            <a href="#">Begha</a>
+                            /
+                            <span>In : </span>
+                            <span>
+                                <a href="#">Interviews</a>
+                            </span>
+                            /
+                            <span>Comments : </span>
+                            <span>
+                                <a href="#">27</a>
+                            </span>
+                        </div> -->
+                        <div class="entry-content"
+                             [innerHTML]="episode.description">
+                        </div>
+                    </div>
+                </div>
+                <div class="entry-share">
+                    <span class="share-title">share this article:</span>
+                    <span class="share-links">
+                        <a class="share-facebook"
+                           target="_blank"
+                           [href]="facebookRef"><i class="fa fa-facebook"></i></a>
+                        <a class="share-twitter"
+                           target="_blank"
+                           [href]="twitterRef"><i class="fa fa-twitter"></i></a>
+                    </span>
+                </div>
+                <app-comment-box [episode]="episode"></app-comment-box>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div *ngIf="episode$ | async as entry">
      <header id="featured"
              class="featured-content fade-background-50 padding-top-bottom"
              [style.background-image]="'url(' + entry.imageUrl + ')'">
          <div class="container">
+
              <div class="row align-items-center">
                  <div class="col-12">
                      <h1 class="entry-title">
@@ -96,4 +152,4 @@
              </div>
          </div>
      </main>
- </div>
+ </div> -->
