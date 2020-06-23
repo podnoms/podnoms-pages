@@ -18,6 +18,13 @@ import { DebugComponent } from './views/debug/debug.component';
 import { DomainResolverService } from './services/domain-resolver.service';
 import { DomainResolver } from './services/domain-resolver';
 import { SubscribeComponent } from './views/subscribe/subscribe.component';
+import { CommentBoxComponent } from './shared/comment-box/comment-box.component';
+import { CommentsService } from './services/comments.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
+import { LoggerModule } from 'ngx-logger';
+import { environment } from 'src/environments/environment.prod';
+import { NgxLoggerLevel } from '../../node_modules/ngx-logger/lib/types/logger-level.enum';
 
 @NgModule({
     declarations: [
@@ -31,15 +38,25 @@ import { SubscribeComponent } from './views/subscribe/subscribe.component';
         EpisodeComponent,
         DebugComponent,
         SubscribeComponent,
+        CommentBoxComponent,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
         NgxAudioplayerModule,
+        MomentModule,
+        LoggerModule.forRoot(environment.logConfig),
     ],
-    providers: [PodcastDataService, PodcastEntryDataService, DomainResolver, DomainResolverService],
+    providers: [
+        PodcastDataService,
+        PodcastEntryDataService,
+        DomainResolver,
+        DomainResolverService,
+        CommentsService,
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

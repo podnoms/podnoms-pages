@@ -25,20 +25,20 @@ export class TopMenuComponent {
         domainResolverService: DomainResolverService,
         private podcastService: PodcastDataService,
     ) {
-        domainResolverService.resolveBaseUrl(requestService.getHost()).subscribe(r => {
+        domainResolverService.resolveBaseUrl(requestService.getHost()).subscribe((r) => {
             if (r) {
                 this._loadDetails(
                     domainResolverService.domain.userSlug,
                     domainResolverService.domain.podcastSlug,
                 );
                 // close nav menu on navigation
-                router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
+                router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
                     this.menuOpen = false;
                     this.document.body.classList.remove('mobile-menu-opened');
                 });
             } else {
                 router.events
-                    .pipe(filter(e => e instanceof NavigationEnd))
+                    .pipe(filter((e) => e instanceof NavigationEnd))
                     .subscribe((p: NavigationEnd) => {
                         const params = p.url.replace(/^\/+|\/+$/g, '').split('/');
                         if (params.length >= 2) {

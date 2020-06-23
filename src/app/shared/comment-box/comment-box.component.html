@@ -1,0 +1,84 @@
+<aside class="author-box has-description  p-10"
+       *ngIf="comments$ | async">
+    <h5 id="reply-title"
+        class="comment-reply-title">Comments:
+    </h5>
+    <ul class="chat">
+        <li class="left clearfix"
+            *ngFor="let comment of comments$ | async">
+            <span class="chat-img pull-left">
+                <img [src]="comment.avatarImage"
+                     alt="User Avatar"
+                     class="img-circle" />
+            </span>
+            <div class="chat-body clearfix">
+                <div class="header">
+                    <strong class="primary-font">{{comment.fromName}}</strong>
+                    <small class="pull-right text-muted">
+                        <span class="glyphicon glyphicon-time"></span>
+                        {{comment.commentDate | amTimeAgo}}
+                    </small>
+                </div>
+                <p [innerHTML]="comment.comment">
+                </p>
+            </div>
+        </li>
+    </ul>
+</aside>
+<div id="comments">
+    <div id="respond"
+         class="comment-respond">
+        <h5 id="reply-title"
+            class="comment-reply-title">
+            Leave a Reply
+        </h5>
+        <form [formGroup]="commentForm"
+              (submit)="postComment()"
+              class="comment-form"
+              novalidate="">
+            <p class="comment-notes">
+                <span id="email-notes">Your email address will not be published.</span>
+                Required fields are marked <span class="required">*</span>
+            </p>
+            <p class="comment-form-comment">
+                <label for="comment">Comment <span class="required">*</span></label>
+                <textarea formControlName="comment"
+                          id="comment"
+                          cols="45"
+                          rows="8"
+                          maxlength="65525"
+                          required="required">
+                </textarea>
+            </p>
+            <p class="comment-form-author">
+                <label for="author">Name <span class="required">*</span></label>
+                <input formControlName="fromName"
+                       id="author"
+                       type="text"
+                       value=""
+                       size="30"
+                       maxlength="245"
+                       required="required">
+            </p>
+            <p class="comment-form-email">
+                <label for="email">Email <span class="required">*</span></label>
+                <input formControlName="fromEmail"
+                       id="email"
+                       type="email"
+                       value=""
+                       size="30"
+                       maxlength="100"
+                       aria-describedby="email-notes"
+                       required="required">
+            </p>
+            <p class="form-submit">
+                <button [disabled]="!commentForm.valid"
+                        type="submit"
+                        class="submit"
+                        value="Post Comment">
+                    Post Comment
+                </button>
+            </p>
+        </form>
+    </div>
+</div>

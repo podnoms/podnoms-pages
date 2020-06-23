@@ -1,5 +1,6 @@
 import { Injectable, Inject, Injector, Optional } from '@angular/core';
 import { DOCUMENT, APP_BASE_HREF } from '@angular/common';
+import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
     providedIn: 'root',
@@ -7,9 +8,9 @@ import { DOCUMENT, APP_BASE_HREF } from '@angular/common';
 export class RequestService {
     serverUrl: string = '';
     baseHref: string = '';
-    constructor(@Inject(DOCUMENT) private document: Document) {
-        console.log('request.service', 'ctor', document);
-        console.log('request.service', 'ctor', `documentUrl: ${this.document.location.href}`);
+    constructor(@Inject(DOCUMENT) private document: Document, private logger: NGXLogger) {
+        logger.debug('request.service', 'ctor', document);
+        logger.debug('request.service', 'ctor', `documentUrl: ${this.document.location.href}`);
     }
     getHost(): string {
         return this.document.location.hostname;

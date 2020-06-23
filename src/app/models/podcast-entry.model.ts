@@ -16,4 +16,5 @@ export class PodcastEntry {
     podcastSlug?: string;
     podcastTitle?: string;
     podcastId?: string;
+    userSlug?: string;
 }

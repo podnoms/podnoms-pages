@@ -66,8 +66,8 @@
                     "options": {
                         "browserTarget": "podnoms-pages:build",
                         "ssl": true,
-                        "sslKey": "certs/server.key",
-                        "sslCert": "certs/server.crt",
+                        "sslKey": "certs/podnoms.local-key.pem",
+                        "sslCert": "certs/podnoms.local.pem",
                         "disableHostCheck": true,
                         "port": 4201
                     },
