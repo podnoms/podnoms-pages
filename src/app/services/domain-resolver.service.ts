@@ -14,9 +14,9 @@ export class DomainResolverService {
 
     resolveBaseUrl(domain: string): Observable<CustomDomain> {
         return this.http
-            .get<CustomDomain>(`${environment.apiHost}/podcast/domainresolver?domain=${domain}`)
+            .get<CustomDomain>(`${environment.apiHost}/domainresolver?domain=${domain}`)
             .pipe(
-                tap(p => {
+                tap((p) => {
                     this.domain = p;
                 }),
             );
