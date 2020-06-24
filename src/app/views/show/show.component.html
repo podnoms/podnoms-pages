@@ -1,7 +1,57 @@
 <div *ngIf="podcast$ | async as podcast">
-    <app-featured-entry [user]="podcast.user" [podcast]="podcast.slug">
-    </app-featured-entry>
-    <main id="content" class="padding-top-bottom">
+    <div *ngIf="featuredEpisode$ | async as featured">
+        <app-header-entry [headerTitle]="'Latest episode'"
+                          [episode]="featured">
+        </app-header-entry>
+    </div>
+    <section id="blog-grid-3columns"
+             class="blog blog-grid blog-grid-3columns">
+        <div class="container">
+            <div class="row heading heading-2 mb-60">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h4>Previous episodes</h4>
+                </div>
+            </div>
+            <div class="row mb-25">
+                <div class="col-sm-12 col-md-12 col-lg-4"
+                     *ngFor="let entry of entries$ | async">
+                    <app-episode-list-item [user]="user"
+                                           [slug]="slug"
+                                           [podcast]="podcast"
+                                           [episode]="entry">
+                    </app-episode-list-item>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <nav class="text-center"
+                         aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">Previous</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <main id="content" class="padding-top-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -12,12 +62,11 @@
                             </span>
                         </h3>
                         <article class="entry entry-episode" *ngFor="let entry of entries$ | async">
-                            <app-episode-list-item [user]="user" [slug]="slug" [podcast]="podcast" [episode]="entry">
-                            </app-episode-list-item>
+
                         </article>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </main> -->
 </div>

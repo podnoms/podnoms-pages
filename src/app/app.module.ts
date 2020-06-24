@@ -8,7 +8,7 @@ import { TopMenuComponent } from './shared/top-menu/top-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowComponent } from './views/show/show.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { FeaturedEntryComponent } from './components/featured-entry/featured-entry.component';
+import { HeaderEntryComponent } from './components/header-entry/header-entry.component';
 import { EpisodeComponent } from './views/episode/episode.component';
 import { NgxAudioplayerModule } from '@podnoms/ngx-audioplayer';
 import { PodcastDataService } from './services/podcast-data.service';
@@ -33,7 +33,7 @@ import { NgxLoggerLevel } from '../../node_modules/ngx-logger/lib/types/logger-l
         TopMenuComponent,
         ShowComponent,
         NotFoundComponent,
-        FeaturedEntryComponent,
+        HeaderEntryComponent,
         EpisodeListItemComponent,
         EpisodeComponent,
         DebugComponent,

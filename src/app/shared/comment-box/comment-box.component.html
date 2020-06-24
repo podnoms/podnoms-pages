@@ -1,84 +1,67 @@
-<aside class="author-box has-description  p-10"
-       *ngIf="comments$ | async">
-    <h5 id="reply-title"
-        class="comment-reply-title">Comments:
-    </h5>
-    <ul class="chat">
-        <li class="left clearfix"
-            *ngFor="let comment of comments$ | async">
-            <span class="chat-img pull-left">
-                <img [src]="comment.avatarImage"
-                     alt="User Avatar"
-                     class="img-circle" />
-            </span>
-            <div class="chat-body clearfix">
-                <div class="header">
-                    <strong class="primary-font">{{comment.fromName}}</strong>
-                    <small class="pull-right text-muted">
-                        <span class="glyphicon glyphicon-time"></span>
-                        {{comment.commentDate | amTimeAgo}}
-                    </small>
+<div class="entry-comments bg-gray"
+     *ngIf="comments$ | async as comments">
+    <div class="entry-widget-title clearfix">
+        {{comments.length}} Comments
+    </div>
+    <div class="comments-body">
+        <ul class="commentlist">
+            <li *ngFor="let comment of comments">
+                <div class="avatar">
+                    <img [src]="comment.avatarImage"
+                         alt="avatar">
                 </div>
-                <p [innerHTML]="comment.comment">
-                </p>
-            </div>
-        </li>
-    </ul>
-</aside>
-<div id="comments">
-    <div id="respond"
-         class="comment-respond">
-        <h5 id="reply-title"
-            class="comment-reply-title">
-            Leave a Reply
-        </h5>
+                <div class="commen-content">
+                    <div class="comment-meta">
+                        <h6>{{comment.fromName}}</h6>
+                        <div class="comment-date">
+                            <span class="date">{{comment.commentDate | amTimeAgo}}</span>
+                        </div>
+                    </div>
+                    <p [innerHTML]="comment.comment"></p>
+                    <div class="reply"
+                         *ngIf="false"><a href="#">Leave A Reply</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="entry-comments-form bg-gray">
+    <div class="entry-widget-title clearfix">
+        Leave a reply
+    </div>
+    <div class="comment-form-body">
         <form [formGroup]="commentForm"
               (submit)="postComment()"
-              class="comment-form"
-              novalidate="">
-            <p class="comment-notes">
-                <span id="email-notes">Your email address will not be published.</span>
-                Required fields are marked <span class="required">*</span>
-            </p>
-            <p class="comment-form-comment">
-                <label for="comment">Comment <span class="required">*</span></label>
-                <textarea formControlName="comment"
-                          id="comment"
-                          cols="45"
-                          rows="8"
-                          maxlength="65525"
-                          required="required">
-                </textarea>
-            </p>
-            <p class="comment-form-author">
-                <label for="author">Name <span class="required">*</span></label>
-                <input formControlName="fromName"
-                       id="author"
-                       type="text"
-                       value=""
-                       size="30"
-                       maxlength="245"
-                       required="required">
-            </p>
-            <p class="comment-form-email">
-                <label for="email">Email <span class="required">*</span></label>
-                <input formControlName="fromEmail"
-                       id="email"
-                       type="email"
-                       value=""
-                       size="30"
-                       maxlength="100"
-                       aria-describedby="email-notes"
-                       required="required">
-            </p>
-            <p class="form-submit">
-                <button [disabled]="!commentForm.valid"
-                        type="submit"
-                        class="submit"
-                        value="Post Comment">
-                    Post Comment
-                </button>
-            </p>
+              class="mb-0">
+            <div class="row">
+                <div class="col-md-6">
+                    <input formControlName="fromName"
+                           type="text"
+                           class="form-control mb-30"
+                           placeholder="Your Name"
+                           required="">
+                </div>
+                <div class="col-md-6">
+                    <input formControlName="fromEmail"
+                           type="email"
+                           class="form-control mb-30"
+                           placeholder="Your Email"
+                           required="">
+                </div>
+                <div class="col-md-12">
+                    <textarea formControlName="comment"
+                              class="form-control mb-30"
+                              rows="2"
+                              placeholder="your Comment"
+                              required=""></textarea>
+                </div>
+                <div class="col-md-12">
+                    <button [disabled]="!commentForm.valid"
+                            type="submit"
+                            id="submit-message"
+                            class="btn btn-secondary btn-hover btn-block">Post Your Comment</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

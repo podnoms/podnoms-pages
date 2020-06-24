@@ -1,44 +1,47 @@
-<span *ngIf="podcast$ | async as podcast">
-    <header id="featured" class="featured-content fade-background-60 padding-top-bottom">
-        <img class="bgimg" [src]="podcast.imageUrl">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md">
-                    <h1 class="entry-title">Add to your favourite podcatcher</h1>
-                </div>
+<section id="portfolio-masonry"
+         class="portfolio portfolio-grid grid-spaced portfolio-4col portfolio-animation"
+         *ngIf="podcast$ | async as podcast">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 portfolio-filter">
+                <h5>Subscribe in your favourite podcatcher</h5>
             </div>
         </div>
-    </header>
-    <main id="content" class="has-sidebar padding-top-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-8 col-lg-9">
-                    <div class="subscribe-listing">
-                        <div class="row">
-                            <div class="subscribe-listing-item col-12 col-lg-4 m-50"
-                                 *ngFor="let item of aggregators$ | async">
-                                <article>
-                                    <div class="entry-media entry-image">
-                                        <a [href]="item.url" target="_blank">
-                                            <img [src]="item.imageUrl" alt="Subscribe in {{item.name}}">
-                                        </a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-lg-4">
-                                <article class="entry entry-post format-video">
-                                    <div class="entry-media entry-image">
-                                        <a [href]="podcast.rssUrl" target="_blank">
-                                            <img class="subscribe-image"
-                                                 src="https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png">
-                                        </a>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
+    </div>
+    <div class="container">
+        <div id="portfolio-all"
+             class="row"
+             style="position: relative; height: 1309.87px;">
+            <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior"
+                 *ngFor="let item of aggregators$ | async">
+                <div class="portfolio-item-box">
+                    <div class="portfolio-img">
+                        <a [href]="item.url"
+                           target="_blank">
+                            <img [src]="item.imageUrl"
+                                 alt="{{item.name}}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior">
+                <div class="portfolio-item-box">
+                    <div class="portfolio-img">
+                        <a [href]="podcast.rssUrl"
+                           target="_blank">
+                            <img [src]="'https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png'"
+                                 alt="Portfolio Item">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-</span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 portfolio-more">
+                <a href="#">Load More Projects</a>
+            </div>
+        </div>
+    </div>
+</section>
