@@ -24,7 +24,7 @@
         "@angular/platform-browser-dynamic": "^9.1.11",
         "@angular/platform-server": "^9.1.11",
         "@angular/router": "^9.1.11",
-        "@nguniversal/express-engine": "^9.1.1",
+        "@nguniversal/express-engine": "^10.1.0",
         "@podnoms/ngx-audioplayer": "1.2.29",
         "bootstrap": "^4.5.0",
         "core-js": "^3.6.5",
