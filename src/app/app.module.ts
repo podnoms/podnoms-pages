@@ -20,7 +20,7 @@ import { DomainResolver } from './services/domain-resolver';
 import { SubscribeComponent } from './views/subscribe/subscribe.component';
 import { CommentBoxComponent } from './shared/comment-box/comment-box.component';
 import { CommentsService } from './services/comments.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from 'src/environments/environment.prod';
@@ -46,6 +46,7 @@ import { NgxLoggerLevel } from '../../node_modules/ngx-logger/lib/types/logger-l
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
+        FormsModule,
         NgxAudioplayerModule,
         MomentModule,
         LoggerModule.forRoot(environment.logConfig),

@@ -1,63 +1,26 @@
-<div class="entry text-center">
-    <div class="entry-featured">
-        <a [routerLink]="[episodeUrl]">
-            <img [src]="episode.imageUrl"
-                 alt="entry title">
-        </a>
+<div class="podcast__item">
+    <div class="podcast__item__pic">
+        <img class="entry-list-image"
+             [src]="episode.imageUrl"
+             alt="">
     </div>
-    <div class="entry-date">
-        <a href="#">{{episode.createDate | date:'longDate'}}</a>
-    </div>
-    <div class="entry-title text-center">
-        <h3>
-            <a [routerLink]="[episodeUrl]">{{episode.title}}</a>
-        </h3>
-    </div>
-    <div class="entry-meta text-center">
-        <span>By : </span>
-        <a href="#">Begha</a>
-        /
-        <span>Comments : </span>
-        <span>
-            <a href="#">27</a>
-        </span>
-    </div>
-    <!-- .entry-meta end -->
-</div>
-<!--
-<div class="row align-items-lg-center">
-    <div class="col-12 col-md-4 col-xl-3">
-        <div class="entry-media entry-image multiply-effect">
-            <a href="'#'">
-                <img class="first entry-image" [src]="episode.imageUrl" alt="">
-            </a>
-        </div>
-    </div>
-    <div class="col-12 col-md-8 col-xl-9">
-        <header class="entry-header">
-            <div class="entry-meta">
-                <span class="posted-on">
-                    <span class="screen-reader-text">Posted
-                        on:
-                    </span>
-                    <time class="entry-date published"
-                          datetime="entry.createDate">{{episode.createDate | date:'longDate'}}
-                    </time>
-                </span>
-            </div>
-            <h2 class="entry-title">
-                <a [routerLink]="[episodeUrl]" rel="bookmark">{{episode.title}}
-                </a>
-            </h2>
-        </header>
-        <div class="entry-content">
-            <div class="expando">
-                <p [innerHTML]="strippedDescription">
-                </p>
-            </div>
+    <div class="podcast__item__text">
+        <a href="#"
+           class="heart-icon"><i class="far fa-heart"></i></a>
+        <ul>
+            <li><span class="icon_calendar"></span> {{episode.createDate | date:'longDate'}} </li>
+            <li><span class="icon_profile"></span> by {{episode.userName}}</li>
+            <li><span class="icon_tags_alt"></span> Classic, House, Music</li>
+        </ul>
+        <a>
             <a [routerLink]="[episodeUrl]">
-                {{ expanded ? '(read less)' : '(read more)' }}
+                <h4>{{episode.title}}</h4>
             </a>
-        </div>
+        </a>
+        <p class="expando">{{strippedDescription}}</p>
+        <ngx-audioplayer-mini [audioUrl]="episode.audioUrl"
+                              [audioLength]="episode.audioLength">
+        </ngx-audioplayer-mini>
+
     </div>
-</div> -->
+</div>

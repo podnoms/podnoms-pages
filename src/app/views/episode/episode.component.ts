@@ -77,4 +77,5 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
         }
     }
     ngAfterViewInit() {}
+    submitComment(){}
 }

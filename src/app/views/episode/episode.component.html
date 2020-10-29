@@ -1,4 +1,120 @@
 <div *ngIf="episode$ | async as episode">
+    <section class="blog-details-hero spad set-bg"
+             [style.background-image]="'url(' + episode.imageUrl + ')'">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="blog__hero__text">
+                        <ul>
+                            <li><span class="icon_calendar"></span> {{episode.createDate | date:'longDate'}} </li>
+                            <li><span class="icon_profile"></span> by {{episode.userName}}</li>
+                            <li><span class="icon_tags_alt"></span> Deep, House, Music</li>
+                        </ul>
+                        <h2>{{episode.title}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <ngx-audioplayer #player
+                                     [audioUrl]="episode.audioUrl"
+                                     [pcmUrl]="episode.pcmUrl"
+                                     [imageUrl]="episode.imageUrl"
+                                     [title]="episode.author"
+                                     [subTitle]="episode.title"
+                                     [autoPlay]="false"
+                                     [backgroundColour]="''"
+                                     [titleColour]="'#8fac69'"
+                                     [padding]="'3px'"
+                                     [subTitleColour]="'#828699'"
+                                     [waveColour]="'#863438'"
+                                     [waveColourProgress]="'#BBBF7F'"
+                                     [showImage]="false"
+                                     [showDetails]="false"
+                                     [showVolume]="false">
+                    </ngx-audioplayer>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="blog-details spad">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__content">
+                        <div class="blog__details__text">
+                            <p class="top-text"
+                               [innerHTML]="episode.description"></p>
+
+                        </div>
+                        <div class="blog__details__tags">
+                            <span>Share:</span>
+                            <a href="#"><i class="social_facebook"></i></a>
+                            <a href="#"><i class="social_twitter"></i></a>
+                            <a href="#"><i class="social_youtube"></i></a>
+                        </div>
+
+                        <div class="blog__details__comment"
+                             *ngIf="false">
+                            <h4>12 Comment</h4>
+                            <div class="blog__details__comment__item">
+                                <div class="blog__details__comment__item__pic">
+                                    <img src="img/blog/details/comment-1.jpg"
+                                         alt="">
+                                </div>
+                                <div class="blog__details__comment__item__text">
+                                    <div class="comment__date">May 14, 2018</div>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                    <a href="#">Like</a>
+                                    <a href="#">Reply</a>
+                                </div>
+                            </div>
+                            <div class="blog__details__comment__item blog__details__comment__item--reply">
+                                <div class="blog__details__comment__item__pic">
+                                    <img src="img/blog/details/comment-2.jpg"
+                                         alt="">
+                                </div>
+                                <div class="blog__details__comment__item__text">
+                                    <div class="comment__date">May 14, 2018</div>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor
+                                        incididunt ut labore et dolore magna aliqua.</p>
+                                    <a href="#">Like</a>
+                                    <a href="#">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog__details__comment__form">
+                            <h4>Leave A Reply</h4>
+                            <form (submit)="submitComment()">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text"
+                                               placeholder="Name">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <input type="text"
+                                               placeholder="Email Address">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea placeholder="Your Comment"></textarea>
+                                        <button type="submit"
+                                                class="site-btn">Submit Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- <div *ngIf="episode$ | async as episode">
     <app-header-entry [episode]="episode">
     </app-header-entry>
 </div>
@@ -18,20 +134,6 @@
                                 <a href="#">{{episode.title}}.</a>
                             </h3>
                         </div>
-                        <!-- <div class="entry-meta text-center">
-                            <span>By : </span>
-                            <a href="#">Begha</a>
-                            /
-                            <span>In : </span>
-                            <span>
-                                <a href="#">Interviews</a>
-                            </span>
-                            /
-                            <span>Comments : </span>
-                            <span>
-                                <a href="#">27</a>
-                            </span>
-                        </div> -->
                         <div class="entry-content"
                              [innerHTML]="episode.description">
                         </div>
@@ -52,104 +154,4 @@
             </div>
         </div>
     </div>
-</section>
-<!-- <div *ngIf="episode$ | async as entry">
-     <header id="featured"
-             class="featured-content fade-background-50 padding-top-bottom"
-             [style.background-image]="'url(' + entry.imageUrl + ')'">
-         <div class="container">
-
-             <div class="row align-items-center">
-                 <div class="col-12">
-                     <h1 class="entry-title">
-                         {{entry.title}}
-                     </h1>
-                     <div class="entry-meta">
-                         <span class="posted-on">
-                             <span class="screen-reader-text">
-                                 Posted:
-                             </span>
-                             <a>
-                                 <time class="entry-date published"
-                                       datetime="2017-09-13T14:48:37+00:00">
-                                     {{entry.createDate | date:'longDate'}}
-                                 </time>
-                             </a>
-                         </span>
-                     </div>
-                     <div class="podcast-episode">
-                         <div class="podcast-episode">
-                             <div class="podcast-episode-player">
-                                 <ngx-audioplayer #player
-                                                  [audioUrl]="entry.audioUrl"
-                                                  [pcmUrl]="entry.pcmUrl"
-                                                  [imageUrl]="entry.imageUrl"
-                                                  [title]="entry.author"
-                                                  [subTitle]="entry.title"
-                                                  [autoPlay]="false"
-                                                  [backgroundColour]="'rgba(51,54,55,0.5)'"
-                                                  [titleColour]="'#8fac69'"
-                                                  [padding]="'3px'"
-                                                  [subTitleColour]="'#828699'"
-                                                  [waveColour]="'#863438'"
-                                                  [waveColourProgress]="'#BBBF7F'"
-                                                  [showImage]="false"
-                                                  [showDetails]="false"
-                                                  [showVolume]="false">
-                                 </ngx-audioplayer>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </header>
-     <main id="content"
-           class="padding-top-bottom">
-         <div class="container">
-             <div class="row">
-                 <div class="col-12 col-md-12">
-                     <article id="{{entry.id}}"
-                              class="entry entry-post episode-type-audio post-69 episode type-episode status-publish has-post-thumbnail hentry category-season-1 tag-audio tag-goodbyes tag-life">
-                         <div class="entry-content"
-                              [innerHtml]="entry.description">
-                         </div>
-                         <div class="entry-footer">
-                             <aside class="share-entry">
-                                 <div class="row align-items-lg-center">
-                                     <div class="col-12 col-lg-auto">
-                                         <h5 class="share-title">Share it:</h5>
-                                         <p class="share-links">
-                                             <a title="Facebook"
-                                                target="_blank"
-                                                [href]="facebookRef">
-                                                 <span class="zmdi zmdi-facebook"></span>
-                                                 <span class="screen-reader-text">Facebook</span>
-                                             </a>
-                                             <a title="Twitter"
-                                                target="_blank"
-                                                [href]="twitterRef">
-                                                 <span class="zmdi zmdi-twitter"></span>
-                                                 <span class="screen-reader-text">Twitter</span>
-                                             </a>
-                                         </p>
-                                     </div>
-                                     <div class="col-12 col-lg">
-                                         <div class="categories">
-                                             <span class="screen-reader-text">Posted in:</span>
-                                             <a [href]="siteUrl"
-                                                rel="category tag">
-                                                 {{entry.podcastTitle}}
-                                             </a>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </aside>
-                         </div>
-                     </article>
-                     <app-comment-box [episode]="entry"></app-comment-box>
-                 </div>
-             </div>
-         </div>
-     </main>
- </div> -->
+</section> -->

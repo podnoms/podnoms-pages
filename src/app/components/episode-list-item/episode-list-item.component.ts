@@ -1,7 +1,19 @@
-import { Component, OnInit, Input, AfterViewChecked, AfterViewInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    AfterViewChecked,
+    AfterViewInit,
+    ViewChild,
+    ElementRef,
+} from '@angular/core';
 import { PodcastEntry } from 'src/app/models/podcast-entry.model';
 import { Podcast } from 'src/app/models/podcast.model';
 import { NGXLogger } from 'ngx-logger';
+
+declare var $: any;
+declare var wavesurfer: any;
+declare var jwplayer: any;
 
 @Component({
     selector: 'app-episode-list-item',
@@ -17,6 +29,9 @@ export class EpisodeListItemComponent implements AfterViewInit {
     @Input() user: string;
     @Input() slug: string;
 
+    @ViewChild('player')
+    player: ElementRef;
+
     constructor(private logger: NGXLogger) {}
     ngAfterViewInit() {
         setTimeout(() => {
@@ -29,13 +44,10 @@ export class EpisodeListItemComponent implements AfterViewInit {
             this.strippedDescription = this.episode.description
                 ? this.episode.description.replace(/(<([^>]+)>)/gi, '')
                 : '';
-            // this.strippedDescription = this._stripTag(
-            //     this._stripTag(this.episode.description, 'p'),
-            //     'span',
-            // );
             this.logger.debug('episode-list-item.component', 'stripped', this.strippedDescription);
         });
     }
+
     private _stripTag(html: string, tag: string): string {
         const div = document.createElement('div');
         div.innerHTML = html;

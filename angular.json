@@ -66,8 +66,8 @@
                     "options": {
                         "browserTarget": "podnoms-pages:build",
                         "ssl": true,
-                        "sslKey": "certs/podnoms.local-key.pem",
-                        "sslCert": "certs/podnoms.local.pem",
+                        "sslKey": "/home/fergalm/dev/podnoms/certs/dev.pdnm.be.key",
+                        "sslCert": "/home/fergalm/dev/podnoms/certs/dev.pdnm.be.crt",
                         "disableHostCheck": true,
                         "port": 4201
                     },

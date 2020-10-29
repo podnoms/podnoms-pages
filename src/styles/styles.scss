@@ -2,13 +2,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~bootstrap/scss/bootstrap';
+@import '~elegant-icons/style.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
 @import '_main';
-@import '~font-awesome/css/font-awesome.css';
+// @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// @import '~@fortawesome/fontawesome-free/scss/regular';
+// @import '~@fortawesome/fontawesome-free/scss/brands';
 
 a {
     cursor: pointer;
 }
 
 i.fa {
-    margin-left: 4px;
+    margin-right: 4px;
 }

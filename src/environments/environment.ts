@@ -9,7 +9,7 @@ const _logConfig: LoggerConfig = {
 
 export const environment = {
     production: false,
-    apiHost: 'https://podnoms.local:5001/pub',
+    apiHost: 'https://dev.pdnm.be:5001/pub',
     logConfig: _logConfig,
 };
 import 'zone.js/dist/zone-error'; // Included with Angular CLI.import { LoggerConfig } from 'ngx-logger';import { NgxLoggerLevel } from 'ngx-logger';

@@ -5,6 +5,7 @@ export interface Podcast {
     title: string;
     description?: string;
     slug?: string;
+    coverImageUrl?: string;
     imageUrl?: string;
     thumbnailUrl?: string;
     customDomain?: string;

@@ -7,6 +7,7 @@ export class PodcastEntry {
     description?: string;
     sourceUrl: string;
     audioUrl?: string;
+    audioLength?: number;
     pcmUrl?: string;
     imageUrl?: string;
     processed: boolean;
@@ -17,4 +18,5 @@ export class PodcastEntry {
     podcastTitle?: string;
     podcastId?: string;
     userSlug?: string;
+    userName?: string;
 }

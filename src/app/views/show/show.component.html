@@ -1,72 +1,73 @@
-<div *ngIf="podcast$ | async as podcast">
-    <div *ngIf="featuredEpisode$ | async as featured">
-        <app-header-entry [headerTitle]="'Latest episode'"
-                          [episode]="featured">
-        </app-header-entry>
-    </div>
-    <section id="blog-grid-3columns"
-             class="blog blog-grid blog-grid-3columns">
-        <div class="container">
-            <div class="row heading heading-2 mb-60">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <h4>Previous episodes</h4>
-                </div>
-            </div>
-            <div class="row mb-25">
-                <div class="col-sm-12 col-md-12 col-lg-4"
-                     *ngFor="let entry of entries$ | async">
-                    <app-episode-list-item [user]="user"
-                                           [slug]="slug"
-                                           [podcast]="podcast"
-                                           [episode]="entry">
-                    </app-episode-list-item>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <nav class="text-center"
-                         aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#"
-                                   aria-label="Previous">
-                                    <span aria-hidden="true">Previous</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#"
-                                   aria-label="Next">
-                                    <span aria-hidden="true">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- <main id="content" class="padding-top-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="episodes-listing" *ngIf="entries$">
-                        <h3 class="add-separator">
-                            <span>
-                                Previous <em>Episodes</em>
-                            </span>
-                        </h3>
-                        <article class="entry entry-episode" *ngFor="let entry of entries$ | async">
-
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main> -->
-</div>
+ <div *ngIf="podcast$ | async as podcast">
+     <div *ngIf="featuredEpisode$ | async as featured">
+         <section class="hero spad set-bg"
+                  [style.background-image]="'url(' + podcast.coverImageUrl + ')'">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-6">
+                         <div class="hero__text">
+                             <h5><span class="icon_calendar"></span> Latest Episode -
+                                 <i class="fa fas far fa-clock"></i>{{featured.createDate | amTimeAgo}}</h5>
+                             <h2>{{featured.title}}</h2>
+                             <a href="#"
+                                class="primary-btn">Subscribe with iTunes</a>
+                             <a href="#"
+                                class="primary-btn white-btn">Subscribe with RSS</a>
+                         </div>
+                     </div>
+                     <div class="col-lg-6">
+                         <div class="hero__pic set-bg"
+                              [style.background-image]="'url(' + featured.imageUrl + ')'">
+                             <a href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/249690664&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                                class="play-btn video-popup">
+                                 <img src="/assets/img/play-btn.png"
+                                      alt=""></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="single__track">
+                 <div class="container">
+                     <ngx-audioplayer #player
+                                      [audioUrl]="featured.audioUrl"
+                                      [pcmUrl]="featured.pcmUrl"
+                                      [imageUrl]="featured.imageUrl"
+                                      [title]="featured.author"
+                                      [subTitle]="featured.title"
+                                      [autoPlay]="false"
+                                      [backgroundColour]="''"
+                                      [titleColour]="'#8fac69'"
+                                      [padding]="'3px'"
+                                      [subTitleColour]="'#828699'"
+                                      [waveColour]="'#863438'"
+                                      [waveColourProgress]="'#BBBF7F'"
+                                      [showImage]="false"
+                                      [showDetails]="false"
+                                      [showVolume]="false">
+                     </ngx-audioplayer>
+                 </div>
+             </div>
+         </section>
+     </div>
+ </div>
+ <section class="podcast spad">
+     <div class="container">
+         <div class="podcast__top">
+             <div class="row">
+                 <div class="col-lg-5 col-md-5">
+                     <h2>Previous Episodes</h2>
+                 </div>
+             </div>
+         </div>
+         <div class="row podcast-filter"
+              *ngFor="let entry of entries$ | async">
+             <div class="col-lg-12 mix entrepreneurship">
+                 <app-episode-list-item [user]="user"
+                                        [slug]="slug"
+                                        [podcast]="podcast"
+                                        [episode]="entry">
+                 </app-episode-list-item>
+             </div>
+         </div>
+     </div>
+ </section>
