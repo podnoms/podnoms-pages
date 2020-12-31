@@ -1,10 +1,15 @@
-# FROM nginx:alpine
+FROM node:15.5.0-buster as builder
 
-# COPY nginx/conf.d /etc/nginx/nginx.conf
-# WORKDIR /usr/share/nginx/html
-# COPY dist/podnoms-pages/ .
+WORKDIR /app
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+RUN yarn install --frozen-lockfile
+COPY . .
 
-# EXPOSE 80
+RUN yarn global add @angular/cli
+RUN yarn build:ssr
+
+
 FROM node:latest
 
 LABEL maintainer="Fergal Moran <Ferg@lMoran.me>"
