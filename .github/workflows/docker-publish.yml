@@ -1,4 +1,4 @@
-name: Build PodNoms Pages
+name: PodNoms Pages
 
 on:
   push:
