@@ -3,7 +3,7 @@ name: Build PodNoms Pages
 on:
   push:
     branches:
-      - trunk
+      - develop
     tags:
       - v*
 
