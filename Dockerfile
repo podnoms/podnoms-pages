@@ -18,8 +18,7 @@ RUN npm install pm2 -g
 RUN mkdir -p /var/app
 
 WORKDIR /var/app
-
-COPY ./dist/ dist/
+COPY --from=builder  /app/dist/ dist/
 EXPOSE 4000
 
 CMD ["pm2-docker", "./dist/podnoms-pages/server/main.js"]
