@@ -8,6 +8,7 @@ import { DomainResolverService } from 'src/app/services/domain-resolver.service'
 import { DOCUMENT } from '@angular/common';
 import { RequestService } from 'src/app/services/request.service';
 import { NGXLogger } from 'ngx-logger';
+import { FeaturedPodcastService } from 'src/app/services/featured-episode.service';
 
 @Component({
     selector: 'app-top-menu',
@@ -19,10 +20,12 @@ export class TopMenuComponent {
     menuOpen: boolean = false;
     siteUrl: string = '/';
     subscribeUrl: string = 'subscribe';
+    aboutUrl: string = 'about';
     constructor(
         @Inject(DOCUMENT) private document: Document,
         private router: Router,
         private route: ActivatedRoute,
+        private featuredPodcastService: FeaturedPodcastService,
         requestService: RequestService,
         domainResolverService: DomainResolverService,
         private podcastService: PodcastDataService,
@@ -31,6 +34,10 @@ export class TopMenuComponent {
         domainResolverService.resolveBaseUrl(requestService.getHost()).subscribe((r) => {
             if (r) {
                 this._loadDetails(
+                    domainResolverService.domain.userSlug,
+                    domainResolverService.domain.podcastSlug,
+                );
+                this.featuredPodcastService.updateUserSlugDetails(
                     domainResolverService.domain.userSlug,
                     domainResolverService.domain.podcastSlug,
                 );
@@ -47,7 +54,9 @@ export class TopMenuComponent {
                         if (params.length >= 2) {
                             this.siteUrl = `${params[0]}/${params[1]}`;
                             this.subscribeUrl = `${params[0]}/${params[1]}/subscribe`;
+                            this.aboutUrl = `${params[0]}/${params[1]}/about`;
                             this._loadDetails(params[0], params[1]);
+                            this.featuredPodcastService.updateUserSlugDetails(params[0], params[1]);
                         }
                     });
             }

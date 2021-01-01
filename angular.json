@@ -69,6 +69,7 @@
                         "sslKey": "/home/fergalm/dev/podnoms/certs/dev.pdnm.be.key",
                         "sslCert": "/home/fergalm/dev/podnoms/certs/dev.pdnm.be.crt",
                         "disableHostCheck": true,
+                        "host": "dev.pdnm.be",
                         "port": 4201
                     },
                     "configurations": {

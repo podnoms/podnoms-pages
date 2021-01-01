@@ -1,47 +1,52 @@
-<section id="portfolio-masonry"
-         class="portfolio portfolio-grid grid-spaced portfolio-4col portfolio-animation"
-         *ngIf="podcast$ | async as podcast">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 portfolio-filter">
-                <h5>Subscribe in your favourite podcatcher</h5>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div id="portfolio-all"
-             class="row"
-             style="position: relative; height: 1309.87px;">
-            <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior"
-                 *ngFor="let item of aggregators$ | async">
-                <div class="portfolio-item-box">
-                    <div class="portfolio-img">
-                        <a [href]="item.url"
-                           target="_blank">
-                            <img [src]="item.imageUrl"
-                                 alt="{{item.name}}">
-                        </a>
+<div *ngIf="podcast$ | async as podcast">
+    <section class="hero spad set-bg"
+             [style.background-image]="'url(' + podcast.coverImageUrl + ')'">
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 portfolio-filter">
+                            <h5>Subscribe in your favourite podcatcher</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div id="portfolio-all"
+                         class="row"
+                         style="position: relative; height: 1309.87px;">
+                        <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior"
+                             *ngFor="let item of aggregators$ | async">
+                            <div class="portfolio-item-box">
+                                <div class="portfolio-img">
+                                    <a [href]="item.url"
+                                       target="_blank">
+                                        <img [src]="item.imageUrl"
+                                             alt="{{item.name}}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior">
+                            <div class="portfolio-item-box">
+                                <div class="portfolio-img">
+                                    <a [href]="podcast.rssUrl"
+                                       target="_blank">
+                                        <img [src]="'https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png'"
+                                             alt="Portfolio Item">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 portfolio-more">
+                            <a href="#">Load More Projects</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 portfolio-item filter-Branding filter-Interior">
-                <div class="portfolio-item-box">
-                    <div class="portfolio-img">
-                        <a [href]="podcast.rssUrl"
-                           target="_blank">
-                            <img [src]="'https://cdn.podnoms.com/static/images/pages/aggregators/subscribe-rss-button.png'"
-                                 alt="Portfolio Item">
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 portfolio-more">
-                <a href="#">Load More Projects</a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+</div>

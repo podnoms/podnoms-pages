@@ -12,8 +12,9 @@
                 </div>
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li><a [routerLink]="'about'">About</a></li>
-                        <li><a [routerLink]="'episodes'">Episodes</a></li>
+                        <li><a [routerLink]="aboutUrl">About</a></li>
+                        <li><a [routerLink]="
+                               subscribeUrl">Subscribe</a></li>
                     </ul>
                 </nav>
             </div>
@@ -27,11 +28,10 @@
                         </form> -->
                     </div>
                     <div class="header__right__social">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a [href]="podcast.facebookUrl"
+                           target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a [href]="podcast.twitterUrl"
+                           target="_blank"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>

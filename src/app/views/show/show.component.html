@@ -1,5 +1,5 @@
  <div *ngIf="podcast$ | async as podcast">
-     <div *ngIf="featuredEpisode$ | async as featured">
+     <div *ngIf="featuredEpisodeService.episode$ | async as featured">
          <section class="hero spad set-bg"
                   [style.background-image]="'url(' + podcast.coverImageUrl + ')'">
              <div class="container">
@@ -9,19 +9,30 @@
                              <h5><span class="icon_calendar"></span> Latest Episode -
                                  <i class="fa fas far fa-clock"></i>{{featured.createDate | amTimeAgo}}</h5>
                              <h2>{{featured.title}}</h2>
-                             <a href="#"
-                                class="primary-btn">Subscribe with iTunes</a>
-                             <a href="#"
-                                class="primary-btn white-btn">Subscribe with RSS</a>
+                             <a *ngIf="itunesAggregator"
+                                [href]="itunesAggregator.url"
+                                target="_blank"
+                                class="primary-btn">
+                                 <i class="fab fa-itunes"></i>
+                                 Subscribe with {{itunesAggregator.name}}</a>
+                             <a [href]="podcast.rssUrl"
+                                target="_blank"
+                                class="primary-btn white-btn">
+                                 <i class="fas fa-rss"></i>
+                                 Subscribe with RSS</a>
                          </div>
                      </div>
                      <div class="col-lg-6">
-                         <div class="hero__pic set-bg"
-                              [style.background-image]="'url(' + featured.imageUrl + ')'">
-                             <a href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/249690664&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-                                class="play-btn video-popup">
-                                 <img src="/assets/img/play-btn.png"
-                                      alt=""></a>
+
+                         <div class="gradient-border">
+                             <div class="inner"
+                                  [style.background-image]="'url(' + featured.imageUrl + ')'">
+                                 <a (click)="playAudio()"
+                                    class="play-btn video-popup">
+                                     <img [src]="isPlaying ? '/assets/img/pause-btn.png' : '/assets/img/play-btn.png'"
+                                          alt="">
+                                 </a>
+                             </div>
                          </div>
                      </div>
                  </div>

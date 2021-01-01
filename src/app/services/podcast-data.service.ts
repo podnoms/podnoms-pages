@@ -27,6 +27,14 @@ export class PodcastDataService {
             `${environment.apiHost}/podcast/${podcastId}/aggregators`,
         );
     }
+    getAggregatorByType(podcastId: string, type: string): Observable<PodcastAggregator> {
+        return this.http.get<PodcastAggregator[]>(
+            `${environment.apiHost}/podcast/${podcastId}/aggregators?type=iTunes`,
+        ).pipe(
+            map(r => r[0])
+        );
+    }
+
     getAllButFeatured(podcastId: string): Observable<PodcastEntry[]> {
         return this.http.get<PodcastEntry[]>(
             `${environment.apiHost}/podcast/${podcastId}/allbutfeatured`,

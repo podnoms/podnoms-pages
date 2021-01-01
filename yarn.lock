@@ -1213,10 +1213,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@podnoms/ngx-audioplayer@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-1.4.2.tgz#09fe094396ebe7b04d87b080d1b02fcfe14efee3"
-  integrity sha512-jGWyv1DXdJbI3qcOHrDh+2yBMHXQ36aFgMwCkHQhGvK6E9yabPQku2GkhQGCT7BNbqJkYf87Wdp76JcuLJfCwQ==
+"@podnoms/ngx-audioplayer@1.4.20":
+  version "1.4.20"
+  resolved "https://registry.yarnpkg.com/@podnoms/ngx-audioplayer/-/ngx-audioplayer-1.4.20.tgz#b1b10a0f1f93126d3340964407d47d4a3217ccde"
+  integrity sha512-HAnzXk2+Igy0vhmYhIM+HlPzNK4PMLQtYGIZcVjJAPoqPRWhmbwum/e6CYfIGqOE1rrtS1Hbd2eJ3DIEAD1dOw==
   dependencies:
     tslib "^2.0.0"
 

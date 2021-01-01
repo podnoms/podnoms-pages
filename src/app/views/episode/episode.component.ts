@@ -9,6 +9,8 @@ import { SocialTagsService } from 'src/app/services/social-tags.service';
 import { RequestService } from 'src/app/services/request.service';
 import { CommentsService } from 'src/app/services/comments.service';
 
+declare var FB: any;
+
 @Component({
     selector: 'app-episode',
     templateUrl: './episode.component.html',
@@ -77,5 +79,21 @@ export class EpisodeComponent implements OnInit, AfterViewInit {
         }
     }
     ngAfterViewInit() {}
-    submitComment(){}
+    submitComment() {}
+
+    shareToFacebook() {
+        FB.ui(
+            {
+                method: 'share',
+                href: window.location.href,
+            },
+            function (response) {},
+        );
+    }
+    shareToTwitter() {
+        var url = `https://twitter.com/intent/tweet?url=${window.location.href}`;
+
+        const TwitterWindow = window.open(url, 'TwitterWindow', 'width = 600,height = 300');
+        return false;
+    }
 }
