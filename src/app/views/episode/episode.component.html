@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="container">
+                <div class="container player-container">
                     <ngx-audioplayer #player
                                      [audioUrl]="episode.audioUrl"
                                      [pcmUrl]="episode.pcmUrl"
@@ -87,7 +87,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="blog__details__comment__form">
+                        <div class="blog__details__comment__form"
+                             *ngIf="false">
                             <h4>Leave A Reply</h4>
                             <form (submit)="submitComment()">
                                 <div class="row">
