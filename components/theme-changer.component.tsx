@@ -34,18 +34,25 @@ const ThemeChanger = () => {
     "coffee",
     "winter",
   ];
-
+  const [isOpened, setIsOpened] = React.useState(false);
   const themeMenu = React.useRef<HTMLDivElement>(null);
 
   const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const handleDropdown = () => {
-    if (mounted && themeMenu.current) {
-      //   themeMenu.current.classList.toggle("dropdown-open");
+    if (document.activeElement instanceof HTMLElement && isOpened) {
+      document.activeElement.blur();
+      setIsOpened(false);
+    } else {
+      setIsOpened(true);
     }
   };
   const changeTheme = (theme: string) => {
     if (mounted && themeMenu.current) {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+        setIsOpened(false);
+      }
       setTheme(theme);
     }
   };

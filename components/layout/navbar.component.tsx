@@ -1,24 +1,18 @@
 import React from "react";
 import { ThemeChanger } from "../../components";
+import FeaturePlayerComponent from "../audio/feature-player.component";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <a className="text-xl normal-case btn btn-ghost">PodNoms Pages</a>
-      </div>
-      <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered"
-          />
+    <div className="sticky top-0 z-30 flex justify-center w-full h-16 transition-all duration-100 bg-opacity-90 backdrop-blur text-primary-content">
+      <nav className="w-full navbar">
+        <div id="player" className="flex-auto">
+          <FeaturePlayerComponent />
         </div>
-      </div>
-      <div className="flex-none gap-2">
-        <ThemeChanger />
-      </div>
+        <div>
+          <ThemeChanger />
+        </div>
+      </nav>
     </div>
   );
 };
