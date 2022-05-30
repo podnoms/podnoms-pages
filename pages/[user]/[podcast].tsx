@@ -1,16 +1,13 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import React from "react";
 import { Podcast } from "../../models";
 import Image from "next/image";
-import { ThemeChanger } from "../../components";
 interface IPodcastPageProps {
   podcast: Podcast;
 }
 const PodcastPage = ({ podcast }: IPodcastPageProps) => {
   return (
     <>
-      <ThemeChanger />
       <div>{podcast.title}</div>
       <div>{podcast.description}</div>
       {podcast.coverImageUrl && (
