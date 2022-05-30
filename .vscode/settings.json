@@ -1,0 +1,30 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/_krud": true
+  },
+  "workbench.colorTheme": "In Bed by 7pm",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#dcfdf2",
+    "activityBar.activeBorder": "#d286f8",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#d286f8",
+    "activityBarBadge.foreground": "#15202b",
+    "titleBar.activeBackground": "#abfbe0",
+    "titleBar.inactiveBackground": "#abfbe099",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveForeground": "#15202b99",
+    "statusBar.background": "#abfbe0",
+    "statusBarItem.hoverBackground": "#7af9ce",
+    "statusBar.foreground": "#15202b",
+    "activityBar.activeBackground": "#dcfdf2"
+  },
+  "peacock.remoteColor": "#694ce4",
+  "peacock.color": "#abfbe0"
+}
