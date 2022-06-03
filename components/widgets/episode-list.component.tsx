@@ -1,50 +1,44 @@
 import React from "react";
-import { MdPlayCircleFilled } from "react-icons/md";
-import { Podcast } from "../../models";
+import {MdPlayCircleFilled} from "react-icons/md";
+import {Podcast} from "../../models";
+import {HtmlRenderComponent} from "../index";
+import Image from "next/image";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
 }
-const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
-  return (
-    <div>
-      <span className="text-3xl font-bold text-primary">Recent Episodes</span>
 
-      {podcast.podcastEntries.map((entry) => (
-        <ul className="px-3 border-t-2" key={entry.id}>
-          <li>
+const EpisodeListComponent = ({podcast}: IEpisodeListComponentProps) => {
+  return (
+    <React.Fragment>
+      <div className="text-3xl font-bold text-primary border-b-accent-content">Recent Episodes</div>
+
+      <ul className="border-t-base-100 shadow mt-4">
+        {podcast.podcastEntries.map((entry) => (
+          <li className="px-3 pb-4" key={entry.id}>
             <div className="flex">
-              <div>
-                {" "}
-                <div
-                  className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center"
-                  onClick={() => {}}
-                >
-                  <MdPlayCircleFilled className="w-full h-full delay-100 text-info hover:text-secondary" />
-                </div>
+              <div
+                className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center mr-3"
+                onClick={() => {
+                }}
+              >
+                <MdPlayCircleFilled className="w-full h-full delay-100 text-info hover:text-secondary"/>
               </div>
-              <div className="flex-grow">
-                <div className="text-lg font-bold">Podcast Title</div>
+              <div className="flex-grow mr-5">
+                <div className="text-lg font-bold">{entry.title}</div>
                 <div className="text-sm font-light">
-                  Keytar a sit lectus vitae beard ornare integer malesuada
-                  curabitur beard tempus amet risus elementum craft beer.
-                  Gravida mauris mattis curabitur keytar ipsum in cursus commodo
-                  tattoo mattis ultricies duis ultricies beard curabitur porta
-                  lectus tempus. Specs pellentesque elementum sed at indie orci
-                  auctor urna morbi DIY mattis elementum bibendum in indie
-                  tellus. Gravida at donec food truck metus rutrum non maecenas
-                  brunch urna tellus a risus beard metus tempus tellus.
+                  <HtmlRenderComponent html={entry.description}/>
                 </div>
               </div>
-              <div className="">Image</div>
+              <div className="">
+                <Image className="max-w-full h-auto rounded-lg" src={entry.imageUrl} alt={entry.title}
+                       width={64} height={64}/>
+              </div>
             </div>
           </li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-          <li>Item 4</li>
-        </ul>
-      ))}
-    </div>
+        ))}
+      </ul>
+    </React.Fragment>
   );
 };
 
