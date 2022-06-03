@@ -1,6 +1,6 @@
-import { PodcastEntry } from "./podcast-entry.model";
+import PodcastEntry from "./podcast-entry.model";
 
-export type Podcast = {
+export default interface Podcast {
   id: string;
   title: string;
   description: string;
@@ -22,4 +22,4 @@ export type Podcast = {
   publicTitle: string;
 
   dateLoaded: Date;
-};
+}

@@ -8,7 +8,7 @@ const AppLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="px-6">{children}</main>
+      <main className="px-6 py-6">{children}</main>
     </>
   );
 };

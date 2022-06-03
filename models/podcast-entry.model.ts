@@ -1,4 +1,4 @@
-export type PodcastEntry = {
+export default interface PodcastEntry {
   id: string;
   uid: string;
   author: string;
@@ -19,4 +19,4 @@ export type PodcastEntry = {
   podcastId: string;
   userSlug: string;
   userName: string;
-};
+}
