@@ -25,13 +25,13 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
               >
                 <MdPlayCircleFilled className="w-full h-full delay-100 text-info hover:text-secondary" />
               </div>
-              <div className="flex-grow pr-10">
+              <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">{entry.title}</div>
                 <div className="text-sm font-light">
                   <HtmlRenderComponent html={entry.description} maxLines={2} />
                 </div>
               </div>
-              <div className="">
+              <div className="shrink-0">
                 <Image
                   className="h-auto max-w-full rounded-lg"
                   src={entry.imageUrl}

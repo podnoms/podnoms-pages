@@ -9,8 +9,8 @@ const HtmlRenderComponent = ({ html, maxLines }: HtmlRenderComponent) => {
   const _getRenderHtml = (html: string) => ({ __html: html });
 
   return (
-    <p
-      className={`break-after-right line-clamp-${maxLines}`}
+    <span
+      className="line-clamp-2"
       dangerouslySetInnerHTML={_getRenderHtml(html)}
     />
   );
