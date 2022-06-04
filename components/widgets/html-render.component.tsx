@@ -10,7 +10,7 @@ const HtmlRenderComponent = ({ html, maxLines }: HtmlRenderComponent) => {
 
   return (
     <span
-      className="line-clamp-2"
+      className={`line-clamp-${maxLines}`}
       dangerouslySetInnerHTML={_getRenderHtml(html)}
     />
   );

@@ -1,5 +1,8 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import audioReducer from "./audio.store";
 
 export default configureStore({
-  reducer: {}
+  reducer: {
+    audio: audioReducer,
+  },
 });

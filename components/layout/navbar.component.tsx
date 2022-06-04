@@ -1,6 +1,6 @@
+import { ThemeChanger } from "components";
 import React from "react";
-import { ThemeChanger } from "../../components";
-import FeaturePlayerComponent from "../audio/feature-player.component";
+import { FeaturePlayerComponent } from "../audio";
 
 const Navbar = () => {
   return (

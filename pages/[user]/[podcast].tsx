@@ -1,22 +1,21 @@
-import {GetServerSideProps} from "next";
+import { GetServerSideProps } from "next";
 import React from "react";
-import {Podcast, PodcastEntry} from "../../models";
 import Image from "next/image";
-import {EpisodeListComponent} from "../../components";
-import HtmlRenderComponent from "../../components/widgets/html-render.component";
+import { Podcast } from "models";
+import { EpisodeListComponent, HtmlRenderComponent } from "components";
 
 interface IPodcastPageProps {
   featured: Podcast;
   podcast: Podcast;
 }
 
-const PodcastPage = ({featured, podcast}: IPodcastPageProps) => {
+const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
   return (
     <React.Fragment>
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
         <div className="card-body">
           <h2 className="card-title">{podcast.title}</h2>
-          <HtmlRenderComponent html={podcast.description}/>
+          <HtmlRenderComponent maxLines={5} html={podcast.description} />
           <div className="justify-end card-actions">
             <button className="btn btn-outline">
               Listen on Apple Podcasts
@@ -25,11 +24,11 @@ const PodcastPage = ({featured, podcast}: IPodcastPageProps) => {
           </div>
         </div>
         <figure>
-          <Image src={podcast.imageUrl} alt="cover" width={400} height={400}/>
+          <Image src={podcast.imageUrl} alt="cover" width={400} height={400} />
         </figure>
       </div>
       <div className="pt-4">
-        <EpisodeListComponent podcast={podcast}/>
+        <EpisodeListComponent podcast={podcast} />
       </div>
     </React.Fragment>
   );
@@ -67,6 +66,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  return {props: {}};
+  return { props: {} };
 };
 export default PodcastPage;

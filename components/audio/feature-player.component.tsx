@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const WaveformComponent = dynamic(() => import("./waveform-component"), {
   ssr: false,
 });
-enum PlayState {
+export enum PlayState {
   Stopped,
   Playing,
   Paused,
