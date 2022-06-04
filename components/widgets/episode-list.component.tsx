@@ -1,38 +1,58 @@
 import React from "react";
-import {MdPlayCircleFilled} from "react-icons/md";
-import {Podcast} from "../../models";
-import {HtmlRenderComponent} from "../index";
+import { MdPauseCircleFilled, MdPlayCircleFilled } from "react-icons/md";
+import { Podcast } from "../../models";
+import { HtmlRenderComponent } from "../index";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { setNowPlaying } from "../../services/store/audio.store";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
 }
 
-const EpisodeListComponent = ({podcast}: IEpisodeListComponentProps) => {
+const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
+  const { nowPlaying } = useSelector((state) => state.audio);
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
-      <div className="text-3xl font-bold text-primary border-b-accent-content">Recent Episodes</div>
+      <div className="text-3xl font-bold text-primary border-b-accent-content">
+        Recent Episodes
+      </div>
 
-      <ul className="border-t-base-100 shadow mt-4">
+      <ul className="mt-4 shadow border-t-base-100">
         {podcast.podcastEntries.map((entry) => (
           <li className="px-3 pb-4" key={entry.id}>
             <div className="flex">
               <div
-                className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center mr-3"
-                onClick={() => {
-                }}
+                className="flex-none w-12 h-12 mr-3 cursor-pointer stroke-0 align-center"
+                onClick={() => {}}
               >
-                <MdPlayCircleFilled className="w-full h-full delay-100 text-info hover:text-secondary"/>
+                {nowPlaying?.id === entry.id ? (
+                  <MdPauseCircleFilled
+                    className="w-full h-full delay-100 text-info hover:text-secondary"
+                    onClick={() => dispatch(setNowPlaying(entry))}
+                  />
+                ) : (
+                  <MdPlayCircleFilled
+                    className="w-full h-full delay-100 text-info hover:text-secondary"
+                    onClick={() => dispatch(setNowPlaying(entry))}
+                  />
+                )}
               </div>
-              <div className="flex-grow mr-5">
+              <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">{entry.title}</div>
                 <div className="text-sm font-light">
-                  <HtmlRenderComponent html={entry.description}/>
+                  <HtmlRenderComponent html={entry.description} maxLines={2} />
                 </div>
               </div>
-              <div className="">
-                <Image className="max-w-full h-auto rounded-lg" src={entry.imageUrl} alt={entry.title}
-                       width={64} height={64}/>
+              <div className="shrink-0">
+                <Image
+                  className="h-auto max-w-full rounded-lg"
+                  src={entry.imageUrl}
+                  alt={entry.title}
+                  width={64}
+                  height={64}
+                />
               </div>
             </div>
           </li>

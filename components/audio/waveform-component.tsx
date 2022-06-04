@@ -10,11 +10,13 @@ type WaveformComponentProps = {
   audioUrl: string;
   pcmUrl: string;
   playAudio: any;
+  playStateChanged: () => void;
 };
 const WaveformComponent = ({
   audioUrl,
   pcmUrl,
   playAudio,
+  playStateChanged,
 }: WaveformComponentProps) => {
   const { theme } = useTheme();
 
@@ -27,9 +29,14 @@ const WaveformComponent = ({
 
   React.useEffect(() => {
     playAudio.current = () => {
-      waveform.current?.play();
+      if (waveform.current?.isPlaying()) {
+        waveform.current?.pause();
+      } else {
+        waveform.current?.play();
+      }
+      playStateChanged();
     };
-  }, [playAudio]);
+  }, [playAudio, playStateChanged]);
 
   React.useEffect(() => {
     if (!waveform.current && audioUrl && pcmUrl) {

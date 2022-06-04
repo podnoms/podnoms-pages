@@ -1,14 +1,18 @@
-import React from 'react';
+import React from "react";
 
 interface HtmlRenderComponent {
   html: string;
+  maxLines: number;
 }
 
-const HtmlRenderComponent = ({html}: HtmlRenderComponent) => {
-  const _getRenderHtml = (html: string) => ({__html: html})
+const HtmlRenderComponent = ({ html, maxLines }: HtmlRenderComponent) => {
+  const _getRenderHtml = (html: string) => ({ __html: html });
 
   return (
-    <p dangerouslySetInnerHTML={_getRenderHtml(html)}/>
+    <span
+      className={`line-clamp-${maxLines}`}
+      dangerouslySetInnerHTML={_getRenderHtml(html)}
+    />
   );
 };
 
