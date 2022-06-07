@@ -1,17 +1,18 @@
 import React from "react";
-import { MdPauseCircleFilled, MdPlayCircleFilled } from "react-icons/md";
-import { Podcast } from "../../models";
-import { HtmlRenderComponent } from "../index";
+import {MdPauseCircleFilled, MdPlayCircleFilled} from "react-icons/md";
+import {Podcast} from "../../models";
+import {HtmlRenderComponent} from "../index";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { setNowPlaying } from "../../services/store/audio.store";
+import {useDispatch, useSelector} from "react-redux";
+import {setNowPlaying} from "../../services/store/audio.store";
+import {PlayState} from "../audio";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
 }
 
-const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
-  const { nowPlaying } = useSelector((state) => state.audio);
+const EpisodeListComponent = ({podcast}: IEpisodeListComponentProps) => {
+  const {nowPlaying, playState} = useSelector((state) => state.audio);
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -25,9 +26,10 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
             <div className="flex">
               <div
                 className="flex-none w-12 h-12 mr-3 cursor-pointer stroke-0 align-center"
-                onClick={() => {}}
+                onClick={() => {
+                }}
               >
-                {nowPlaying?.id === entry.id ? (
+                {nowPlaying?.entry?.id === entry.id && playState === PlayState.Playing ? (
                   <MdPauseCircleFilled
                     className="w-full h-full delay-100 text-info hover:text-secondary"
                     onClick={() => dispatch(setNowPlaying(entry))}
@@ -42,7 +44,7 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
               <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">{entry.title}</div>
                 <div className="text-sm font-light">
-                  <HtmlRenderComponent html={entry.description} maxLines={2} />
+                  <HtmlRenderComponent html={entry.description} maxLines={2}/>
                 </div>
               </div>
               <div className="shrink-0">
