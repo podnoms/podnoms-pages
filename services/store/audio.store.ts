@@ -6,7 +6,7 @@ type AudioSliceState = {
   nowPlaying: NowPlaying | null;
 };
 const initialState: AudioSliceState = {
-  playState: PlayState.Stopped,
+  playState: 0,
   nowPlaying: null,
 };
 

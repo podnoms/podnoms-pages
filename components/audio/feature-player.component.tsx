@@ -5,7 +5,7 @@ import { MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
 import dynamic from "next/dynamic";
 import { HtmlRenderComponent } from "../index";
 import { setPlayState } from "services/store/audio.store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const WaveformComponent = dynamic(() => import("./waveform-component"), {
   ssr: false,
@@ -25,7 +25,6 @@ interface IFeaturePlayerComponentProps {
   imageUrl: string;
 
   // position: number;
-  playState: PlayState;
 }
 
 const FeaturePlayerComponent = ({
@@ -34,9 +33,10 @@ const FeaturePlayerComponent = ({
   audioUrl,
   pcmUrl,
   imageUrl,
-  playState,
 }: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
+  const { nowPlaying, playState } = useSelector((state) => state.audio);
+
   return (
     <div className="flex items-center w-full h-12">
       <div className="flex-none w-12 h-12 p-1">
