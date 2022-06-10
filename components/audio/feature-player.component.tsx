@@ -35,7 +35,7 @@ const FeaturePlayerComponent = ({
   imageUrl,
 }: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
-  const { nowPlaying, playState } = useSelector((state) => state.audio);
+  const { playState } = useSelector((state) => state.audio);
 
   return (
     <div className="flex items-center w-full h-12">

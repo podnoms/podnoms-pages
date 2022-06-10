@@ -45,9 +45,6 @@ const WaveformComponent = ({
         barWidth: 1,
       });
     }
-    if (playState === PlayState.Playing) {
-      waveform.current?.play();
-    }
   }, [audioUrl, pcmUrl, theme, playState]);
 
   React.useEffect(() => {
@@ -60,6 +57,11 @@ const WaveformComponent = ({
           waveform.current.backend.setPeaks(peaks);
           waveform.current.drawBuffer();
           waveform.current.load(audioUrl, peaks, "auto");
+          waveform.current.on("waveform-ready", () => {
+            if (playState === PlayState.Playing && waveform?.current) {
+              waveform.current.play();
+            }
+          });
         }
       }
     };
