@@ -1,37 +1,30 @@
 import React from "react";
 import Wavesurfer from "wavesurfer.js";
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config";
-import {useTheme} from "next-themes";
-import {debug} from "console";
-// import daisyuiColors from "daisyui/src/colors/themes";
+import { useTheme } from "next-themes";
+import { PlayState } from "./feature-player.component";
 const daisyuiColors = require("daisyui/src/colors/themes");
 type WaveformComponentProps = {
   audioUrl: string;
   pcmUrl: string;
-  playAudio: any;
-  playStateChanged: () => void;
+  playState: PlayState;
 };
 const WaveformComponent = ({
-                             audioUrl,
-                             pcmUrl,
-                             playAudio,
-                             playStateChanged,
-                           }: WaveformComponentProps) => {
-  const {theme} = useTheme();
+  audioUrl,
+  pcmUrl,
+  playState,
+}: WaveformComponentProps) => {
+  const { theme } = useTheme();
 
   const waveform = React.useRef<WaveSurfer | null>(null);
 
   React.useEffect(() => {
-    playAudio.current = () => {
-      if (waveform.current?.isPlaying()) {
-        waveform.current?.pause();
-      } else {
-        waveform.current?.play();
-      }
-      playStateChanged();
-    };
-  }, [playAudio, playStateChanged]);
+    console.log("waveform-component", "playState", playState);
+    if (playState === PlayState.Playing) {
+      waveform.current?.play();
+    } else {
+      waveform.current?.pause();
+    }
+  }, [playState, audioUrl]);
 
   React.useEffect(() => {
     if (!waveform.current && audioUrl && pcmUrl) {
@@ -52,7 +45,7 @@ const WaveformComponent = ({
         barWidth: 1,
       });
     }
-  }, [audioUrl, pcmUrl, theme]);
+  }, [audioUrl, pcmUrl, theme, playState]);
 
   React.useEffect(() => {
     const loadPcm = async () => {
@@ -64,6 +57,11 @@ const WaveformComponent = ({
           waveform.current.backend.setPeaks(peaks);
           waveform.current.drawBuffer();
           waveform.current.load(audioUrl, peaks, "auto");
+          waveform.current.on("waveform-ready", () => {
+            if (playState === PlayState.Playing && waveform?.current) {
+              waveform.current.play();
+            }
+          });
         }
       }
     };
@@ -72,13 +70,11 @@ const WaveformComponent = ({
 
   return (
     <div id="wrapper" className="relative">
-      <span
-        className="absolute bottom-0 left-0 z-50 mb-0.5 text-sm text-base-content bg-opacity-20  bg-secondary-focus">
+      <span className="absolute bottom-0 left-0 z-50 mb-0.5 text-xs text-neutral-content bg-opacity-20  ">
         00:00:00
       </span>
       <div id="waveform" className="h-12 overflow-hidden"></div>
-      <span
-        className="absolute bottom-0 right-0 z-50 mb-0.5 text-sm bg-opacity-20 text-base-content bg-secondary-focus">
+      <span className="absolute bottom-0 right-0 z-50 mb-0.5 text-xs bg-opacity-20 text-neutral-content ">
         01:55:12
       </span>
     </div>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
 import dynamic from "next/dynamic";
 import { HtmlRenderComponent } from "../index";
+import { setPlayState } from "services/store/audio.store";
+import { useDispatch, useSelector } from "react-redux";
 
 const WaveformComponent = dynamic(() => import("./waveform-component"), {
   ssr: false,
@@ -23,7 +25,6 @@ interface IFeaturePlayerComponentProps {
   imageUrl: string;
 
   // position: number;
-  initialPlayState: PlayState;
 }
 
 const FeaturePlayerComponent = ({
@@ -32,32 +33,32 @@ const FeaturePlayerComponent = ({
   audioUrl,
   pcmUrl,
   imageUrl,
-  initialPlayState,
 }: IFeaturePlayerComponentProps) => {
-  const playAudio = React.useRef<() => void>(null);
-  const [playState, setPlayState] = React.useState<PlayState>(initialPlayState);
-
-  React.useEffect(() => {
-    if (
-      audioUrl &&
-      playAudio.current &&
-      initialPlayState === PlayState.Playing
-    ) {
-      playAudio.current();
-    }
-  }, [audioUrl, initialPlayState]);
+  const dispatch = useDispatch();
+  const { playState } = useSelector((state) => state.audio);
 
   return (
     <div className="flex items-center w-full h-12">
       <div className="flex-none w-12 h-12 p-1">
         <Image src={imageUrl} alt={title} width={64} height={64} />
       </div>
+      <div>
+        {playState === PlayState.Playing
+          ? "Playing"
+          : playState === PlayState.Paused
+          ? "Paused"
+          : "Stopped"}
+      </div>
       <div
         className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center"
         onClick={() => {
-          if (playAudio.current) {
-            playAudio.current();
-          }
+          dispatch(
+            setPlayState(
+              playState === PlayState.Stopped || playState === PlayState.Paused
+                ? PlayState.Playing
+                : PlayState.Paused
+            )
+          );
         }}
       >
         {playState === PlayState.Stopped || playState === PlayState.Paused ? (
@@ -68,16 +69,9 @@ const FeaturePlayerComponent = ({
       </div>
       <div className="flex-grow h-full overflow-hidden">
         <WaveformComponent
-          playAudio={playAudio}
+          playState={playState}
           audioUrl={audioUrl}
           pcmUrl={pcmUrl}
-          playStateChanged={() => {
-            setPlayState(
-              playState === PlayState.Stopped
-                ? PlayState.Playing
-                : PlayState.Paused
-            );
-          }}
         />
       </div>
       <div className="flex-initial hidden w-52 md:block">

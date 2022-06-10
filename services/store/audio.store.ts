@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayState } from "components/audio";
-import { PodcastEntry } from "models";
 import NowPlaying from "models/now-playing.model";
 type AudioSliceState = {
   playState: PlayState;
   nowPlaying: NowPlaying | null;
 };
 const initialState: AudioSliceState = {
-  playState: PlayState.Stopped,
+  playState: 0,
   nowPlaying: null,
 };
 
@@ -15,15 +14,15 @@ export const audioSlice = createSlice({
   name: "audio",
   initialState,
   reducers: {
-    setNowPlaying: (state, action: PayloadAction<PodcastEntry>) => {
-      state.playState = PlayState.Playing;
-      state.nowPlaying = {
-        position: 0,
-        entry: action.payload,
-      };
+    setNowPlaying: (state, action: PayloadAction<AudioSliceState>) => {
+      state.playState = action.payload.playState;
+      state.nowPlaying = action.payload.nowPlaying;
+    },
+    setPlayState: (state, action: PayloadAction<PlayState>) => {
+      state.playState = action.payload;
     },
   },
 });
 
-export const { setNowPlaying } = audioSlice.actions;
+export const { setNowPlaying, setPlayState } = audioSlice.actions;
 export default audioSlice.reducer;
