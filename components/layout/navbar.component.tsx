@@ -12,7 +12,6 @@ const Navbar = () => {
         <div id="player" className="flex-auto">
           {nowPlaying && (
             <FeaturePlayerComponent
-              initialPlayState={playState}
               title={nowPlaying?.entry.title}
               description={nowPlaying?.entry.description}
               audioUrl={nowPlaying?.entry.audioUrl}

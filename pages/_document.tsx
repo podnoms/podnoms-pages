@@ -9,25 +9,21 @@ import Document, {
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    return {...initialProps};
   }
 
   render() {
     return (
       <Html>
         <Head>
-          <div>
-            <div>
-              <link
-                href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
-                rel="stylesheet"
-              />
-            </div>
-          </div>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
-          <Main />
-          <NextScript />
+        <Main/>
+        <NextScript/>
         </body>
       </Html>
     );

@@ -5,16 +5,16 @@ import {AppLayout} from "../components";
 import {Provider} from "react-redux";
 import store from "../services/store/store";
 
-function MyApp({Component, pageProps}: AppProps) {
+function PodnomsPagesApp({Component, pageProps}: AppProps) {
   return (
     <Provider store={store}>
-      <ThemeProvider defaultTheme="valentine">
+      <ThemeProvider defaultTheme="lofi">
         <AppLayout>
-          <Component {...pageProps} />
+          <Component {...pageProps} domain={pageProps.domain}/>
         </AppLayout>
       </ThemeProvider>
     </Provider>
   );
 }
 
-export default MyApp;
+export default PodnomsPagesApp;

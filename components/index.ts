@@ -1,4 +1,7 @@
 import AppLayout from "./layout/layout.component";
+import EpisodeComponent from "./pages/episode.component";
+import NotFoundComponent from "./pages/notfound.component";
+import PodcastComponent from "./pages/podcast.component";
 import ThemeChanger from "./theme-changer.component";
 import EpisodeListComponent from "./widgets/episode-list.component";
 import HtmlRenderComponent from "./widgets/html-render.component";
@@ -10,4 +13,7 @@ export {
   EpisodeListComponent,
   HtmlRenderComponent,
   PlayStateDebugger,
+  PodcastComponent,
+  EpisodeComponent,
+  NotFoundComponent,
 };
