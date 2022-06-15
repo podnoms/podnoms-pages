@@ -23,7 +23,7 @@ interface IFeaturePlayerComponentProps {
   audioUrl: string;
   pcmUrl: string;
   imageUrl: string;
-
+  onClickHome: () => void;
   // position: number;
 }
 
@@ -33,6 +33,7 @@ const FeaturePlayerComponent = ({
   audioUrl,
   pcmUrl,
   imageUrl,
+  onClickHome,
 }: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
   const { playState } = useSelector((state) => state.audio);
@@ -40,15 +41,24 @@ const FeaturePlayerComponent = ({
   return (
     <div className="flex items-center w-full h-12">
       <div className="flex-none w-12 h-12 p-1">
-        <Image src={imageUrl} alt={title} width={64} height={64} />
+        <Image
+          className="cursor-pointer"
+          onClick={() => onClickHome()}
+          src={imageUrl}
+          alt={title}
+          width={64}
+          height={64}
+        />
       </div>
-      <div>
-        {playState === PlayState.Playing
-          ? "Playing"
-          : playState === PlayState.Paused
-          ? "Paused"
-          : "Stopped"}
-      </div>
+      {process.env.SHOW_DEBUG_INFO && (
+        <div>
+          {playState === PlayState.Playing
+            ? "Playing"
+            : playState === PlayState.Paused
+            ? "Paused"
+            : "Stopped"}
+        </div>
+      )}
       <div
         className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center"
         onClick={() => {

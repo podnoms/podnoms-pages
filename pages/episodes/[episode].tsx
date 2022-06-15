@@ -32,7 +32,7 @@ const EpisodePage: NextPage<IEpisodePageProps> = ({ podcast, episode }) => {
         })
       );
     }
-  }, [episode, dispatch, playState]);
+  }, [episode, dispatch, playState, nowPlaying]);
 
   return <EpisodeComponent podcast={podcast} episode={episode} />;
 };
