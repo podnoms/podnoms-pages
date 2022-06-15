@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "../../services/store/audio.store";
 import { PlayState } from "../audio";
+import Link from "next/link";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
@@ -62,7 +63,11 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
                 )}
               </div>
               <div className="flex-grow mr-10">
-                <div className="text-lg font-bold">{entry.title}</div>
+                <div className="text-lg font-bold">
+                  <Link href={`/episodes/${entry.slug}`}>
+                    <a>{entry.title}</a>
+                  </Link>
+                </div>
                 <div className="text-sm font-light">
                   <HtmlRenderComponent html={entry.description} maxLines={2} />
                 </div>

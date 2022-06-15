@@ -1,23 +1,29 @@
-import { GetServerSideProps } from "next";
 import React from "react";
 import Image from "next/image";
-import { Podcast, PodcastEntry } from "models";
 import { EpisodeListComponent, HtmlRenderComponent } from "components";
-import { getFeaturedEntry } from "services/api";
-import { useDispatch } from "react-redux";
+import { Podcast, PodcastEntry } from "models";
+import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "services/store/audio.store";
 import { PlayState } from "components/audio";
-import { getPodcast } from "services/api/podnoms";
 
 interface IPodcastPageProps {
   featured: PodcastEntry;
   podcast: Podcast;
 }
 
-const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
+const PodcastComponent: React.FC<IPodcastPageProps> = ({
+  featured,
+  podcast,
+}) => {
+  const { playState } = useSelector((state) => state.audio);
+
   const dispatch = useDispatch();
   React.useEffect(() => {
-    if (featured) {
+    if (
+      featured &&
+      playState !== PlayState.Paused &&
+      playState !== PlayState.Playing
+    ) {
       dispatch(
         setNowPlaying({
           playState: PlayState.Stopped,
@@ -28,8 +34,7 @@ const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
         })
       );
     }
-  }, [featured, dispatch]);
-
+  }, [featured, dispatch, playState]);
   return (
     <React.Fragment>
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
@@ -60,32 +65,4 @@ const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  //first, check if we're on a custom CNAME
-  let user = context.params?.user;
-  let podcast = context.params?.podcast;
-
-  if (typeof window !== "undefined") {
-    const hostname = window.location.hostname;
-  }
-
-  if (user && podcast) {
-    const podcast: Podcast = await getPodcast(
-      context.params?.user as string,
-      context.params?.podcast as string
-    );
-    const featured: PodcastEntry = await getFeaturedEntry(
-      context.params?.user as string,
-      context.params?.podcast as string
-    );
-
-    return {
-      props: {
-        featured,
-        podcast,
-      },
-    };
-  }
-  return { props: {} };
-};
-export default PodcastPage;
+export default PodcastComponent;
