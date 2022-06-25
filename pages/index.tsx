@@ -1,8 +1,10 @@
-import type { GetServerSideProps, NextPage } from "next";
-import { Domain, Podcast } from "../models/";
-import { NotFoundComponent, PodcastComponent } from "components";
-import { PodcastEntry } from "models";
+import type {GetServerSideProps, NextPage} from "next";
+import {Domain, Podcast} from "../models/";
+import {NotFoundComponent, PodcastComponent} from "components";
+import {PodcastEntry} from "models";
 import resolveDomainProps from "services/domain-props-resolver";
+import {setDomain} from "services/store/domain.store";
+import {useDispatch} from "react-redux";
 
 interface IHomePageProps {
   domain: Domain | null;
@@ -10,15 +12,17 @@ interface IHomePageProps {
   featured: PodcastEntry;
 }
 
-const Home: NextPage<IHomePageProps> = ({ domain, podcast, featured }) => {
+const Home: NextPage<IHomePageProps> = ({domain, podcast, featured}) => {
+  const dispatch = useDispatch()
   if (domain && podcast) {
-    return <PodcastComponent podcast={podcast} featured={featured} />;
+    dispatch(setDomain(domain))
+    return <PodcastComponent podcast={podcast} featured={featured}/>;
   } else {
-    return <NotFoundComponent />;
+    return <NotFoundComponent/>;
   }
 };
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const props = resolveDomainProps(req);
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+  const props = await resolveDomainProps(req);
   return {
     props,
   };

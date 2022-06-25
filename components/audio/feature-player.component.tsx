@@ -18,7 +18,8 @@ export enum PlayState {
 }
 
 interface IFeaturePlayerComponentProps {
-  title: string;
+  podcastTitle: string;
+  episodeTitle: string;
   description: string;
   audioUrl: string;
   pcmUrl: string;
@@ -28,7 +29,8 @@ interface IFeaturePlayerComponentProps {
 }
 
 const FeaturePlayerComponent = ({
-  title,
+  podcastTitle,
+  episodeTitle,
   description,
   audioUrl,
   pcmUrl,
@@ -45,7 +47,7 @@ const FeaturePlayerComponent = ({
           className="cursor-pointer"
           onClick={() => onClickHome()}
           src={imageUrl}
-          alt={title}
+          alt={episodeTitle}
           width={64}
           height={64}
         />
@@ -87,9 +89,11 @@ const FeaturePlayerComponent = ({
       <div className="flex-initial hidden w-52 md:block">
         <div className="flex flex-col px-2 text-sm">
           <div className="flex-grow text-sm leading-tight line-clamp-1">
-            {title}
+            {podcastTitle}
           </div>
-          <HtmlRenderComponent html={description} maxLines={1} />
+          <div className="flex-grow text-sm leading-tight line-clamp-1">
+            {episodeTitle}
+          </div>
         </div>
       </div>
     </div>

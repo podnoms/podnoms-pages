@@ -22,6 +22,7 @@ const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
         setNowPlaying({
           playState: PlayState.Stopped,
           nowPlaying: {
+            podcast: podcast,
             entry: featured,
             position: 0,
           },

@@ -11,16 +11,17 @@ const Navbar = () => {
     <div className="sticky top-0 z-30 flex justify-center w-full h-16 transition-all duration-100 shadow-sm bg-opacity-90 backdrop-blur bg-neutral text-neutral-content">
       <nav className="w-full navbar">
         <div id="player" className="flex-auto">
-          {nowPlaying && (
+          {nowPlaying?.entry && (
             <FeaturePlayerComponent
               onClickHome={() => {
                 router.push("/");
               }}
-              title={nowPlaying?.entry.title}
-              description={nowPlaying?.entry.description}
-              audioUrl={nowPlaying?.entry.audioUrl}
-              pcmUrl={nowPlaying?.entry.pcmUrl}
-              imageUrl={nowPlaying?.entry.imageUrl}
+              podcastTitle={nowPlaying.entry.podcastTitle}
+              episodeTitle={nowPlaying.entry.title}
+              description={nowPlaying.entry.description}
+              audioUrl={nowPlaying.entry.audioUrl}
+              pcmUrl={nowPlaying.entry.pcmUrl}
+              imageUrl={nowPlaying.entry.imageUrl}
             />
           )}
         </div>

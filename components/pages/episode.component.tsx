@@ -10,7 +10,6 @@ import { PlayState } from "../audio";
 import { useDispatch, useSelector } from "react-redux";
 import HtmlRenderComponent from "components/widgets/html-render.component";
 import { SharingDialog } from "components/dialogs";
-
 interface IEpisodeComponentProps {
   podcast: Podcast;
   episode: PodcastEntry;
@@ -143,7 +142,6 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
         handleClose={() => setShowShareDialog(false)}
       />
     </div>
-
     //TODO:
     //https://www.frontendmentor.io/solutions/interactive-comments-section-with-tailwind-and-react-62RI-wVsh
   );

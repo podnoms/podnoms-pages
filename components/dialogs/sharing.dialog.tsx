@@ -1,22 +1,33 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { PodcastEntry } from "models";
+import {Dialog, Transition} from "@headlessui/react";
+import {PodcastEntry} from "models";
 import React from "react";
 import BaseDialog from "./base.dialog";
+
 interface ISharingDialogProps {
   handleClose: () => void;
   episode: PodcastEntry;
   show: boolean;
 }
+
 const SharingDialog: React.FC<ISharingDialogProps> = ({
-  handleClose,
-  episode,
-  show,
-}) => {
-  React.useEffect(() => {
-    console.log("sharing.dialog", "show", show);
-  }, [show]);
+                                                        handleClose,
+                                                        episode,
+                                                        show,
+                                                      }) => {
+  const getShareDomain = () => `${window.location}`;
+  const shareFacebook = () => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${getShareDomain()}`;
+    console.log("sharing.dialog", "shareFacebook", url);
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
   const shareTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=Check out ${episode.title}...\n\n${episode.slug}`;
+    const url = `https://twitter.com/intent/tweet?text=Check out ${encodeURIComponent(
+      episode.title
+    )}...\n\n${getShareDomain()}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+  const shareReddit = () => {
+    const url = `https://www.reddit.com/submit?url=${getShareDomain()}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
   return (
@@ -49,13 +60,16 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="p-6 bg-secondary">
+            <div className="p-6 border-2 bg-base-200">
               <h3 className="pb-1 text-lg font-bold border-b-2">
                 Share Episode
               </h3>
               <div className="px-4 pt-8">
                 <div className="flex items-center justify-center mx-8 space-x-3">
-                  <button className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded">
+                  <button
+                    className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded"
+                    onClick={shareFacebook}
+                  >
                     <svg
                       className="w-5 h-5 fill-current"
                       role="img"
@@ -80,7 +94,10 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
                     </svg>
                     <span>Twitter</span>
                   </button>
-                  <button className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-red-500 rounded">
+                  <button
+                    className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-red-500 rounded"
+                    onClick={shareReddit}
+                  >
                     <svg
                       className="w-5 h-5 fill-current"
                       role="img"
@@ -91,7 +108,7 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
                     </svg>
                     <span>Reddit</span>
                   </button>
-                  <button className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-pink-600 rounded">
+                  {/* <button className="inline-flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-pink-600 rounded">
                     <svg
                       className="w-5 h-5 fill-current"
                       role="img"
@@ -102,11 +119,15 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
                       <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
                     </svg>
                     <span>Pinterest</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
-              <div className="modal-action">
-                <label htmlFor="my-modal" className="btn">
+              <div className="modal-action text-base-content">
+                <label
+                  htmlFor="my-modal"
+                  className="btn btn-outline btn-primary"
+                  onClick={handleClose}
+                >
                   Done.
                 </label>
               </div>
