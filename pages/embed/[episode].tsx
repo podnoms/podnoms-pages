@@ -1,35 +1,41 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import resolveDomainProps from "services/domain-props-resolver";
-import { GetServerSideProps, NextPage } from "next";
-import { Podcast, Domain, PodcastEntry } from "models";
-import { FeaturePlayerComponent } from "../../components/audio";
+import { GetServerSideProps } from "next";
+import { PodcastEntry } from "models";
+import { EmbeddedPlayerComonent } from "../../components/audio";
+import { NextPageWithLayout } from "pages/_app";
+import { ThemeProvider } from "next-themes";
 
 interface IEmbeddedPageProps {
-  domain: Domain;
-  podcast: Podcast;
+  theme: string;
   episode: PodcastEntry;
 }
 
-const EmbeddedPage: NextPage<IEmbeddedPageProps> = ({
-  domain,
-  podcast,
+const EmbeddedPage: NextPageWithLayout = ({
+  theme,
   episode,
-}) => {
+}: IEmbeddedPageProps) => {
   return (
-    <FeaturePlayerComponent
-      onClickHome={() => {}}
-      podcastTitle={episode.podcastTitle}
-      episodeTitle={episode.title}
-      description={episode.description}
-      audioUrl={episode.audioUrl}
-      pcmUrl={episode.pcmUrl}
-      imageUrl={episode.imageUrl}
-    />
+    <div className="p-10">
+      <div className="border">
+        <EmbeddedPlayerComonent
+          theme={theme}
+          onClickHome={() => {}}
+          podcastTitle={episode.podcastTitle}
+          episodeTitle={episode.title}
+          description={episode.description}
+          audioUrl={episode.audioUrl}
+          pcmUrl={episode.pcmUrl}
+          imageUrl={episode.imageUrl}
+        />
+      </div>
+    </div>
   );
 };
 export const getServerSideProps: GetServerSideProps = async ({
   req,
   params,
+  query,
 }) => {
   const domainProps = await resolveDomainProps(req);
 
@@ -38,10 +44,18 @@ export const getServerSideProps: GetServerSideProps = async ({
   )[0];
   return {
     props: {
-      domain: domainProps.domain,
-      podcast: domainProps.podcast,
+      theme: query?.theme || "dark",
       episode: episode,
     },
   };
+};
+EmbeddedPage.getLayout = (page: ReactElement) => {
+  const theme =
+    page.props?.theme && page.props.theme === "dark" ? "dark" : "emerald";
+  return (
+    <ThemeProvider defaultTheme={theme} forcedTheme={theme}>
+      {page}
+    </ThemeProvider>
+  );
 };
 export default EmbeddedPage;

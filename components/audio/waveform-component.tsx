@@ -28,11 +28,6 @@ const WaveformComponent = ({
 
   React.useEffect(() => {
     if (!waveform.current && audioUrl && pcmUrl) {
-      console.log(
-        "waveform-component",
-        "accent",
-        daisyuiColors[`[data-theme=${theme}]`].secondary
-      );
       waveform.current = Wavesurfer.create({
         backend: "MediaElement",
         container: "#waveform",
