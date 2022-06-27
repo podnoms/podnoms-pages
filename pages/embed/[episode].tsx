@@ -3,18 +3,17 @@ import resolveDomainProps from "services/domain-props-resolver";
 import { GetServerSideProps } from "next";
 import { PodcastEntry } from "models";
 import { EmbeddedPlayerComonent } from "../../components/audio";
-import { NextPageWithLayout } from "pages/_app";
 import { ThemeProvider } from "next-themes";
+import { NextPageWithLayout } from "types/page-with-layout";
 
-interface IEmbeddedPageProps {
+type IEmbeddedPageProps = {} & {
   theme: string;
   episode: PodcastEntry;
-}
-
-const EmbeddedPage: NextPageWithLayout = ({
+};
+const EmbeddedPage: NextPageWithLayout<IEmbeddedPageProps> = ({
   theme,
   episode,
-}: IEmbeddedPageProps) => {
+}) => {
   return (
     <div className="p-10">
       <div className="border">

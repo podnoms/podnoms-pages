@@ -10,6 +10,7 @@ import { PlayState } from "../audio";
 import { useDispatch, useSelector } from "react-redux";
 import HtmlRenderComponent from "components/widgets/html-render.component";
 import { SharingDialog } from "components/dialogs";
+import { RootState } from "services/store/store";
 interface IEpisodeComponentProps {
   podcast: Podcast;
   episode: PodcastEntry;
@@ -19,7 +20,9 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
   episode,
 }) => {
   const [showShareDialog, setShowShareDialog] = React.useState(false);
-  const { nowPlaying, playState } = useSelector((state) => state.audio);
+  const { nowPlaying, playState } = useSelector(
+    (state: RootState) => state.audio
+  );
   const dispatch = useDispatch();
   return (
     <div className="flex">
@@ -93,6 +96,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                             playState: PlayState.Paused,
                             nowPlaying: {
                               entry: episode,
+                              podcast: podcast,
                               position: 0,
                             },
                           })
@@ -108,6 +112,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                             playState: PlayState.Playing,
                             nowPlaying: {
                               entry: episode,
+                              podcast: podcast,
                               position: 0,
                             },
                           })

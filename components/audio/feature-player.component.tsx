@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-import {MdPlayCircleFilled, MdPauseCircleFilled} from "react-icons/md";
+import { MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
 import dynamic from "next/dynamic";
-import {HtmlRenderComponent} from "../index";
-import {setPlayState} from "services/store/audio.store";
-import {useDispatch, useSelector} from "react-redux";
+import { setPlayState } from "services/store/audio.store";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../services/store/store";
 
 const WaveformComponent = dynamic(() => import("./waveform-component"), {
   ssr: false,
@@ -28,18 +28,17 @@ interface IFeaturePlayerComponentProps {
   // position: number;
 }
 
-const FeaturePlayerComponent = (
-  {
-    podcastTitle,
-    episodeTitle,
-    description,
-    audioUrl,
-    pcmUrl,
-    imageUrl,
-    onClickHome,
-  }: IFeaturePlayerComponentProps) => {
+const FeaturePlayerComponent = ({
+  podcastTitle,
+  episodeTitle,
+  description,
+  audioUrl,
+  pcmUrl,
+  imageUrl,
+  onClickHome,
+}: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
-  const {playState} = useSelector((state) => state.audio);
+  const { playState } = useSelector((state: RootState) => state.audio);
 
   return (
     <div className="flex items-center w-full h-12">
@@ -58,8 +57,8 @@ const FeaturePlayerComponent = (
           {playState === PlayState.Playing
             ? "Playing"
             : playState === PlayState.Paused
-              ? "Paused"
-              : "Stopped"}
+            ? "Paused"
+            : "Stopped"}
         </div>
       )}
       <div
@@ -75,9 +74,9 @@ const FeaturePlayerComponent = (
         }}
       >
         {playState === PlayState.Stopped || playState === PlayState.Paused ? (
-          <MdPlayCircleFilled className="w-full h-full delay-100 hover:text-secondary"/>
+          <MdPlayCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
         ) : (
-          <MdPauseCircleFilled className="w-full h-full delay-100 hover:text-secondary"/>
+          <MdPauseCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
         )}
       </div>
       <div className="flex-grow h-full overflow-hidden">

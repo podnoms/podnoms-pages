@@ -5,6 +5,7 @@ import { Podcast, PodcastEntry } from "models";
 import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "services/store/audio.store";
 import { PlayState } from "components/audio";
+import { RootState } from "services/store/store";
 
 interface IPodcastPageProps {
   featured: PodcastEntry;
@@ -15,7 +16,7 @@ const PodcastComponent: React.FC<IPodcastPageProps> = ({
   featured,
   podcast,
 }) => {
-  const { playState } = useSelector((state) => state.audio);
+  const { playState } = useSelector((state: RootState) => state.audio);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -29,6 +30,7 @@ const PodcastComponent: React.FC<IPodcastPageProps> = ({
           playState: PlayState.Stopped,
           nowPlaying: {
             entry: featured,
+            podcast: podcast,
             position: 0,
           },
         })

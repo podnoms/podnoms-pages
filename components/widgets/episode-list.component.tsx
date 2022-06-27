@@ -7,13 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "../../services/store/audio.store";
 import { PlayState } from "../audio";
 import Link from "next/link";
+import { RootState } from "services/store/store";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
 }
 
 const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
-  const { nowPlaying, playState } = useSelector((state) => state.audio);
+  const { nowPlaying, playState } = useSelector(
+    (state: RootState) => state.audio
+  );
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -39,6 +42,7 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
                           playState: PlayState.Paused,
                           nowPlaying: {
                             entry: entry,
+                            podcast: podcast,
                             position: 0,
                           },
                         })
@@ -54,6 +58,7 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
                           playState: PlayState.Playing,
                           nowPlaying: {
                             entry: entry,
+                            podcast: podcast,
                             position: 0,
                           },
                         })

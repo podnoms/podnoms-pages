@@ -6,10 +6,7 @@ import store from "../services/store/store";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 import "../styles/globals.css";
-
-export type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+import { NextPageWithLayout } from "types/page-with-layout";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
