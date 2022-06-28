@@ -1,18 +1,22 @@
-import {Podcast} from "../models";
+import {Podcast} from "../../models";
 import absoluteUrl from "next-absolute-url";
-import {getPodcast, resolveDomain} from "./api/podnoms";
+import {getPodcast, resolveDomain} from "../api/podnoms";
 import {PodcastEntry} from "models";
 import {getFeaturedEntry} from "services/api";
 import {IncomingMessage} from "http";
 import {useSelector} from "react-redux";
 
-const resolveDomainProps = async (req: IncomingMessage) => {
+const resolveDomainProps = async (req: IncomingMessage, user?: string, podcast?: string) => {
 
-  console.log("domain-props-resolver", "resolveDomainProps", req);
-  const {host} = absoluteUrl(req);
-  const domain = await resolveDomain(host);
+  const {protocol, host} = absoluteUrl(req);
+
+  const domain = host === process.env.BASE_URL && user && podcast ? {
+    canonicalUrl: `/${user}/${podcast}`,
+    userSlug: user,
+    podcastSlug: podcast,
+  } : await resolveDomain(host);
+
   if (domain) {
-    domain.canonicalUrl = `//${host}${req.url}`
     const podcast: Podcast = await getPodcast(
       domain.userSlug,
       domain.podcastSlug

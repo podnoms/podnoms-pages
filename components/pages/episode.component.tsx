@@ -1,26 +1,30 @@
 import React from "react";
 import Image from "next/image";
-import { Podcast, PodcastEntry } from "models";
+import {Podcast, PodcastEntry} from "models";
 import Link from "next/link";
-import { MdPauseCircleFilled, MdPlayCircleFilled } from "react-icons/md";
-import { ImEmbed2, ImShare2 } from "react-icons/im";
-import { HiRss } from "react-icons/hi";
-import { setNowPlaying } from "../../services/store/audio.store";
-import { PlayState } from "../audio";
-import { useDispatch, useSelector } from "react-redux";
+import {MdPauseCircleFilled, MdPlayCircleFilled} from "react-icons/md";
+import {ImEmbed2, ImShare2} from "react-icons/im";
+import {HiRss} from "react-icons/hi";
+import {setNowPlaying} from "../../services/store/audio.store";
+import {PlayState} from "../audio";
+import {useDispatch, useSelector} from "react-redux";
 import HtmlRenderComponent from "components/widgets/html-render.component";
-import { SharingDialog } from "components/dialogs";
-import { RootState } from "services/store/store";
+import {SharingDialog} from "components/dialogs";
+import {RootState} from "services/store/store";
+
 interface IEpisodeComponentProps {
   podcast: Podcast;
   episode: PodcastEntry;
 }
-const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
-  podcast,
-  episode,
-}) => {
+
+const EpisodeComponent: React.FC<IEpisodeComponentProps> = (
+  {
+    podcast,
+    episode,
+  }) => {
+  const {domain, canonicalUrl} = useSelector((state: RootState) => state.domain);
   const [showShareDialog, setShowShareDialog] = React.useState(false);
-  const { nowPlaying, playState } = useSelector(
+  const {nowPlaying, playState} = useSelector(
     (state: RootState) => state.audio
   );
   const dispatch = useDispatch();
@@ -31,7 +35,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
           id="episode-header"
           className="mr-12 border-t-2 border-b-2 border-spacing-10"
         >
-          <Link href="/">
+          <Link href={canonicalUrl as string}>
             <a>
               <div className="px-6 py-2 uppercase">Back To Episodes</div>
             </a>
@@ -58,7 +62,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                     <div className="flex justify-around">
                       <div className="flex-grow">Share</div>
                       <div>
-                        <ImShare2 className="w-5 h-5" />
+                        <ImShare2 className="w-5 h-5"/>
                       </div>
                     </div>
                   </li>
@@ -66,7 +70,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                     <div className="flex justify-around">
                       <div className="flex-grow">Embed</div>
                       <div>
-                        <ImEmbed2 className="w-5 h-5" />
+                        <ImEmbed2 className="w-5 h-5"/>
                       </div>
                     </div>
                   </li>
@@ -74,7 +78,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                     <div className="flex justify-around">
                       <div className="flex-grow">Subscribe</div>
                       <div>
-                        <HiRss className="w-5 h-5" />
+                        <HiRss className="w-5 h-5"/>
                       </div>
                     </div>
                   </li>
@@ -126,7 +130,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                 </span>
               </div>
               <div className="p-4 mx-4 mt-8 shadow-2xl">
-                <HtmlRenderComponent html={episode.description} maxLines={20} />
+                <HtmlRenderComponent html={episode.description} maxLines={20}/>
               </div>
             </div>
           </div>

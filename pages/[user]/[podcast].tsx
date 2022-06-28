@@ -1,21 +1,25 @@
-import { GetServerSideProps } from "next";
+import {GetServerSideProps, GetServerSidePropsContext} from "next";
 import React from "react";
 import Image from "next/image";
-import { Podcast, PodcastEntry } from "models";
-import { EpisodeListComponent, HtmlRenderComponent } from "components";
-import { getFeaturedEntry } from "services/api";
-import { useDispatch } from "react-redux";
-import { setNowPlaying } from "services/store/audio.store";
-import { PlayState } from "components/audio";
-import { getPodcast } from "services/api/podnoms";
+import {Domain, Podcast, PodcastEntry} from "models";
+import {EpisodeListComponent, HtmlRenderComponent} from "components";
+import {getFeaturedEntry} from "services/api";
+import {useDispatch} from "react-redux";
+import {setNowPlaying} from "services/store/audio.store";
+import {PlayState} from "components/audio";
+import {getPodcast} from "services/api/podnoms";
+import {setDomain} from "services/store/domain.store";
+import resolveDomainProps from "services/resolvers/domain-props-resolver";
+import {resolveUserPodcastProps} from "../../services/resolvers/user-podcast-props-resolver";
+import {PodcastPageProps} from "../../types/page-props";
 
-interface IPodcastPageProps {
-  featured: PodcastEntry;
-  podcast: Podcast;
-}
-
-const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
+const PodcastPage = ({featured, podcast, domain}: PodcastPageProps) => {
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(setDomain(domain));
+  }, [dispatch, domain]);
+
   React.useEffect(() => {
     if (featured) {
       dispatch(
@@ -36,7 +40,7 @@ const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
         <div className="card-body">
           <h2 className="card-title">{podcast.title}</h2>
-          <HtmlRenderComponent maxLines={5} html={podcast.description} />
+          <HtmlRenderComponent maxLines={5} html={podcast.description}/>
           <div className="justify-end card-actions">
             <button className="btn btn-outline">
               Listen on Apple Podcasts
@@ -55,38 +59,28 @@ const PodcastPage = ({ featured, podcast }: IPodcastPageProps) => {
         </figure>
       </div>
       <div className="pt-8">
-        <EpisodeListComponent podcast={podcast} />
+        <EpisodeListComponent podcast={podcast}/>
       </div>
     </React.Fragment>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  //first, check if we're on a custom CNAME
-  let user = context.params?.user;
-  let podcast = context.params?.podcast;
-
-  if (typeof window !== "undefined") {
-    const hostname = window.location.hostname;
-  }
-
-  if (user && podcast) {
-    const podcast: Podcast = await getPodcast(
-      context.params?.user as string,
-      context.params?.podcast as string
-    );
-    const featured: PodcastEntry = await getFeaturedEntry(
-      context.params?.user as string,
-      context.params?.podcast as string
-    );
-
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+  const {featured, podcast} = await resolveUserPodcastProps(context);
+  if (context.params?.user && context.params?.podcast) {
+    const {domain} = await resolveDomainProps(
+      context.req,
+      context.params.user as string,
+      context.params.podcast as string);
     return {
       props: {
         featured,
         podcast,
+        domain,
       },
     };
+
   }
-  return { props: {} };
+  return {props: {}}
 };
 export default PodcastPage;

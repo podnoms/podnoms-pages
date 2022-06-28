@@ -2,9 +2,11 @@ import type {GetServerSideProps, NextPage} from "next";
 import {Domain, Podcast} from "../models/";
 import {NotFoundComponent, PodcastComponent} from "components";
 import {PodcastEntry} from "models";
-import resolveDomainProps from "services/domain-props-resolver";
+import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import {setDomain} from "services/store/domain.store";
 import {useDispatch} from "react-redux";
+import React from "react";
+import {dom} from "@typescript-eslint/scope-manager/dist/lib/dom";
 
 interface IHomePageProps {
   domain: Domain | null;
@@ -13,10 +15,10 @@ interface IHomePageProps {
 }
 
 const Home: NextPage<IHomePageProps> = ({domain, podcast, featured}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   if (domain && podcast) {
-    dispatch(setDomain(domain))
-    return <PodcastComponent podcast={podcast} featured={featured}/>;
+    dispatch(setDomain(domain));
+    return <PodcastComponent domain={domain} podcast={podcast} featured={featured}/>;
   } else {
     return <NotFoundComponent/>;
   }

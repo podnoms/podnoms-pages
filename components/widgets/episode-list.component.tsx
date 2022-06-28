@@ -1,22 +1,24 @@
 import React from "react";
-import { MdPauseCircleFilled, MdPlayCircleFilled } from "react-icons/md";
-import { Podcast } from "../../models";
-import { HtmlRenderComponent } from "../index";
+import {MdPauseCircleFilled, MdPlayCircleFilled} from "react-icons/md";
+import {Podcast} from "../../models";
+import {HtmlRenderComponent} from "../index";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { setNowPlaying } from "../../services/store/audio.store";
-import { PlayState } from "../audio";
+import {useDispatch, useSelector} from "react-redux";
+import {setNowPlaying} from "../../services/store/audio.store";
+import {PlayState} from "../audio";
 import Link from "next/link";
-import { RootState } from "services/store/store";
+import {RootState} from "services/store/store";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
 }
 
-const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
-  const { nowPlaying, playState } = useSelector(
+const EpisodeListComponent = ({podcast}: IEpisodeListComponentProps) => {
+  const {nowPlaying, playState} = useSelector(
     (state: RootState) => state.audio
   );
+  const {domain, canonicalUrl} = useSelector((state: RootState) => state.domain);
+
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -30,7 +32,8 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
             <div className="flex">
               <div
                 className="flex-none w-12 h-12 mr-3 cursor-pointer stroke-0 align-center"
-                onClick={() => {}}
+                onClick={() => {
+                }}
               >
                 {nowPlaying?.entry?.id === entry.id &&
                 playState === PlayState.Playing ? (
@@ -69,12 +72,12 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
               </div>
               <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">
-                  <Link href={`/episodes/${entry.slug}`}>
+                  <Link href={`${canonicalUrl}/${entry.slug}`}>
                     <a>{entry.title}</a>
                   </Link>
                 </div>
                 <div className="text-sm font-light">
-                  <HtmlRenderComponent html={entry.description} maxLines={2} />
+                  <HtmlRenderComponent html={entry.description} maxLines={2}/>
                 </div>
               </div>
               <div className="shrink-0">

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import resolveDomainProps from "services/domain-props-resolver";
+import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import { GetServerSideProps } from "next";
 import { PodcastEntry } from "models";
 import { EmbeddedPlayerComonent } from "../../components/audio";

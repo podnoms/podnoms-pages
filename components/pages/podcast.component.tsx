@@ -6,13 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "services/store/audio.store";
 import { PlayState } from "components/audio";
 import { RootState } from "services/store/store";
+import {PodcastPageProps} from "../../types/page-props";
 
-interface IPodcastPageProps {
-  featured: PodcastEntry;
-  podcast: Podcast;
-}
-
-const PodcastComponent: React.FC<IPodcastPageProps> = ({
+const PodcastComponent: React.FC<PodcastPageProps> = ({
   featured,
   podcast,
 }) => {
