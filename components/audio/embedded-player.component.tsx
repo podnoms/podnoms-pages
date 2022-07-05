@@ -7,7 +7,7 @@ import { setPlayState } from "services/store/audio.store";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../services/store/store";
 
-const WaveformComponent = dynamic(() => import("./waveform-component"), {
+const WaveformComponent = dynamic(() => import("./waveform.component"), {
   ssr: false,
 });
 

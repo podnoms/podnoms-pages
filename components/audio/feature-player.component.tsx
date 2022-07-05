@@ -7,7 +7,7 @@ import { setPlayState } from "services/store/audio.store";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../services/store/store";
 
-const WaveformComponent = dynamic(() => import("./waveform-component"), {
+const WaveformComponent = dynamic(() => import("./waveform.component"), {
   ssr: false,
 });
 
@@ -74,9 +74,9 @@ const FeaturePlayerComponent = ({
         }}
       >
         {playState === PlayState.Stopped || playState === PlayState.Paused ? (
-          <MdPlayCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
+          <MdPlayCircleFilled className="w-full h-full delay-200 text-info hover:text-secondary" />
         ) : (
-          <MdPauseCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
+          <MdPauseCircleFilled className="w-full h-full delay-200 text-info hover:text-secondary" />
         )}
       </div>
       <div className="flex-grow h-full overflow-hidden">

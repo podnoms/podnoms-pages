@@ -1,7 +1,8 @@
 import React from "react";
 import Wavesurfer from "wavesurfer.js";
-import { useTheme } from "next-themes";
-import { PlayState } from "./feature-player.component";
+import {useTheme} from "next-themes";
+import {PlayState} from "./feature-player.component";
+
 const daisyuiColors = require("daisyui/src/colors/themes");
 type WaveformComponentProps = {
   audioUrl: string;
@@ -9,16 +10,15 @@ type WaveformComponentProps = {
   playState: PlayState;
 };
 const WaveformComponent = ({
-  audioUrl,
-  pcmUrl,
-  playState,
-}: WaveformComponentProps) => {
-  const { theme } = useTheme();
+                             audioUrl,
+                             pcmUrl,
+                             playState,
+                           }: WaveformComponentProps) => {
+  const {theme} = useTheme();
 
   const waveform = React.useRef<WaveSurfer | null>(null);
 
   React.useEffect(() => {
-    console.log("waveform-component", "playState", playState);
     if (playState === PlayState.Playing) {
       waveform.current?.play();
     } else {
@@ -27,13 +27,16 @@ const WaveformComponent = ({
   }, [playState, audioUrl]);
 
   React.useEffect(() => {
+    const waveColour = daisyuiColors[`[data-theme=${theme}]`]["primary"];
+    const progressColour = daisyuiColors[`[data-theme=${theme}]`]["secondary"];
+
     if (!waveform.current && audioUrl && pcmUrl) {
       waveform.current = Wavesurfer.create({
         backend: "MediaElement",
         container: "#waveform",
         cursorWidth: 0,
-        waveColor: daisyuiColors[`[data-theme=${theme}]`]["accent"],
-        progressColor: daisyuiColors[`[data-theme=${theme}]`]["neutral"],
+        waveColor: waveColour,
+        progressColor: progressColour,
         height: 48,
         responsive: true,
         hideScrollbar: true,
@@ -41,6 +44,12 @@ const WaveformComponent = ({
       });
     }
   }, [audioUrl, pcmUrl, theme, playState]);
+
+  React.useEffect(() => {
+    console.log('waveform.component', 'theme-changed', theme);
+    waveform.current?.setWaveColor(daisyuiColors[`[data-theme=${theme}]`]["primary"]);
+    waveform.current?.setProgressColor(daisyuiColors[`[data-theme=${theme}]`]["secondary"]);
+  }, [theme]);
 
   React.useEffect(() => {
     const loadPcm = async () => {

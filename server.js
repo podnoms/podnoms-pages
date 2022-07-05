@@ -6,8 +6,8 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({dev});
 const handle = app.getRequestHandler();
 const httpsOptions = {
-  key: fs.readFileSync("./.working/certs/pages.pdnm.be-key.pem"),
-  cert: fs.readFileSync("./.working/certs/pages.pdnm.be.pem"),
+  key: fs.readFileSync("/srv/dev/podnoms/certs/dev-pages.pdnm.be-key.pem"),
+  cert: fs.readFileSync("/srv/dev/podnoms/certs/dev-pages.pdnm.be.pem"),
 };
 app.prepare().then(() => {
 
@@ -16,6 +16,6 @@ app.prepare().then(() => {
     handle(req, res, parsedUrl);
   }).listen(3000, (err) => {
     if (err) throw err;
-    console.log("> Server started on https://pages.pdnm.be:3000");
+    console.log("> Server started on https://dev-pages.pdnm.be:3000");
   });
 });
