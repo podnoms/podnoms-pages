@@ -1,7 +1,8 @@
 import React from 'react';
+import CommentCardComponent from "./comment-card.component";
 
 const CommentsComponent = () => {
-  return (<div>I am comments</div>)
+  return (<CommentCardComponent/>)
 }
 
 export default CommentsComponent;
