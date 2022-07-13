@@ -36,7 +36,7 @@ const UserPodcastEpisodePage = ({domain, podcast, episode}: EpisodePageProps) =>
         })
       );
     }
-  }, [episode, dispatch, playState, nowPlaying]);
+  }, [podcast, episode, playState, nowPlaying, dispatch]);
   return <EpisodeComponent podcast={podcast} episode={episode}/>
 };
 

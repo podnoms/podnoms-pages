@@ -16,6 +16,6 @@ app.prepare().then(() => {
     handle(req, res, parsedUrl);
   }).listen(3000, (err) => {
     if (err) throw err;
-    console.log("> Server started on https://pages.pdnm.be:3000");
+    console.log("> Server started on https://dev-pages.pdnm.be:3000");
   });
 });

@@ -2,6 +2,7 @@ import React from "react";
 import Wavesurfer from "wavesurfer.js";
 import { useTheme } from "next-themes";
 import { PlayState } from "./feature-player.component";
+
 const daisyuiColors = require("daisyui/src/colors/themes");
 type WaveformComponentProps = {
   audioUrl: string;
@@ -18,7 +19,6 @@ const WaveformComponent = ({
   const waveform = React.useRef<WaveSurfer | null>(null);
 
   React.useEffect(() => {
-    console.log("waveform-component", "playState", playState);
     if (playState === PlayState.Playing) {
       waveform.current?.play();
     } else {
@@ -27,13 +27,16 @@ const WaveformComponent = ({
   }, [playState, audioUrl]);
 
   React.useEffect(() => {
+    const waveColour = daisyuiColors[`[data-theme=${theme}]`]["primary"];
+    const progressColour = daisyuiColors[`[data-theme=${theme}]`]["secondary"];
+
     if (!waveform.current && audioUrl && pcmUrl) {
       waveform.current = Wavesurfer.create({
         backend: "MediaElement",
         container: "#waveform",
         cursorWidth: 0,
-        waveColor: daisyuiColors[`[data-theme=${theme}]`]["accent"],
-        progressColor: daisyuiColors[`[data-theme=${theme}]`]["neutral"],
+        waveColor: waveColour,
+        progressColor: progressColour,
         height: 48,
         responsive: true,
         hideScrollbar: true,
@@ -41,6 +44,16 @@ const WaveformComponent = ({
       });
     }
   }, [audioUrl, pcmUrl, theme, playState]);
+
+  React.useEffect(() => {
+    console.log("waveform.component", "theme-changed", theme);
+    waveform.current?.setWaveColor(
+      daisyuiColors[`[data-theme=${theme}]`]["primary"]
+    );
+    waveform.current?.setProgressColor(
+      daisyuiColors[`[data-theme=${theme}]`]["secondary"]
+    );
+  }, [theme]);
 
   React.useEffect(() => {
     const loadPcm = async () => {
@@ -61,15 +74,17 @@ const WaveformComponent = ({
       }
     };
     loadPcm();
+    // don't add PlayState as a dependency, it's not a part of the state
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pcmUrl, audioUrl]);
 
   return (
     <div id="wrapper" className="relative">
-      <span className="absolute bottom-0 left-0 z-50 mb-0.5 text-xs text-neutral-content bg-opacity-20  ">
+      <span className="absolute bottom-0 left-0 z-50 text-xs font-semibold text-neutral-content bg-opacity-20 ">
         00:00:00
       </span>
       <div id="waveform" className="h-12 overflow-hidden"></div>
-      <span className="absolute bottom-0 right-0 z-50 mb-0.5 text-xs bg-opacity-20 text-neutral-content ">
+      <span className="absolute bottom-0 right-0 z-50 text-xs font-semibold bg-opacity-20 text-neutral-content ">
         01:55:12
       </span>
     </div>
