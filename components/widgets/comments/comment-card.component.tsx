@@ -16,7 +16,7 @@ const CommentCardComponent: React.FC<ICommentCardComponentProps> = ({
   deleteComment,
 }) => {
   const [editing, setEditing] = React.useState(false);
-  const [text, setText] = React.useState(comment.content);
+  const [text, setText] = React.useState(comment?.content);
 
   const handleUpvote = () => {
     console.log("comment-card.component", "handleUpvote");
@@ -57,7 +57,6 @@ const CommentCardComponent: React.FC<ICommentCardComponentProps> = ({
 
       <div className="flex flex-col w-full ml-4">
         <div className="flex flex-row flex-wrap items-center mb-4">
-
           {/* <img
             className="w-10 h-10 mr-4 rounded-full"
             src={require(`./../../assets/interactive-comments-section${comment.user.image.webp.substring(

@@ -16,7 +16,7 @@ function PodnomsPagesApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout =
     Component.getLayout ??
     ((page: ReactElement) => (
-      <ThemeProvider defaultTheme="lofi">
+      <ThemeProvider defaultTheme="bumblebee">
         <AppLayout>{page}</AppLayout>
       </ThemeProvider>
     ));
