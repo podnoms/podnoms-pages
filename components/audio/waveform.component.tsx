@@ -68,15 +68,12 @@ const WaveformComponent = ({
           waveform.current.load(audioUrl, peaks, "auto");
           waveform.current.on("audioprocess", (e) => {
             setElapsedTime(e);
+            setTotalTime(waveform.current?.getDuration() ?? 0);
           });
           waveform.current.on("ready", (r) => {
             setTotalTime(waveform.current?.getDuration() ?? 0);
-          });
-          waveform.current.on("waveform-ready", (r) => {
-            if (waveform.current) {
-              if (playState === PlayState.Playing) {
-                waveform.current.play();
-              }
+            if (playState === PlayState.Playing) {
+              waveform?.current?.play();
             }
           });
         }
