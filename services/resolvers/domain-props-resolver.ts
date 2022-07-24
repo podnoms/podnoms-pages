@@ -16,6 +16,9 @@ const resolveDomainProps = async (req: IncomingMessage, user?: string, podcast?:
     podcastSlug: podcast,
   } : await resolveDomain(host);
 
+  if (domain && !domain.canonicalUrl) {
+    domain.canonicalUrl = '/'
+  }
   if (domain) {
     const podcast: Podcast = await getPodcast(
       domain.userSlug,

@@ -4,5 +4,14 @@ import Podcast from "./podcast.model";
 import Domain from "./domain.model";
 import User from "./user.model";
 import Comment from "./comment.model";
+import PodcastAggregator from "./podcast-aggregator.model";
 
-export type { Podcast, PodcastEntry, NowPlaying, Domain, Comment, User };
+export type {
+  Podcast,
+  PodcastEntry,
+  PodcastAggregator,
+  NowPlaying,
+  Domain,
+  Comment,
+  User,
+};

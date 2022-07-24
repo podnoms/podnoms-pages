@@ -30,10 +30,6 @@ const EpisodePage: NextPage<IEpisodePageProps> = (
   );
 
   React.useEffect(() => {
-    console.log("[episode]", "router", router);
-  }, [router]);
-
-  React.useEffect(() => {
     if (
       episode &&
       !nowPlaying &&

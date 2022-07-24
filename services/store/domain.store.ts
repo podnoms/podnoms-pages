@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Domain } from "models";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Domain} from "models";
 
 const initialState: Domain = {
   domain: "",
@@ -11,12 +11,15 @@ const initialState: Domain = {
 };
 
 export const domainStateSlice = createSlice({
-  name: "domain",
-  initialState: initialState,
-  reducers: {
-    setDomain: (state, action: PayloadAction<Domain>) => action.payload,
-  },
-});
+    name: "domain",
+    initialState: initialState,
+    reducers: {
+      setDomain: (state, action: PayloadAction<Domain>) => {
+        return action.payload;
+      }
+    },
+  })
+;
 
-export const { setDomain } = domainStateSlice.actions;
+export const {setDomain} = domainStateSlice.actions;
 export default domainStateSlice.reducer;

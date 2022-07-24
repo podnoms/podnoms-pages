@@ -9,6 +9,7 @@ import {setNowPlaying} from "../../../services/store/audio.store";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../services/store/store";
 import {setDomain} from "../../../services/store/domain.store";
+import {resolveEpisodeProps} from "../../../services/resolvers/episode-props-resolver";
 
 const UserPodcastEpisodePage = ({domain, podcast, episode}: EpisodePageProps) => {
   const dispatch = useDispatch();
@@ -41,27 +42,6 @@ const UserPodcastEpisodePage = ({domain, podcast, episode}: EpisodePageProps) =>
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const {featured, podcast} = await resolveUserPodcastProps(context);
-  if (context.params?.user && context.params?.podcast) {
-    const {domain, podcast} = await resolveDomainProps(
-      context.req,
-      context.params.user as string,
-      context.params.podcast as string);
-
-    const episode = podcast?.podcastEntries?.filter(
-      (e) => e.slug === context.params?.episode
-    )[0];
-
-    return {
-      props: {
-        featured,
-        podcast,
-        episode,
-        domain,
-      },
-    };
-
-  }
-  return {props: {}}
+  return await resolveEpisodeProps(context)
 };
 export default UserPodcastEpisodePage;

@@ -1,3 +1,4 @@
+import PodcastAggregator from "./podcast-aggregator.model";
 import PodcastEntry from "./podcast-entry.model";
 
 export default interface Podcast {
@@ -12,6 +13,7 @@ export default interface Podcast {
   rssUrl: string;
   createDate: Date;
   podcastEntries: PodcastEntry[];
+  aggregators: PodcastAggregator[];
 
   private: boolean;
   authUserName: string;
