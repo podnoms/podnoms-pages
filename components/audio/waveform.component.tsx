@@ -46,7 +46,6 @@ const WaveformComponent = ({
   }, [audioUrl, pcmUrl, theme, playState]);
 
   React.useEffect(() => {
-    console.log("waveform.component", "theme-changed", theme);
     waveform.current?.setWaveColor(
       daisyuiColors[`[data-theme=${theme}]`]["primary"]
     );

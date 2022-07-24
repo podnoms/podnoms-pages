@@ -1,6 +1,7 @@
 import { PodcastEntry, Podcast } from "models";
 import service from "./server";
 import { Domain } from "../../models";
+import PodcastAggregator from "../../models/podcast-aggregator.model";
 
 const getFeaturedEntry = async (
   user: string,

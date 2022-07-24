@@ -1,6 +1,6 @@
 export default interface Domain {
   domain: string;
-  canonicalUrl: string | undefined;
+  canonicalUrl: string;
   podcastId: string;
   userSlug: string;
   podcastSlug: string;
