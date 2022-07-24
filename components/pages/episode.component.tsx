@@ -37,7 +37,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
 
   const dispatch = useDispatch();
   return (
-    domain ? (
+    canonicalUrl ? (
       <div className="flex flex-col">
         <div className="flex">
           <div className="flex-auto">
