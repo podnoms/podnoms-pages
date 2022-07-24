@@ -138,7 +138,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                         />
                       )}
                     </div>
-                    <span className="py-2.5 pl-2 text-4xl font-bold">
+                    <span className="py-2.5 pl-2 text-2xl text-base-content font-bold">
                       {episode.title}
                     </span>
                   </div>
@@ -154,7 +154,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
           </div>
           <div className="">
             <Image
-              className="p-2 rounded-md shadow-2xl shadow-orange-900"
+              className="p-2 rounded-md shadow-2xl shadow-accent"
               src={podcast.imageUrl}
               width={400}
               height={400}
