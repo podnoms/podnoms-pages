@@ -106,7 +106,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                       {nowPlaying?.entry?.id === episode.id &&
                       playState === PlayState.Playing ? (
                         <MdPauseCircleFilled
-                          className="w-16 w-full h-full delay-100 text-info hover:text-secondary"
+                          className="w-full h-full delay-100 text-info hover:text-secondary"
                           onClick={() =>
                             dispatch(
                               setNowPlaying({

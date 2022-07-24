@@ -1,38 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { EpisodeListComponent, HtmlRenderComponent } from "components";
-import { Podcast, PodcastEntry } from "models";
-import { useDispatch, useSelector } from "react-redux";
-import { setNowPlaying } from "services/store/audio.store";
-import { PlayState } from "components/audio";
-import { RootState } from "services/store/store";
-import {PodcastPageProps} from "../../types/page-props";
+import { PodcastPageProps } from "../../types/page-props";
 
-const PodcastComponent: React.FC<PodcastPageProps> = ({
-  featured,
-  podcast,
-}) => {
-  const { playState } = useSelector((state: RootState) => state.audio);
-
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    if (
-      featured &&
-      playState !== PlayState.Paused &&
-      playState !== PlayState.Playing
-    ) {
-      dispatch(
-        setNowPlaying({
-          playState: PlayState.Stopped,
-          nowPlaying: {
-            entry: featured,
-            podcast: podcast,
-            position: 0,
-          },
-        })
-      );
-    }
-  }, [featured, dispatch, playState]);
+const PodcastComponent: React.FC<PodcastPageProps> = ({ podcast }) => {
   return (
     <React.Fragment>
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
