@@ -2,6 +2,7 @@ import React from "react";
 import Wavesurfer from "wavesurfer.js";
 import { useTheme } from "next-themes";
 import { PlayState } from "./feature-player.component";
+import { secondsToHHMMSS } from "../../services/utils/dateUtils";
 
 const daisyuiColors = require("daisyui/src/colors/themes");
 type WaveformComponentProps = {
@@ -15,6 +16,8 @@ const WaveformComponent = ({
   playState,
 }: WaveformComponentProps) => {
   const { theme } = useTheme();
+  const [elapsedTime, setElapsedTime] = React.useState(0);
+  const [totalTime, setTotalTime] = React.useState(0);
 
   const waveform = React.useRef<WaveSurfer | null>(null);
 
@@ -29,7 +32,6 @@ const WaveformComponent = ({
   React.useEffect(() => {
     const waveColour = daisyuiColors[`[data-theme=${theme}]`]["primary"];
     const progressColour = daisyuiColors[`[data-theme=${theme}]`]["secondary"];
-
     if (!waveform.current && audioUrl && pcmUrl) {
       waveform.current = Wavesurfer.create({
         backend: "MediaElement",
@@ -59,14 +61,22 @@ const WaveformComponent = ({
       if (waveform.current) {
         const response = await fetch(pcmUrl);
         if (response.ok) {
-          var result = await response.json();
+          const result = await response.json();
           const peaks = result.data.map((p: number) => p / 128);
           waveform.current.backend.setPeaks(peaks);
           waveform.current.drawBuffer();
           waveform.current.load(audioUrl, peaks, "auto");
-          waveform.current.on("waveform-ready", () => {
-            if (playState === PlayState.Playing && waveform?.current) {
-              waveform.current.play();
+          waveform.current.on("audioprocess", (e) => {
+            setElapsedTime(e);
+          });
+          waveform.current.on("ready", (r) => {
+            setTotalTime(waveform.current?.getDuration() ?? 0);
+          });
+          waveform.current.on("waveform-ready", (r) => {
+            if (waveform.current) {
+              if (playState === PlayState.Playing) {
+                waveform.current.play();
+              }
             }
           });
         }
@@ -80,11 +90,11 @@ const WaveformComponent = ({
   return (
     <div id="wrapper" className="relative">
       <span className="absolute bottom-0 left-0 z-50 text-xs font-semibold text-neutral-content bg-opacity-20 ">
-        00:00:00
+        {secondsToHHMMSS(elapsedTime)}
       </span>
       <div id="waveform" className="h-12 overflow-hidden"></div>
       <span className="absolute bottom-0 right-0 z-50 text-xs font-semibold bg-opacity-20 text-neutral-content ">
-        01:55:12
+        {secondsToHHMMSS(totalTime)}
       </span>
     </div>
   );
