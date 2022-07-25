@@ -73,7 +73,7 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
               </div>
               <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">
-                  <Link href={`${canonicalUrl ?? ""}/${entry.slug}`}>
+                  <Link href={`${canonicalUrl ?? ""}${entry.slug}`}>
                     <a>{entry.title}</a>
                   </Link>
                 </div>

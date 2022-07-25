@@ -17,6 +17,10 @@ export const audioSlice = createSlice({
     setNowPlaying: (state, action: PayloadAction<AudioSliceState>) => {
       state.playState = action.payload.playState;
       state.nowPlaying = action.payload.nowPlaying;
+      localStorage.setItem(
+        "_np",
+        JSON.stringify(action.payload.nowPlaying?.entry)
+      );
     },
     setPlayState: (state, action: PayloadAction<PlayState>) => {
       state.playState = action.payload;

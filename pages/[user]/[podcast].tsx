@@ -13,6 +13,7 @@ import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import { resolveUserPodcastProps } from "../../services/resolvers/user-podcast-props-resolver";
 import { PodcastPageProps } from "../../types/page-props";
 import { RootState } from "services/store/store";
+import { getNowPlaying, getNowPlayingPosition } from "services/utils/getNowPlaying";
 
 const PodcastPage = ({ featured, podcast, domain }: PodcastPageProps) => {
   const dispatch = useDispatch();
@@ -31,13 +32,13 @@ const PodcastPage = ({ featured, podcast, domain }: PodcastPageProps) => {
           playState: PlayState.Stopped,
           nowPlaying: {
             podcast: podcast,
-            entry: featured,
-            position: 0,
+            entry: getNowPlaying(featured),
+            position: getNowPlayingPosition(),
           },
         })
       );
     }
-  }, [featured, dispatch]);
+  }, [featured, dispatch, playState, podcast]);
 
   return (
     <React.Fragment>

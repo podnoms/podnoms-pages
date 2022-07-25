@@ -9,11 +9,15 @@ type WaveformComponentProps = {
   audioUrl: string;
   pcmUrl: string;
   playState: PlayState;
+  position: number;
+  progress: (e: number) => void;
 };
 const WaveformComponent = ({
   audioUrl,
   pcmUrl,
   playState,
+  position,
+  progress,
 }: WaveformComponentProps) => {
   const { theme } = useTheme();
   const [elapsedTime, setElapsedTime] = React.useState(0);
@@ -69,8 +73,14 @@ const WaveformComponent = ({
           waveform.current.on("audioprocess", (e) => {
             setElapsedTime(e);
             setTotalTime(waveform.current?.getDuration() ?? 0);
+            progress(e);
           });
-          waveform.current.on("ready", (r) => {
+          waveform.current.on("waveform-ready", () => {
+            if (position && waveform.current) {
+              waveform.current.setCurrentTime(position);
+            }
+          });
+          waveform.current.on("ready", () => {
             setTotalTime(waveform.current?.getDuration() ?? 0);
             if (playState === PlayState.Playing) {
               waveform?.current?.play();

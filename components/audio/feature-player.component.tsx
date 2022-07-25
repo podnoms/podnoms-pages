@@ -20,25 +20,26 @@ export enum PlayState {
 interface IFeaturePlayerComponentProps {
   podcastTitle: string;
   episodeTitle: string;
-  description: string;
   audioUrl: string;
   pcmUrl: string;
   imageUrl: string;
+  position: number;
   onClickHome: () => void;
-  // position: number;
 }
 
 const FeaturePlayerComponent = ({
   podcastTitle,
   episodeTitle,
-  description,
   audioUrl,
   pcmUrl,
   imageUrl,
+  position,
   onClickHome,
 }: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
-  const { playState } = useSelector((state: RootState) => state.audio);
+  const { playState, nowPlaying } = useSelector(
+    (state: RootState) => state.audio
+  );
 
   return (
     <div className="flex items-center w-full h-12">
@@ -84,6 +85,8 @@ const FeaturePlayerComponent = ({
           playState={playState}
           audioUrl={audioUrl}
           pcmUrl={pcmUrl}
+          position={position}
+          progress={(e) => localStorage.setItem("_npp", `${e}`)}
         />
       </div>
       <div className="flex-initial hidden w-52 md:block">
