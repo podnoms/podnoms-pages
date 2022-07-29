@@ -9,18 +9,23 @@ type WaveformComponentProps = {
   audioUrl: string;
   pcmUrl: string;
   playState: PlayState;
+  audioDuration: number;
+  currentPosition: number;
+  progress?: (e: number) => void;
 };
 const WaveformComponent = ({
   audioUrl,
+  audioDuration,
   pcmUrl,
   playState,
+  currentPosition,
+  progress,
 }: WaveformComponentProps) => {
   const { theme } = useTheme();
   const [elapsedTime, setElapsedTime] = React.useState(0);
-  const [totalTime, setTotalTime] = React.useState(0);
+  const [totalTime, setTotalTime] = React.useState(audioDuration);
 
   const waveform = React.useRef<WaveSurfer | null>(null);
-
   React.useEffect(() => {
     if (playState === PlayState.Playing) {
       waveform.current?.play();
@@ -68,10 +73,14 @@ const WaveformComponent = ({
           waveform.current.load(audioUrl, peaks, "auto");
           waveform.current.on("audioprocess", (e) => {
             setElapsedTime(e);
-            setTotalTime(waveform.current?.getDuration() ?? 0);
+            if (totalTime === 0) {
+              setTotalTime(e.duration);
+            }
+            if (totalTime !== 0) {
+              progress && progress((e / totalTime) * 100);
+            }
           });
-          waveform.current.on("ready", (r) => {
-            setTotalTime(waveform.current?.getDuration() ?? 0);
+          waveform.current.on("ready", () => {
             if (playState === PlayState.Playing) {
               waveform?.current?.play();
             }

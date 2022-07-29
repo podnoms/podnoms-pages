@@ -1,18 +1,16 @@
-import {resolveUserPodcastProps} from "./user-podcast-props-resolver";
+import { resolveUserPodcastProps } from "./user-podcast-props-resolver";
 import resolveDomainProps from "./domain-props-resolver";
-import {GetServerSidePropsContext} from "next";
-import {setDomain} from "services/store/domain.store";
+import { GetServerSidePropsContext } from "next";
 
 export const resolveEpisodeProps = async (
   context: GetServerSidePropsContext
 ) => {
-
   const episode = Array.isArray(context?.params?.episode)
     ? context?.params?.episode[0]
     : context?.params?.episode;
-  const {featured, podcast} = await resolveUserPodcastProps(context);
+  const { featured } = await resolveUserPodcastProps(context);
   if (featured?.userSlug && featured?.podcastSlug) {
-    const {domain, podcast} = await resolveDomainProps(
+    const { domain, podcast } = await resolveDomainProps(
       context.req,
       featured?.userSlug as string,
       featured?.podcastSlug as string
@@ -31,5 +29,5 @@ export const resolveEpisodeProps = async (
       },
     };
   }
-  return {props: {}};
+  return { props: {} };
 };

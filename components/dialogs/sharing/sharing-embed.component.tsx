@@ -14,9 +14,9 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
           onClickHome={() => {}}
           podcastTitle={episode.podcastTitle}
           episodeTitle={episode.title}
-          description={episode.description}
           audioUrl={episode.audioUrl}
           pcmUrl={episode.pcmUrl}
+          position={0}
           imageUrl={episode.imageUrl}
         />
       </div>

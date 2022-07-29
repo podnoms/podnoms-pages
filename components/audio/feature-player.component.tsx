@@ -20,25 +20,28 @@ export enum PlayState {
 interface IFeaturePlayerComponentProps {
   podcastTitle: string;
   episodeTitle: string;
-  description: string;
   audioUrl: string;
+  audioDuration: number;
   pcmUrl: string;
   imageUrl: string;
+  position: number;
   onClickHome: () => void;
-  // position: number;
 }
 
 const FeaturePlayerComponent = ({
   podcastTitle,
   episodeTitle,
-  description,
   audioUrl,
+  audioDuration,
   pcmUrl,
   imageUrl,
+  position,
   onClickHome,
 }: IFeaturePlayerComponentProps) => {
   const dispatch = useDispatch();
-  const { playState } = useSelector((state: RootState) => state.audio);
+  const { playState, nowPlaying } = useSelector(
+    (state: RootState) => state.audio
+  );
 
   return (
     <div className="flex items-center w-full h-12">
@@ -82,8 +85,11 @@ const FeaturePlayerComponent = ({
       <div className="flex-grow h-full overflow-hidden">
         <WaveformComponent
           playState={playState}
+          audioDuration={audioDuration}
           audioUrl={audioUrl}
           pcmUrl={pcmUrl}
+          currentPosition={position}
+          progress={(e) => localStorage.setItem("_npp", `${e}`)}
         />
       </div>
       <div className="flex-initial hidden w-52 md:block">
