@@ -4,9 +4,13 @@ import { NotFoundComponent, PodcastComponent } from "components";
 import { PodcastEntry } from "models";
 import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import { setDomain } from "services/store/domain.store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { dom } from "@typescript-eslint/scope-manager/dist/lib/dom";
+import { PlayState } from "../components/audio";
+import { setNowPlaying } from "../services/store/audio.store";
+import { getNowPlayingPosition } from "../services/utils/getNowPlaying";
+import { RootState } from "../services/store/store";
 
 interface IHomePageProps {
   domain: Domain | null;
@@ -16,6 +20,35 @@ interface IHomePageProps {
 
 const Home: NextPage<IHomePageProps> = ({ domain, podcast, featured }) => {
   const dispatch = useDispatch();
+  const { playState, nowPlaying } = useSelector(
+    (state: RootState) => state.audio
+  );
+  React.useEffect(() => {
+    if (domain) {
+      dispatch(setDomain(domain));
+    }
+  }, [domain, dispatch]);
+  React.useEffect(() => {
+    if (
+      featured &&
+      !nowPlaying &&
+      playState !== PlayState.Paused &&
+      playState !== PlayState.Playing
+    ) {
+      if (podcast) {
+        dispatch(
+          setNowPlaying({
+            playState: PlayState.Stopped,
+            nowPlaying: {
+              podcast: podcast,
+              entry: featured,
+              position: getNowPlayingPosition(),
+            },
+          })
+        );
+      }
+    }
+  }, [featured]);
   if (domain && podcast) {
     dispatch(setDomain(domain));
     return (

@@ -31,10 +31,6 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
   const { nowPlaying, playState } = useSelector(
     (state: RootState) => state.audio
   );
-  React.useEffect(() => {
-    console.log("episode.component.tsx", "domain", domain);
-    console.log("episode.component.tsx", "canonicalUrl", canonicalUrl);
-  }, [domain, canonicalUrl]);
 
   const dispatch = useDispatch();
   return canonicalUrl ? (

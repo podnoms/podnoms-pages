@@ -20,6 +20,7 @@ const Navbar = () => {
               podcastTitle={nowPlaying.entry.podcastTitle}
               episodeTitle={nowPlaying.entry.title}
               audioUrl={nowPlaying.entry.audioUrl}
+              audioDuration={nowPlaying.entry.audioLength}
               pcmUrl={nowPlaying.entry.pcmUrl}
               imageUrl={nowPlaying.entry.imageUrl}
               position={nowPlaying.position}

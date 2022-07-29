@@ -21,6 +21,7 @@ interface IFeaturePlayerComponentProps {
   podcastTitle: string;
   episodeTitle: string;
   audioUrl: string;
+  audioDuration: number;
   pcmUrl: string;
   imageUrl: string;
   position: number;
@@ -31,6 +32,7 @@ const FeaturePlayerComponent = ({
   podcastTitle,
   episodeTitle,
   audioUrl,
+  audioDuration,
   pcmUrl,
   imageUrl,
   position,
@@ -83,9 +85,10 @@ const FeaturePlayerComponent = ({
       <div className="flex-grow h-full overflow-hidden">
         <WaveformComponent
           playState={playState}
+          audioDuration={audioDuration}
           audioUrl={audioUrl}
           pcmUrl={pcmUrl}
-          position={position}
+          currentPosition={position}
           progress={(e) => localStorage.setItem("_npp", `${e}`)}
         />
       </div>
