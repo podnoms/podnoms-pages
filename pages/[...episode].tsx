@@ -8,7 +8,7 @@ import { PlayState } from "../components/audio";
 import { setNowPlaying } from "../services/store/audio.store";
 import { EpisodePageProps } from "../types/page-props";
 import { EpisodeComponent, NotFoundComponent } from "../components";
-import { getNowPlayingPosition } from "../services/utils/getNowPlaying";
+import { getNowPlayingEpisode, getNowPlayingPosition } from "../services/utils/getNowPlaying";
 
 const EpisodeDirectPage = ({ domain, podcast, episode }: EpisodePageProps) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const EpisodeDirectPage = ({ domain, podcast, episode }: EpisodePageProps) => {
           playState: PlayState.Stopped,
           nowPlaying: {
             podcast: podcast,
-            entry: episode,
+            entry: getNowPlayingEpisode(episode),
             position: getNowPlayingPosition(),
           },
         })

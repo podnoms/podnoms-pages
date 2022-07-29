@@ -9,7 +9,10 @@ import React from "react";
 import { dom } from "@typescript-eslint/scope-manager/dist/lib/dom";
 import { PlayState } from "../components/audio";
 import { setNowPlaying } from "../services/store/audio.store";
-import { getNowPlayingPosition } from "../services/utils/getNowPlaying";
+import {
+  getNowPlayingPosition,
+  getNowPlayingEpisode,
+} from "../services/utils/getNowPlaying";
 import { RootState } from "../services/store/store";
 
 interface IHomePageProps {
@@ -41,14 +44,14 @@ const Home: NextPage<IHomePageProps> = ({ domain, podcast, featured }) => {
             playState: PlayState.Stopped,
             nowPlaying: {
               podcast: podcast,
-              entry: featured,
+              entry: getNowPlayingEpisode(featured),
               position: getNowPlayingPosition(),
             },
           })
         );
       }
     }
-  }, [featured]);
+  }, [dispatch, featured, nowPlaying, playState, podcast]);
   if (domain && podcast) {
     dispatch(setDomain(domain));
     return (

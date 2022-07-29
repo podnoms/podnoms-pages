@@ -77,11 +77,6 @@ const WaveformComponent = ({
               setTotalTime(e.duration);
             }
             if (totalTime !== 0) {
-              console.log(
-                "waveform.component",
-                "progress",
-                (e / totalTime) * 100
-              );
               progress && progress((e / totalTime) * 100);
             }
           });
