@@ -1,22 +1,24 @@
 import { PodcastEntry } from "models";
 import React from "react";
-import { FeaturePlayerComponent } from "../../audio";
+import { FeaturePlayerComponent, EmbeddedPlayerComonent } from "../../audio";
 interface ISharingEmbedComponent {
   episode: PodcastEntry;
 }
 const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
   episode,
 }) => {
+  const [theme, setTheme] = React.useState("dark");
   return (
     <div>
       <div className="px-4 pt-8">
-        <FeaturePlayerComponent
+        <EmbeddedPlayerComonent
+          theme={theme}
           onClickHome={() => {}}
           podcastTitle={episode.podcastTitle}
           episodeTitle={episode.title}
+          description={episode.description}
           audioUrl={episode.audioUrl}
           pcmUrl={episode.pcmUrl}
-          position={0}
           imageUrl={episode.imageUrl}
         />
       </div>
