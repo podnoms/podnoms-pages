@@ -54,8 +54,8 @@ const EmbeddedPlayerComonent = ({
           onClick={() => onClickHome()}
           src={imageUrl}
           alt={episodeTitle}
-          width={164}
-          height={164}
+          width={180}
+          height={180}
         />
       </div>
       <div id="details" className="w-full ml-2">
@@ -90,6 +90,8 @@ const EmbeddedPlayerComonent = ({
           </div>
           <div className="flex-grow h-full pt-6 overflow-hidden">
             <WaveformComponent
+              audioDuration={0}
+              currentPosition={0}
               playState={playState}
               audioUrl={audioUrl}
               pcmUrl={pcmUrl}
