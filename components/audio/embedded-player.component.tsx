@@ -54,16 +54,16 @@ const EmbeddedPlayerComonent = ({
           onClick={() => onClickHome()}
           src={imageUrl}
           alt={episodeTitle}
-          width={164}
-          height={164}
+          width={180}
+          height={180}
         />
       </div>
       <div id="details" className="w-full ml-2">
         <div id="details-head w-full">
-          <div className="text-sm tracking-wider text-base-content/70">
+          <div className="text-sm tracking-wider text-base-content/70 line-clamp-1">
             {podcastTitle}
           </div>
-          <div className="text-lg font-extrabold tracking-wider">
+          <div className="text-lg font-extrabold tracking-wider line-clamp-1">
             {episodeTitle}
           </div>
         </div>
@@ -90,6 +90,8 @@ const EmbeddedPlayerComonent = ({
           </div>
           <div className="flex-grow h-full pt-6 overflow-hidden">
             <WaveformComponent
+              audioDuration={0}
+              currentPosition={0}
               playState={playState}
               audioUrl={audioUrl}
               pcmUrl={pcmUrl}

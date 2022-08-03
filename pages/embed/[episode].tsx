@@ -15,20 +15,16 @@ const EmbeddedPage: NextPageWithLayout<IEmbeddedPageProps> = ({
   episode,
 }) => {
   return (
-    <div className="p-10">
-      <div className="border">
-        <EmbeddedPlayerComonent
-          theme={theme}
-          onClickHome={() => {}}
-          podcastTitle={episode.podcastTitle}
-          episodeTitle={episode.title}
-          description={episode.description}
-          audioUrl={episode.audioUrl}
-          pcmUrl={episode.pcmUrl}
-          imageUrl={episode.imageUrl}
-        />
-      </div>
-    </div>
+    <EmbeddedPlayerComonent
+      theme={theme}
+      onClickHome={() => {}}
+      podcastTitle={episode.podcastTitle}
+      episodeTitle={episode.title}
+      description={episode.description}
+      audioUrl={episode.audioUrl}
+      pcmUrl={episode.pcmUrl}
+      imageUrl={episode.imageUrl}
+    />
   );
 };
 export const getServerSideProps: GetServerSideProps = async ({
