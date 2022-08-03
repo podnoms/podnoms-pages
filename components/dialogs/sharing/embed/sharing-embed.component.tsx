@@ -1,3 +1,4 @@
+import { RadioButton } from "components";
 import { PodcastEntry } from "models";
 import React from "react";
 import { EmbeddedPlayerComonent } from "../../../audio";
@@ -8,40 +9,35 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
   episode,
 }) => {
   const [theme, setTheme] = React.useState("dark");
+
+  const onChangeTheme = (theme: string) => {
+    setTheme(theme);
+  };
   return (
     <div>
       <div className="px-4 pt-8">
-        <EmbeddedPlayerComonent
-          theme={theme}
-          onClickHome={() => {}}
-          podcastTitle={episode.podcastTitle}
-          episodeTitle={episode.title}
-          description={episode.description}
-          audioUrl={episode.audioUrl}
-          pcmUrl={episode.pcmUrl}
-          imageUrl={episode.imageUrl}
+        <iframe
+          key={theme}
+          height="185px"
+          width="100%"
+          frameBorder="no"
+          scrolling="no"
+          seamless
+          src={`https://domain.pages.pdnm.be:3000/embed/${episode.slug}?theme=${theme}`}
         />
       </div>
       <div className="py-3 shadow-md">
         <div className="flex flex-row justify-evenly">
-          <label className="cursor-pointer label">
-            <span className="label-text">Light Player</span>
-            <input
-              type="radio"
-              name="radio-6"
-              className="radio checked:bg-red-500"
-              checked
-            />
-          </label>
-          <label className="cursor-pointer label">
-            <span className="label-text">Dark Player</span>
-            <input
-              type="radio"
-              name="radio-6"
-              className="radio checked:bg-blue-500"
-              checked
-            />
-          </label>
+          <RadioButton
+            label="dark"
+            value={theme === "dark"}
+            onChange={() => onChangeTheme("dark")}
+          />
+          <RadioButton
+            label="light"
+            value={theme === "light"}
+            onChange={() => onChangeTheme("light")}
+          />
         </div>
       </div>
     </div>

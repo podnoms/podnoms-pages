@@ -60,10 +60,10 @@ const EmbeddedPlayerComonent = ({
       </div>
       <div id="details" className="w-full ml-2">
         <div id="details-head w-full">
-          <div className="text-sm tracking-wider text-base-content/70">
+          <div className="text-sm tracking-wider text-base-content/70 line-clamp-1">
             {podcastTitle}
           </div>
-          <div className="text-lg font-extrabold tracking-wider">
+          <div className="text-lg font-extrabold tracking-wider line-clamp-1">
             {episodeTitle}
           </div>
         </div>
