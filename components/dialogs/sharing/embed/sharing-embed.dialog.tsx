@@ -2,15 +2,13 @@ import { Dialog, Tab, Transition } from "@headlessui/react";
 import { PodcastEntry } from "models";
 import React from "react";
 import SharingEmbedComponent from "./sharing-embed.component";
-import SharingShareComponent from "./sharing-share.component";
-
 interface ISharingDialogProps {
   handleClose: () => void;
   episode: PodcastEntry;
   show: boolean;
 }
 
-const SharingDialog: React.FC<ISharingDialogProps> = ({
+const SharingEmbedDialog: React.FC<ISharingDialogProps> = ({
   handleClose,
   episode,
   show,
@@ -23,20 +21,17 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
       className="relative z-50"
     >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-
       {/* Full-screen container to center the panel */}
       <div className="fixed inset-0 flex items-center justify-center p-4">
         {/* The actual dialog panel  */}
-        <Dialog.Panel className="w-3/4 mx-auto bg-white rounded lg:w-1/2 ">
+        <Dialog.Panel className="w-3/4 mx-auto rounded bg-base-100 lg:w-1/2 ">
           <Dialog.Title>
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Complete your order
-              </h3>
+              <h3 className="text-xl font-semibold">Share Episode</h3>
               <button
-                onClick={handleClose}
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                onClick={handleClose}
+                className="bg-transparent hover:bg-accent hover:accent-content rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
               >
                 <svg
@@ -63,4 +58,4 @@ const SharingDialog: React.FC<ISharingDialogProps> = ({
   );
 };
 
-export default SharingDialog;
+export default SharingEmbedDialog;

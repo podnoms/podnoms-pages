@@ -9,7 +9,7 @@ import { setNowPlaying } from "../../services/store/audio.store";
 import { PlayState } from "../audio";
 import { useDispatch, useSelector } from "react-redux";
 import HtmlRenderComponent from "components/widgets/html-render.component";
-import { SharingDialog, SubscribeDialog } from "components/dialogs";
+import { SharingEmbedDialog, SharingShareDialog, SubscribeDialog } from "components/dialogs";
 import { RootState } from "services/store/store";
 import { CommentsComponent, NotFoundComponent } from "../index";
 import { getNowPlayingPosition } from "../../services/utils/getNowPlaying";
@@ -27,6 +27,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
     (state: RootState) => state.domain
   );
   const [showShareDialog, setShowShareDialog] = React.useState(false);
+  const [showEmbedDialog, setShowEmbedDialog] = React.useState(false);
   const [showSubscribeDialog, setShowSubscribeDialog] = React.useState(false);
   const { nowPlaying, playState } = useSelector(
     (state: RootState) => state.audio
@@ -72,7 +73,10 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
                         </div>
                       </div>
                     </li>
-                    <li className="px-1 py-2 border-t-2 cursor-pointer">
+                    <li
+                      className="px-1 py-2 border-t-2 cursor-pointer"
+                      onClick={() => setShowEmbedDialog(true)}
+                    >
                       <div className="flex justify-around">
                         <div className="flex-grow">Embed</div>
                         <div>
@@ -158,8 +162,13 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
           />
         </div>
 
-        <SharingDialog
+        <SharingShareDialog
           show={showShareDialog}
+          episode={episode}
+          handleClose={() => setShowShareDialog(false)}
+        />
+        <SharingEmbedDialog
+          show={showEmbedDialog}
           episode={episode}
           handleClose={() => setShowShareDialog(false)}
         />

@@ -1,6 +1,6 @@
 import { PodcastEntry } from "models";
 import React from "react";
-import { FeaturePlayerComponent, EmbeddedPlayerComonent } from "../../audio";
+import { EmbeddedPlayerComonent } from "../../../audio";
 interface ISharingEmbedComponent {
   episode: PodcastEntry;
 }

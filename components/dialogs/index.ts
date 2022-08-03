@@ -1,4 +1,5 @@
-import SharingDialog from "./sharing/sharing.dialog";
+import SharingEmbedDialog from "./sharing/embed/sharing-embed.dialog";
+import SharingShareDialog from "./sharing/share/sharing-share.dialog";
 import SubscribeDialog from "./subscribe.dialog";
 
-export { SharingDialog, SubscribeDialog };
+export { SharingShareDialog, SharingEmbedDialog, SubscribeDialog };
