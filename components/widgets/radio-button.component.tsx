@@ -7,14 +7,14 @@ interface IRadioButton {
 }
 const RadioButton: React.FC<IRadioButton> = ({ label, value, onChange }) => {
   return (
-    <label className="cursor-pointer label">
-      <span className="label-text">{label}</span>
+    <label className="inline-flex items-center">
       <input
         type="radio"
+        className="radio radio-primary"
         checked={value}
         onChange={onChange}
-        className="radio"
       />
+      <span className="ml-2">{label}</span>
     </label>
   );
 };

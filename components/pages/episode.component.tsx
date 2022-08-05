@@ -9,7 +9,11 @@ import { setNowPlaying } from "../../services/store/audio.store";
 import { PlayState } from "../audio";
 import { useDispatch, useSelector } from "react-redux";
 import HtmlRenderComponent from "components/widgets/html-render.component";
-import { SharingEmbedDialog, SharingShareDialog, SubscribeDialog } from "components/dialogs";
+import {
+  SharingEmbedDialog,
+  SharingShareDialog,
+  SubscribeDialog,
+} from "components/dialogs";
 import { RootState } from "services/store/store";
 import { CommentsComponent, NotFoundComponent } from "../index";
 import { getNowPlayingPosition } from "../../services/utils/getNowPlaying";
@@ -170,7 +174,7 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
         <SharingEmbedDialog
           show={showEmbedDialog}
           episode={episode}
-          handleClose={() => setShowShareDialog(false)}
+          handleClose={() => setShowEmbedDialog(false)}
         />
         <SubscribeDialog
           show={showSubscribeDialog}

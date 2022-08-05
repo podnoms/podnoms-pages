@@ -1,12 +1,8 @@
 import { Dialog, Tab, Transition } from "@headlessui/react";
 import { PodcastEntry } from "models";
 import React from "react";
+import { ISharingDialogProps } from "../sharing-dialog.props";
 import SharingEmbedComponent from "./sharing-embed.component";
-interface ISharingDialogProps {
-  handleClose: () => void;
-  episode: PodcastEntry;
-  show: boolean;
-}
 
 const SharingEmbedDialog: React.FC<ISharingDialogProps> = ({
   handleClose,
