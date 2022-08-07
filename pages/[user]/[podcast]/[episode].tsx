@@ -43,7 +43,9 @@ const UserPodcastEpisodePage = ({
       );
     }
   }, [podcast, episode, playState, nowPlaying, dispatch]);
-  return <EpisodeComponent podcast={podcast} episode={episode} />;
+  return (
+    <EpisodeComponent domain={domain} podcast={podcast} episode={episode} />
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (

@@ -1,11 +1,16 @@
 import React from "react";
 import Image from "next/image";
-import { EpisodeListComponent, HtmlRenderComponent } from "components";
+import {
+  EpisodeListComponent,
+  HtmlRenderComponent,
+  PodcastHeadComponent,
+} from "components";
 import { PodcastPageProps } from "../../types/page-props";
 
-const PodcastComponent: React.FC<PodcastPageProps> = ({ podcast }) => {
+const PodcastComponent: React.FC<PodcastPageProps> = ({ podcast, domain }) => {
   return (
     <React.Fragment>
+      <PodcastHeadComponent />
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
         <div className="card-body">
           <h2 className="card-title">{podcast.title}</h2>

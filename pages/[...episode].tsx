@@ -9,6 +9,7 @@ import { setNowPlaying } from "../services/store/audio.store";
 import { EpisodePageProps } from "../types/page-props";
 import { EpisodeComponent, NotFoundComponent } from "../components";
 import { getNowPlayingEpisode, getNowPlayingPosition } from "../services/utils";
+import { EpisodeHeadComponent } from "components";
 
 const EpisodeDirectPage = ({ domain, podcast, episode }: EpisodePageProps) => {
   const dispatch = useDispatch();
@@ -39,7 +40,9 @@ const EpisodeDirectPage = ({ domain, podcast, episode }: EpisodePageProps) => {
     }
   }, [podcast, episode, playState, nowPlaying, dispatch]);
   return episode && domain ? (
-    <EpisodeComponent podcast={podcast} episode={episode} />
+    <>
+      <EpisodeComponent domain={domain} podcast={podcast} episode={episode} />
+    </>
   ) : (
     <NotFoundComponent />
   );

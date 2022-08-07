@@ -9,7 +9,9 @@ import CommentsComponent from "./widgets/comments/comments.component";
 import PlayStateDebugger from "./widgets/play-state-debug.component";
 import RadioButton from "./widgets/radio-button.component";
 import PlayButtonComponent from "./widgets/play-button.component";
+import EpisodeHeadComponent from "./episode-head.component";
 import { showToast } from "./widgets/toast";
+import PodcastHeadComponent from "./podcast-head.component copy";
 
 export {
   showToast,
@@ -19,6 +21,8 @@ export {
   HtmlRenderComponent,
   PlayStateDebugger,
   PodcastComponent,
+  PodcastHeadComponent,
+  EpisodeHeadComponent,
   EpisodeComponent,
   NotFoundComponent,
   CommentsComponent,

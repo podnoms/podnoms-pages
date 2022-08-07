@@ -2,9 +2,9 @@ import React, {ReactElement} from "react";
 import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import {GetServerSideProps} from "next";
 import {PodcastEntry} from "models";
-import {EmbeddedPlayerComonent} from "../../components/audio";
 import {ThemeProvider} from "next-themes";
 import {NextPageWithLayout} from "types/page-with-layout";
+import {EmbeddedPlayerComonent} from "../../../../components/audio";
 
 type IEmbeddedPageProps = {} & {
   theme: string;

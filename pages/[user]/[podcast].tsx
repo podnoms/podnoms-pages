@@ -2,7 +2,11 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import React from "react";
 import Image from "next/image";
 import { Domain, Podcast, PodcastEntry } from "models";
-import { EpisodeListComponent, HtmlRenderComponent } from "components";
+import {
+  EpisodeListComponent,
+  HtmlRenderComponent,
+  PodcastHeadComponent,
+} from "components";
 import { getFeaturedEntry } from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "services/store/audio.store";
@@ -41,6 +45,7 @@ const PodcastPage = ({ featured, podcast, domain }: PodcastPageProps) => {
 
   return (
     <React.Fragment>
+      <PodcastHeadComponent podcast={podcast} domain={domain} />
       <div className="px-4 py-4 shadow-xl card lg:card-side bg-base-100">
         <div className="card-body">
           <h2 className="card-title">{podcast.title}</h2>
