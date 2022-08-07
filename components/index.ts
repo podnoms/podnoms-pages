@@ -8,8 +8,11 @@ import HtmlRenderComponent from "./widgets/html-render.component";
 import CommentsComponent from "./widgets/comments/comments.component";
 import PlayStateDebugger from "./widgets/play-state-debug.component";
 import RadioButton from "./widgets/radio-button.component";
+import PlayButtonComponent from "./widgets/play-button.component";
+import { showToast } from "./widgets/toast";
 
 export {
+  showToast,
   ThemeChanger,
   AppLayout,
   EpisodeListComponent,
@@ -20,4 +23,5 @@ export {
   NotFoundComponent,
   CommentsComponent,
   RadioButton,
+  PlayButtonComponent,
 };

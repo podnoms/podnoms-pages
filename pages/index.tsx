@@ -12,7 +12,7 @@ import { setNowPlaying } from "../services/store/audio.store";
 import {
   getNowPlayingPosition,
   getNowPlayingEpisode,
-} from "../services/utils/getNowPlaying";
+} from "../services/utils";
 import { RootState } from "../services/store/store";
 
 interface IHomePageProps {

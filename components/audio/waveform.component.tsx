@@ -33,17 +33,18 @@ const WaveformComponent = ({
       waveform.current?.pause();
     }
   }, [playState, audioUrl]);
-
+  const getWaveColour = () =>
+    daisyuiColors[`[data-theme=${theme}]`]["secondary"];
+  const getProgressColour = () =>
+    daisyuiColors[`[data-theme=${theme}]`]["accent"];
   React.useEffect(() => {
-    const waveColour = daisyuiColors[`[data-theme=${theme}]`]["primary"];
-    const progressColour = daisyuiColors[`[data-theme=${theme}]`]["secondary"];
     if (!waveform.current && audioUrl && pcmUrl) {
       waveform.current = Wavesurfer.create({
         backend: "MediaElement",
         container: "#waveform",
         cursorWidth: 0,
-        waveColor: waveColour,
-        progressColor: progressColour,
+        waveColor: getWaveColour(),
+        progressColor: getProgressColour(),
         height: 48,
         responsive: true,
         hideScrollbar: true,
@@ -53,12 +54,9 @@ const WaveformComponent = ({
   }, [audioUrl, pcmUrl, theme, playState]);
 
   React.useEffect(() => {
-    waveform.current?.setWaveColor(
-      daisyuiColors[`[data-theme=${theme}]`]["primary"]
-    );
-    waveform.current?.setProgressColor(
-      daisyuiColors[`[data-theme=${theme}]`]["secondary"]
-    );
+    console.log("waveform.component", "Theme", theme);
+    waveform.current?.setWaveColor(getWaveColour());
+    waveform.current?.setProgressColor(getProgressColour());
   }, [theme]);
 
   React.useEffect(() => {

@@ -7,13 +7,12 @@ import { getFeaturedEntry } from "services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setNowPlaying } from "services/store/audio.store";
 import { PlayState } from "components/audio";
-import { getPodcast } from "services/api/podnoms";
 import { setDomain } from "services/store/domain.store";
 import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import { resolveUserPodcastProps } from "../../services/resolvers/user-podcast-props-resolver";
 import { PodcastPageProps } from "../../types/page-props";
 import { RootState } from "services/store/store";
-import { getNowPlaying, getNowPlayingPosition } from "services/utils/getNowPlaying";
+import { getNowPlaying, getNowPlayingPosition } from "services/utils";
 
 const PodcastPage = ({ featured, podcast, domain }: PodcastPageProps) => {
   const dispatch = useDispatch();

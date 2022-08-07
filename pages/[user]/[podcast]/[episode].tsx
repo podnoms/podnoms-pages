@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../services/store/store";
 import { setDomain } from "../../../services/store/domain.store";
 import { resolveEpisodeProps } from "../../../services/resolvers/episode-props-resolver";
-import { getNowPlayingPosition } from "../../../services/utils/getNowPlaying";
+import { getNowPlayingPosition } from "../../../services/utils";
 
 const UserPodcastEpisodePage = ({
   domain,

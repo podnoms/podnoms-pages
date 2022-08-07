@@ -1,12 +1,13 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { AppLayout } from "../components";
+import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
-import store from "../services/store/store";
-import { NextPage } from "next";
-import { ReactElement, ReactNode } from "react";
-import "../styles/globals.css";
+import { ReactElement } from "react";
+import { AppLayout } from "../components";
 import { NextPageWithLayout } from "types/page-with-layout";
+import store from "../services/store/store";
+
+import "../styles/globals.css";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -16,7 +17,8 @@ function PodnomsPagesApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout =
     Component.getLayout ??
     ((page: ReactElement) => (
-      <ThemeProvider defaultTheme="bumblebee">
+      <ThemeProvider defaultTheme="bumblebee" storageKey="__theme">
+        <Toaster />
         <AppLayout>{page}</AppLayout>
       </ThemeProvider>
     ));

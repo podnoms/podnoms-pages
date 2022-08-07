@@ -17,8 +17,8 @@ const EmbeddedPage: NextPageWithLayout<IEmbeddedPageProps> = ({
   return (
     <EmbeddedPlayerComonent
       theme={theme}
-      onClickHome={() => {}}
       podcastTitle={episode.podcastTitle}
+      episodeId={episode.id}
       episodeTitle={episode.title}
       description={episode.description}
       audioUrl={episode.audioUrl}
@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 };
 EmbeddedPage.getLayout = (page: ReactElement) => {
   const theme =
-    page.props?.theme && page.props.theme === "dark" ? "dark" : "emerald";
+    page.props?.theme && page.props.theme === "dark" ? "business" : "corporate";
   return (
     <ThemeProvider defaultTheme={theme} forcedTheme={theme}>
       {page}

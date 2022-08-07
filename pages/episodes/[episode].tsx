@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { RootState } from "services/store/store";
-import {getNowPlayingPosition} from '../../services/utils/getNowPlaying';
+import { getNowPlayingPosition } from "../../services/utils";
 
 interface IEpisodePageProps {
   domain: Domain;

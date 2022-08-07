@@ -8,6 +8,7 @@ import { setNowPlaying } from "../../services/store/audio.store";
 import { PlayState } from "../audio";
 import Link from "next/link";
 import { RootState } from "services/store/store";
+import { PlayButtonComponent } from "components";
 
 interface IEpisodeListComponentProps {
   podcast: Podcast;
@@ -32,45 +33,11 @@ const EpisodeListComponent = ({ podcast }: IEpisodeListComponentProps) => {
         {podcast.podcastEntries.map((entry) => (
           <li className="px-3 pb-4" key={entry.id}>
             <div className="flex">
-              <div
-                className="flex-none w-12 h-12 mr-3 cursor-pointer stroke-0 align-center"
-                onClick={() => {}}
-              >
-                {nowPlaying?.entry?.id === entry.id &&
-                playState === PlayState.Playing ? (
-                  <MdPauseCircleFilled
-                    className="w-full h-full delay-100 text-info hover:text-secondary"
-                    onClick={() =>
-                      dispatch(
-                        setNowPlaying({
-                          playState: PlayState.Paused,
-                          nowPlaying: {
-                            entry: entry,
-                            podcast: podcast,
-                            position: 0,
-                          },
-                        })
-                      )
-                    }
-                  />
-                ) : (
-                  <MdPlayCircleFilled
-                    className="w-full h-full delay-100 text-info hover:text-secondary"
-                    onClick={() =>
-                      dispatch(
-                        setNowPlaying({
-                          playState: PlayState.Playing,
-                          nowPlaying: {
-                            entry: entry,
-                            podcast: podcast,
-                            position: 0,
-                          },
-                        })
-                      )
-                    }
-                  />
-                )}
-              </div>
+              <PlayButtonComponent
+                episodeId={entry.id}
+                playState={playState}
+                extraClasses="flex-none w-12 mr-3 stroke-0 align-center"
+              />
               <div className="flex-grow mr-10">
                 <div className="text-lg font-bold">
                   <Link href={`${canonicalUrl ?? ""}${entry.slug}`}>

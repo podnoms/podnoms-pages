@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-import { MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
 import dynamic from "next/dynamic";
-import { setPlayState } from "services/store/audio.store";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../services/store/store";
+import { PlayButtonComponent } from "components";
 
 const WaveformComponent = dynamic(() => import("./waveform.component"), {
   ssr: false,
@@ -20,18 +19,20 @@ export enum PlayState {
 interface IEmbeddedPlayerComponentProps {
   theme: string;
   podcastTitle: string;
+  episodeId: string;
   episodeTitle: string;
   description: string;
   audioUrl: string;
   pcmUrl: string;
   imageUrl: string;
-  onClickHome: () => void;
+  onClickHome?: () => void;
   // position: number;
 }
 
 const EmbeddedPlayerComonent = ({
   theme,
   podcastTitle,
+  episodeId,
   episodeTitle,
   description,
   audioUrl,
@@ -41,7 +42,9 @@ const EmbeddedPlayerComonent = ({
 }: IEmbeddedPlayerComponentProps) => {
   const dispatch = useDispatch();
   const { playState } = useSelector((state: RootState) => state.audio);
-
+  React.useEffect(() => {
+    console.log("embedded-player.component", "Theme", theme);
+  }, [theme]);
   return (
     <div
       className={`flex p-3 ${
@@ -51,7 +54,7 @@ const EmbeddedPlayerComonent = ({
       <div id="image">
         <Image
           className="cursor-pointer"
-          onClick={() => onClickHome()}
+          onClick={() => onClickHome && onClickHome()}
           src={imageUrl}
           alt={episodeTitle}
           width={180}
@@ -68,26 +71,11 @@ const EmbeddedPlayerComonent = ({
           </div>
         </div>
         <div className="flex items-center">
-          <div
-            className="flex-none w-20 pt-6 cursor-pointer stroke-0 align-center"
-            onClick={() => {
-              dispatch(
-                setPlayState(
-                  playState === PlayState.Stopped ||
-                    playState === PlayState.Paused
-                    ? PlayState.Playing
-                    : PlayState.Paused
-                )
-              );
-            }}
-          >
-            {playState === PlayState.Stopped ||
-            playState === PlayState.Paused ? (
-              <MdPlayCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
-            ) : (
-              <MdPauseCircleFilled className="w-full h-full delay-100 hover:text-secondary" />
-            )}
-          </div>
+          <PlayButtonComponent
+            episodeId={episodeId}
+            playState={playState}
+            extraClasses="w-20 mt-5"
+          />
           <div className="flex-grow h-full pt-6 overflow-hidden">
             <WaveformComponent
               audioDuration={0}

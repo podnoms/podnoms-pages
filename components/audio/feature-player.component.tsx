@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { setPlayState } from "services/store/audio.store";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../services/store/store";
+import { PlayButtonComponent } from "components";
 
 const WaveformComponent = dynamic(() => import("./waveform.component"), {
   ssr: false,
@@ -19,6 +20,7 @@ export enum PlayState {
 
 interface IFeaturePlayerComponentProps {
   podcastTitle: string;
+  episodeId: string;
   episodeTitle: string;
   audioUrl: string;
   audioDuration: number;
@@ -30,6 +32,7 @@ interface IFeaturePlayerComponentProps {
 
 const FeaturePlayerComponent = ({
   podcastTitle,
+  episodeId,
   episodeTitle,
   audioUrl,
   audioDuration,
@@ -64,24 +67,11 @@ const FeaturePlayerComponent = ({
             : "Stopped"}
         </div>
       )}
-      <div
-        className="flex-none w-12 h-12 cursor-pointer stroke-0 align-center"
-        onClick={() => {
-          dispatch(
-            setPlayState(
-              playState === PlayState.Stopped || playState === PlayState.Paused
-                ? PlayState.Playing
-                : PlayState.Paused
-            )
-          );
-        }}
-      >
-        {playState === PlayState.Stopped || playState === PlayState.Paused ? (
-          <MdPlayCircleFilled className="w-full h-full delay-200 text-info hover:text-secondary" />
-        ) : (
-          <MdPauseCircleFilled className="w-full h-full delay-200 text-info hover:text-secondary" />
-        )}
-      </div>
+      <PlayButtonComponent
+        episodeId={episodeId}
+        playState={playState}
+        extraClasses="flex-none w-12 h-12"
+      />
       <div className="flex-grow h-full overflow-hidden">
         <WaveformComponent
           playState={playState}

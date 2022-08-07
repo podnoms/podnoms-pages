@@ -18,6 +18,7 @@ const Navbar = () => {
                 router.push("/");
               }}
               podcastTitle={nowPlaying.entry.podcastTitle}
+              episodeId={nowPlaying.entry.id}
               episodeTitle={nowPlaying.entry.title}
               audioUrl={nowPlaying.entry.audioUrl}
               audioDuration={nowPlaying.entry.audioLength}

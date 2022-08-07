@@ -16,7 +16,7 @@ import {
 } from "components/dialogs";
 import { RootState } from "services/store/store";
 import { CommentsComponent, NotFoundComponent } from "../index";
-import { getNowPlayingPosition } from "../../services/utils/getNowPlaying";
+import { PlayButtonComponent } from "components";
 
 interface IEpisodeComponentProps {
   podcast: Podcast;
@@ -106,42 +106,11 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
             <div id="episode-details-right">
               <div id="episode-details-right-header h-16">
                 <div className="flex flex-row ">
-                  <div id="playbutton" className="w-16">
-                    {nowPlaying?.entry?.id === episode.id &&
-                    playState === PlayState.Playing ? (
-                      <MdPauseCircleFilled
-                        className="w-full h-full delay-100 text-info hover:text-secondary"
-                        onClick={() =>
-                          dispatch(
-                            setNowPlaying({
-                              playState: PlayState.Paused,
-                              nowPlaying: {
-                                entry: episode,
-                                podcast: podcast,
-                                position: getNowPlayingPosition(),
-                              },
-                            })
-                          )
-                        }
-                      />
-                    ) : (
-                      <MdPlayCircleFilled
-                        className="w-full h-full delay-100 text-info hover:text-secondary"
-                        onClick={() =>
-                          dispatch(
-                            setNowPlaying({
-                              playState: PlayState.Playing,
-                              nowPlaying: {
-                                entry: episode,
-                                podcast: podcast,
-                                position: getNowPlayingPosition(),
-                              },
-                            })
-                          )
-                        }
-                      />
-                    )}
-                  </div>
+                  <PlayButtonComponent
+                    episodeId={episode.id}
+                    playState={playState}
+                    extraClasses="flex-none w-16"
+                  />
                   <span className="py-2.5 pl-2 text-2xl text-base-content font-bold">
                     {episode.title}
                   </span>
