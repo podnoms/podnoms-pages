@@ -36,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (
   }) => {
   debugger;
   const domainProps = await resolveDomainProps(req);
-
   const episode = domainProps?.podcast?.podcastEntries?.filter(
     (e) => e.slug === params?.episode
   )[0];

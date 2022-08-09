@@ -11,7 +11,7 @@ import RadioButton from "./widgets/radio-button.component";
 import PlayButtonComponent from "./widgets/play-button.component";
 import EpisodeHeadComponent from "./episode-head.component";
 import { showToast } from "./widgets/toast";
-import PodcastHeadComponent from "./podcast-head.component copy";
+import PodcastHeadComponent from "./podcast-head.component";
 
 export {
   showToast,
