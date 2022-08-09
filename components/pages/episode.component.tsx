@@ -138,11 +138,13 @@ const EpisodeComponent: React.FC<IEpisodeComponentProps> = ({
           </div>
 
           <SharingShareDialog
+            domain={domain}
             show={showShareDialog}
             episode={episode}
             handleClose={() => setShowShareDialog(false)}
           />
           <SharingEmbedDialog
+            domain={domain}
             show={showEmbedDialog}
             episode={episode}
             handleClose={() => setShowEmbedDialog(false)}

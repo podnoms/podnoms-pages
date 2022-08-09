@@ -1,13 +1,15 @@
 import React from "react";
 import { BiCopyAlt } from "react-icons/bi";
 import { RadioButton, showToast } from "components";
-import { PodcastEntry } from "models";
+import { Domain, PodcastEntry } from "models";
 import { copyTextToClipboard } from "services/utils";
 
 interface ISharingEmbedComponent {
+  domain: Domain;
   episode: PodcastEntry;
 }
 const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
+  domain,
   episode,
 }) => {
   const [theme, setTheme] = React.useState("dark");
@@ -19,7 +21,7 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
     showToast("Success", "Embed code successfully copied");
   };
   const getEmbedCode = (): string => {
-    const src = `https://domain.pages.pdnm.be:3000/embed/${episode.slug}?theme=${theme}`;
+    const src = `${domain.canonicalUrl}${episode.slug}?theme=${theme}`;
     return `<iframe height="185px" width="100%" frameBorder="no"
           scrolling="no" seamless src=${src} />`;
   };
