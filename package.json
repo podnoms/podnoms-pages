@@ -1,6 +1,6 @@
 {
   "name": "podnoms-pages",
-  "version": "0.1.14",
+  "version": "0.1.22",
   "private": true,
   "scripts": {
     "dev": "node server.js",

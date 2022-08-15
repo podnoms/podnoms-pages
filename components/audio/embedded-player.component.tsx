@@ -70,13 +70,13 @@ const EmbeddedPlayerComonent = ({
             {episodeTitle}
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center pt-4">
           <PlayButtonComponent
             episodeId={episodeId}
             playState={playState}
             extraClasses="w-20 mt-5"
           />
-          <div className="flex-grow h-full pt-6 overflow-hidden">
+          <div className="flex-grow pt-6 overflow-hidden">
             <WaveformComponent
               audioDuration={0}
               currentPosition={0}
@@ -84,7 +84,7 @@ const EmbeddedPlayerComonent = ({
               audioUrl={audioUrl}
               pcmUrl={pcmUrl}
             />
-            <div className="flex justify-between">
+            <div className="flex justify-between invisible">
               <button className="text-white btn btn-xs btn-outline ">1x</button>
               <div className="text-2xs btn-group">
                 <button className="px-1 uppercase">Share</button>

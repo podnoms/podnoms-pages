@@ -2,19 +2,18 @@ import React, {ReactElement} from "react";
 import resolveDomainProps from "services/resolvers/domain-props-resolver";
 import {GetServerSideProps} from "next";
 import {PodcastEntry} from "models";
-import {EmbeddedPlayerComonent} from "../../components/audio";
 import {ThemeProvider} from "next-themes";
 import {NextPageWithLayout} from "types/page-with-layout";
+import {EmbeddedPlayerComonent} from "components/audio";
 
 type IEmbeddedPageProps = {} & {
   theme: string;
   episode: PodcastEntry;
 };
-const EmbeddedPage: NextPageWithLayout<IEmbeddedPageProps> = (
-  {
-    theme,
-    episode,
-  }) => {
+const EmbeddedPage: NextPageWithLayout<IEmbeddedPageProps> = ({
+                                                                theme,
+                                                                episode,
+                                                              }) => {
   return (
     <EmbeddedPlayerComonent
       theme={theme}
@@ -34,7 +33,8 @@ export const getServerSideProps: GetServerSideProps = async (
     params,
     query,
   }) => {
-  const domainProps = await resolveDomainProps(req);
+
+  const domainProps = await resolveDomainProps(req, params?.user as string, params?.podcast as string);
   const episode = domainProps?.podcast?.podcastEntries?.filter(
     (e) => e.slug === params?.episode
   )[0];

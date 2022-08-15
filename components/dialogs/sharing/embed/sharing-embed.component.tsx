@@ -21,7 +21,8 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
     showToast("Success", "Embed code successfully copied");
   };
   const getEmbedCode = (): string => {
-    const src = `${domain.canonicalUrl}${episode.slug}?theme=${theme}`;
+    console.log("sharing-embed.component", "getEmbedCode", domain);
+    const src = `${domain.canonicalUrl}/embed/${episode.slug}?theme=${theme}`;
     return `<iframe height="185px" width="100%" frameBorder="no"
           scrolling="no" seamless src=${src} />`;
   };
@@ -43,7 +44,7 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
           frameBorder="no"
           scrolling="no"
           seamless
-          src={`https://domain.pages.pdnm.be:3000/embed/${episode.slug}?theme=${theme}`}
+          src={`${domain.canonicalUrl}/embed/${episode.slug}?theme=${theme}`}
         />
       </div>
       <div className="py-2 pt-4">

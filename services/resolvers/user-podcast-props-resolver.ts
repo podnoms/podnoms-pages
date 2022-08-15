@@ -1,16 +1,16 @@
 import resolveDomainProps from "./domain-props-resolver";
-import { Podcast, PodcastEntry } from "../../models";
-import { getFeaturedEntry, getPodcast } from "../api/podnoms";
-import { GetServerSidePropsContext, NextApiRequest } from "next";
+import {Podcast, PodcastEntry} from "../../models";
+import {getFeaturedEntry, getPodcast} from "../api/podnoms";
+import {GetServerSidePropsContext} from "next";
 
-export const resolveUserPodcastProps = async ({
-  params,
-  req,
-}: GetServerSidePropsContext): Promise<{
-  podcast: Podcast;
-  featured: PodcastEntry;
+export const resolveUserPodcastProps = async (
+  {
+    params,
+    req,
+  }: GetServerSidePropsContext): Promise<{
+  podcast: Podcast; featured: PodcastEntry;
 }> => {
-  const { domain } = await resolveDomainProps(
+  const {domain} = await resolveDomainProps(
     req,
     params?.user as string,
     params?.podcast as string

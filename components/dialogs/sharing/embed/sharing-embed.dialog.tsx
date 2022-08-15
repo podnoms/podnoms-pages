@@ -17,7 +17,6 @@ const SharingEmbedDialog: React.FC<ISharingDialogProps> = ({
       className="relative z-50"
     >
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      {/* Full-screen container to center the panel */}
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="w-3/4 mx-auto rounded bg-base-100 lg:w-1/2 ">
           <Dialog.Title>
