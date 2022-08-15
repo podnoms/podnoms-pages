@@ -22,7 +22,7 @@ const resolveDomainProps = async (
       : await resolveDomain(host);
 
   if (domain && !domain.canonicalUrl) {
-    domain.canonicalUrl = "/";
+    domain.canonicalUrl = `${protocol}//${host}/`;
   }
   if (domain) {
     const podcast: Podcast = await getPodcast(

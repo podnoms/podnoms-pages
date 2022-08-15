@@ -1,17 +1,18 @@
 import React from "react";
-import { BiCopyAlt } from "react-icons/bi";
-import { RadioButton, showToast } from "components";
-import { Domain, PodcastEntry } from "models";
-import { copyTextToClipboard } from "services/utils";
+import {BiCopyAlt} from "react-icons/bi";
+import {RadioButton, showToast} from "components";
+import {Domain, PodcastEntry} from "models";
+import {copyTextToClipboard} from "services/utils";
 
 interface ISharingEmbedComponent {
   domain: Domain;
   episode: PodcastEntry;
 }
+
 const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
-  domain,
-  episode,
-}) => {
+                                                                   domain,
+                                                                   episode,
+                                                                 }) => {
   const [theme, setTheme] = React.useState("dark");
   const [embedCode, setEmbedCode] = React.useState("");
   const embedCodeRef = React.useRef(null);
@@ -21,7 +22,6 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
     showToast("Success", "Embed code successfully copied");
   };
   const getEmbedCode = (): string => {
-    console.log("sharing-embed.component", "getEmbedCode", domain);
     const src = `${domain.canonicalUrl}/embed/${episode.slug}?theme=${theme}`;
     return `<iframe height="185px" width="100%" frameBorder="no"
           scrolling="no" seamless src=${src} />`;
@@ -30,6 +30,10 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
   React.useEffect(() => {
     setEmbedCode(getEmbedCode());
   }, [theme]);
+
+  React.useEffect(() => {
+    console.log('sharing-embed-component', 'domain', domain)
+  }, [domain]);
 
   const onChangeTheme = (theme: string) => {
     setTheme(theme);
@@ -73,7 +77,7 @@ const SharingEmbedComponent: React.FC<ISharingEmbedComponent> = ({
               className="gap-2 mt-1 mr-1 btn btn-sm btn-square glass"
               onClick={copyEmbedCode}
             >
-              <BiCopyAlt />
+              <BiCopyAlt/>
             </button>
           </div>
           <span className="p-2" ref={embedCodeRef}>
